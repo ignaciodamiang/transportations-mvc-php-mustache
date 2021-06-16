@@ -3,6 +3,7 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("controller/indexController.php");
+include_once("controller/loginController.php");
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -28,6 +29,10 @@ class Configuration{
 
     public function getInicioController(){
         return new indexController($this->getRender());
+    }
+
+    public function getLoginController(){
+        return new loginController($this->getRender());
     }
 
     public function getRouter(){
