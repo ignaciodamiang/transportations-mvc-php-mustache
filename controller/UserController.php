@@ -10,8 +10,8 @@ class UserController {
     }
 
     public function execute(){
-        $data["usuariosSinRol"] = $this->userModel->getUsuariosSinRol();
-        echo $this->render->render("view/inicio.php", $data);
+        $data["usuarios"] = $this->userModel->getUsuarios();
+        echo $this->render->render("view/inicio.mustache", $data);
     }
 
 }

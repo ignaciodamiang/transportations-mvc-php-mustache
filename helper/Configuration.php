@@ -48,13 +48,15 @@ class Configuration{
         return new UrlHelper();
     }
 
-    public function getUserController(){
-        $todosLosUsuariosSinRol = $this->getUsuariosSinRol();
-        return new UserController($todosLosUsuariosSinRol, $this->getRender());
-    }
-
     public function getUsuariosModel(){
         $database = $this->getDatabase();
         return new UserModel($database);
     }
+
+    public function getUsariosController(){
+        $todosLosUsuarios = $this->getUsuarios();
+        return new UserController($todosLosUsuarios, $this->getRender());
+    }
+
+
 }
