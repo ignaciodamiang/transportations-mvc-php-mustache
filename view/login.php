@@ -1,8 +1,10 @@
 {{> header}}
+
 <body class="bg-light text-center">
-<main class="form-signin">
+    <div class="w-100 h-25 d-flex justify-content-center">
+    <main class="form-signin">
     <form>
-        <img class="mb-4" src="img/imagotipo.svg" alt="" width="250" height="250">
+        <img class="mb-4" src="/view/images/imagotipo.svg" alt="" width="250" height="250">
         <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
@@ -22,4 +24,5 @@
         <p class="mt-5 mb-3 text-muted">&copy;2021</p>
     </form>
 </main>
+</div>
 </body>

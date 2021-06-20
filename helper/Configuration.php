@@ -2,8 +2,13 @@
 include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
-include_once("controller/indexController.php");
-include_once("controller/loginController.php");
+
+include_once("model/UserModel.php");
+
+include_once("controller/IndexController.php");
+include_once("controller/LoginController.php");
+include_once("controller/UserController.php");
+
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -41,5 +46,15 @@ class Configuration{
 
     public function getUrlHelper(){
         return new UrlHelper();
+    }
+
+    public function getUserController(){
+        $todosLosUsuariosSinRol = $this->getUsuariosSinRol();
+        return new UserController($todosLosUsuariosSinRol, $this->getRender());
+    }
+
+    public function getUsuariosModel(){
+        $database = $this->getDatabase();
+        return new UserModel($database);
     }
 }

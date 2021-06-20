@@ -1,6 +1,6 @@
 <?php
 
-class loginController
+class LoginController
 {
     private $render;
 

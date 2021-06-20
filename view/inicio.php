@@ -18,36 +18,19 @@
             </tr>
             </thead>
             <tbody>
+                {{#usuariosSinRol}}
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <th scope="row">{{id}}</th>
+                <td>{{nombre}}</td>
+                <td>{{apellido}}</td>
                 <td class="col-4">
                     <button type="button" class="btn btn-primary">Establecer rol</button>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Establecer rol</button
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Establecer rol</button
-                </td>
-
-            </tr>
+                {{/usuariosSinRol}}
             </tbody>
         </table>
     </div>
-    <!--Container table-->
-
 
     <!--Vehiculos-->
     <div class="container-fluid d-flex row flex-column justify-content-center mb-5">
@@ -58,7 +41,7 @@
 
         <!--Container Vehiculos-->
 
-        <div class="d-flex flex-column flex-md-row flex-wrap">
+        <div class="justify-content-center d-flex flex-column flex-md-row flex-wrap">
 
             <div class="card ms-3 mt-3 border-0 shadow" style="width: 18rem; border-radius: 0.5em;">
                 <div class="card-body">

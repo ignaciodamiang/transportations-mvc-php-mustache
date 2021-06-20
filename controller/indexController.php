@@ -1,6 +1,6 @@
 <?php
 
-class indexController
+class IndexController
 {
     private $render;
 
