@@ -14,7 +14,12 @@ class AdminModel
     }
 
     public function getUsuariosSinRol(){
-        return $this->database->query("SELECT * FROM usuario WHERE id_tipoUsuario IS NULL");
+        $sql = "SELECT * FROM usuario WHERE id_tipoUsuario IS NULL";
+        $consulta = $this->database->query($sql);
+        if(sizeof($consulta)!=0){
+            return $consulta;
+        } else
+        return false;
     }
 
     public function getUsuarioPorId($id){
