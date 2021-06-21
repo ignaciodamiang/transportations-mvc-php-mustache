@@ -3,35 +3,7 @@
 <body class="bg-light">
   <!--Div container-->
   <div class="container-fluid mt-5 d-flex flex-column mb-5">
-    <h3 class="fs-4 text-center">Roles del usuario</h3>
-
-    <!--Container table-->
-    <div class="container mb-5 col-12 justify-content-center rounded">
-      <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Dni</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#usuariosSinRol}}
-          <tr>
-            <th scope="row">{{ id }}</th>
-            <td>{{ nombre }}</td>
-            <td>{{ apellido }}</td>
-            <td class="col-4">
-              <button type="button" class="btn btn-primary">
-                Establecer rol
-              </button>
-            </td>
-          </tr>
-          {{/usuariosSinRol}}
-        </tbody>
-      </table>
-    </div>
+    {{>containerUsers}}
 
     <!--Vehiculos-->
     <div
