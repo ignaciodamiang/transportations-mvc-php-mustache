@@ -3,11 +3,10 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 
-include_once("model/UserModel.php");
+include_once("model/AdminModel.php");
 
-include_once("controller/IndexController.php");
+include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
-include_once("controller/UserController.php");
 
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -32,12 +31,8 @@ class Configuration{
         return new Render('view/partial');
     }
 
-    public function getInicioController(){
-        return new indexController($this->getRender());
-    }
-
     public function getLoginController(){
-        return new loginController($this->getRender());
+        return new LoginController($this->getRender());
     }
 
     public function getRouter(){
@@ -48,14 +43,14 @@ class Configuration{
         return new UrlHelper();
     }
 
-    public function getUsuariosModel(){
+    public function getAdminModel(){
         $database = $this->getDatabase();
-        return new UserModel($database);
+        return new AdminModel($database);
     }
 
-    public function getUsariosController(){
-        $todosLosUsuarios = $this->getUsuarios();
-        return new UserController($todosLosUsuarios, $this->getRender());
+    public function getAdminController(){
+        $adminModel = $this->getAdminModel();
+        return new AdminController($adminModel, $this->getRender());
     }
 
 
