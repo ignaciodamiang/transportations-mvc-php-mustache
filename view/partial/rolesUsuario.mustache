@@ -27,16 +27,18 @@
                             <td>{{ nombre }}</td>
                             <td>{{ apellido }}</td>
                             <td>{{ dni }}</td>
-
+                            <input type="" name="id" value="{{id}}"/>
                             <td class="col-4">
                                 <!-- Button trigger modal -->
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Dar Rol
                                 </button>
-
+                    {{/usuariosSinRol}}
                                 <!-- Modal -->
-                                <form action="/admin/darRol" method="post">
+
+                                <form action="/admin/darRol" method="post">{{#usuariosSinRol}}
+
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -45,7 +47,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <input type="hidden" name="id" value="{{id}}"/>
+
                                                     <select class="form-select" aria-label="Default select example" name="Rol">
                                                         <option selected>Seleccione un Rol</option>
                                                         <option value="1">Administrador</option>
@@ -63,11 +65,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </button>
+                                    </button> {{/usuariosSinRol}}
                                 </form>
+
                             </td>
                         </tr>
-                    {{/usuariosSinRol}}
+
 
                     </tbody>
                 </table>

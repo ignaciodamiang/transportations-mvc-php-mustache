@@ -13,19 +13,20 @@ class registroController
 
     public function execute()
     {
+        $arrayVacio= array();
         echo $this->render->render("view/registro.php");
     }
 
     public function registrarUsuario()
     {
-        $nombre = isset($_POST["nombre"]);
-        $apellido = isset($_POST["apellido"]);
-        $legajo = isset($_POST["legajo"]);
-        $dni = isset($_POST["dni"]);
-        $fecha_nacimiento = isset($_POST["fecha_nacimiento"]);
-        $tipo_licencia = isset($_POST["tipo_licencia"]);
-        $email = isset($_POST["email"]);
-        $contraseña = isset($_POST["contraseña"]);
+        $nombre = isset( $_POST["nombre"] ) ? $_POST["nombre"] : "null" ;
+        $apellido =$_POST["apellido"];
+        $legajo =$_POST["legajo"];
+        $dni = $_POST["dni"];
+        $fecha_nacimiento = $_POST["fecha_nacimiento"];
+        $tipo_licencia = $_POST["tipo_licencia"];
+        $email = $_POST["email"];
+        $contraseña =$_POST["contraseña"];
 
 
         if ($this->registroModel->registrarUsuario($nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia ,$email, $contraseña)) {

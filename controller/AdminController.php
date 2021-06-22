@@ -14,6 +14,8 @@ class AdminController {
         echo $this->render->render("view/admin/adminView.mustache", $data);
     }
 
+
+
     public function darRol(){
         $idRol = $_POST['Rol'];
         $idUsuario = $_POST['id'];
