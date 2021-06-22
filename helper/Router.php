@@ -8,14 +8,14 @@ class Router{
         $this->configuration = $configuration;
     }
 
-    public function executeActionFromModule($action, $module){
+    public function executeActionFromModule($module, $action){
         $controller = $this->getControllerFrom($module);
         $this->executeMethodFromController($controller,$action);
     }
 
     private function getControllerFrom($module){
           $controllerName = "get" . ucfirst($module) . "Controller";
-          $validController = method_exists($this->configuration, $controllerName) ?$controllerName : "getInicioController";
+          $validController = method_exists($this->configuration, $controllerName) ?$controllerName : "getLoginController";
           return call_user_func(array($this->configuration, $validController));
     }
 

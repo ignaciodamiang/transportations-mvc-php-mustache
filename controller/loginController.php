@@ -1,6 +1,6 @@
 <?php
 
-class loginController
+class LoginController
 {
 
     private $loginModel;
@@ -14,7 +14,6 @@ class loginController
 
     public function execute()
     {
-
         echo $this->render->render("view/login.php");
 
     }
@@ -28,14 +27,13 @@ class loginController
         if ($this->loginModel->obtenerUsuarioParaLoguear($email, $contraseña)) {
 
             $_SESSION["nombre"] = $email;
-            echo $this->render->render("view/inicio.php");
+            echo $this->render->render("view/adminView.mustache");
 
         } else {
             echo $this->render->render("view/login.php");
+
         }
 
     }
 
 }
-
-?>
