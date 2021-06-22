@@ -280,6 +280,7 @@ class Mustache_Parser
         }
     }
 
+
     /**
      * Split a tag name into name and filters.
      *

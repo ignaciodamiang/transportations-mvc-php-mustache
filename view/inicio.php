@@ -1,5 +1,5 @@
 {{> header}}
-{{>navbar}}
+{{> navbar}}
 <body class="bg-light">
 <!--Div container-->
 <div class="container-fluid mt-5 d-flex flex-column mb-5">
@@ -58,7 +58,7 @@
 
         <!--Container Vehiculos-->
 
-        <div class="d-flex flex-column flex-md-row flex-wrap">
+        <div class="d-flex flex-column flex-md-row flex-wrap justify-content-center ">
 
             <div class="card ms-3 mt-3 border-0 shadow" style="width: 18rem; border-radius: 0.5em;">
                 <div class="card-body">
