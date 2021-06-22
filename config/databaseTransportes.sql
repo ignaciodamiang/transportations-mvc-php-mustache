@@ -99,7 +99,7 @@ foreign key(id_usuario) references Usuario(id)
 );
 
 insert into TipoUsuario(id, rol)
-values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "supervisor");
+values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipoUsuario, email, contraseña)
 values(1, "pepe", "argento", 1, 42225, "01-01-1999", 1, "pepeargento@gmail.com", "1234");

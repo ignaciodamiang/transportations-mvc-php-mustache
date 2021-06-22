@@ -1,28 +1,79 @@
 <!--Container Usuarios-->
 <div class="container mb-5 col-12 justify-content-center rounded">
-  <table class="table table-dark table-striped">
-    {{#usuariosSinRol}}
-    <h2>Usuarios Sin Rol</h2>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Dni</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    {{/usuariosSinRol}}
-    <tbody>
-      {{#usuariosSinRol}}
-      <tr>
-        <th scope="row">{{ id }}</th>
-        <td>{{ nombre }}</td>
-        <td>{{ apellido }}</td>
-        <td class="col-4">
-          <button type="button" class="btn btn-primary">Establecer rol</button>
-        </td>
-      </tr>
-      {{/usuariosSinRol}}
-    </tbody>
-  </table>
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Usuarios sin Rol
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+                <table class="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Legajo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#usuariosSinRol}}
+                        <tr>
+                            <th scope="row">{{ legajo }}</th>
+                            <td>{{ nombre }}</td>
+                            <td>{{ apellido }}</td>
+                            <td>{{ dni }}</td>
+
+                            <td class="col-4">
+                                <!-- Button trigger modal -->
+
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Dar Rol
+                                </button>
+
+                                <!-- Modal -->
+                                <form action="/admin/darRol" method="post">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-danger" id="exampleModalLabel">Asignar Rol al Usuario: {{nombre}} {{apellido}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id" value="{{id}}"/>
+                                                    <select class="form-select" aria-label="Default select example" name="Rol">
+                                                        <option selected>Seleccione un Rol</option>
+                                                        <option value="1">Administrador</option>
+                                                        <option value="2">Gerente</option>
+                                                        <option value="3">Chofer</option>
+                                                        <option value="4">Mecanico</option>
+                                                    </select>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/usuariosSinRol}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
