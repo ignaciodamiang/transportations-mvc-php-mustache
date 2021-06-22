@@ -6,7 +6,7 @@
 
 <main class="form-signin col-8 col-md-6 col-lg-3">
     <form action="/login/loguearUsuario" method="post">
-        <img src="/view/images/imagotipo.svg" alt="" style="
+        <img src="images/imagotipo.svg" alt="" style="
     width: 200px;
     height: 200px;
 ">

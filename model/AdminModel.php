@@ -26,4 +26,11 @@ class AdminModel
         $sql = "SELECT * FROM usuario where id = " . $id;
         return $this->database->query($sql);
     }
+
+    public  function getAsignarNuevoRol($idRol , $idUsuario){
+
+        $sql= " UPDATE Usuario SET id_tipoUsuario =$idRol WHERE id= $idUsuario";
+        return $this->database->query($sql);
+
+    }
 }

@@ -11,7 +11,14 @@ class AdminController {
 
     public function execute(){
         $data["usuariosSinRol"] = $this->adminModel->getUsuariosSinRol();
-        echo $this->render->render("view/adminView.mustache", $data);
+        echo $this->render->render("view/admin/adminView.mustache", $data);
+    }
+
+    public function darRol(){
+        $idRol = $_POST['Rol'];
+        $idUsuario = $_POST['id'];
+        $this->adminModel->getAsignarNuevoRol($idRol,$idUsuario);
+        echo $this->execute();
     }
 
 }
