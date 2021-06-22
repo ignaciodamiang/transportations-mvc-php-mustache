@@ -102,4 +102,9 @@ insert into TipoUsuario(id, rol)
 values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipoUsuario, email, contraseña)
-values(1, "pepe", "argento", 1, 42225, "01-01-1999", 1, "pepeargento@gmail.com", "1234");
+values(1, "admin", "admin", 1, 42225, "01-01-1999", 1, "admin@gmail.com", "1234");
+
+/* usuarios sin rol*/
+/*insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
+values(2, "tomas", "lala", 2, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
+		(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234");*/
