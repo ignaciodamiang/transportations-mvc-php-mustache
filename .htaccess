@@ -1,3 +1,4 @@
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -11,4 +12,5 @@ RewriteRule ^(.*)/(.*)$ index.php?module=$1&action=$2 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?module=$1&action=execute [L,QSA]
+
 </IfModule>

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/TpFinalGrupo9" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/LeaRamos/pokedex-grupo-pw2" />
+        <option value="https://github.com/ivankek/TrabajoPracticoPhp" />
+      </set>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP-LOCAL" />
+  <component name="ProjectId" id="1hqH0JtjySnXw8rgasbq0N07Q4u" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PaginaJugadoresMvc" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\view\images" />
+      <recent name="C:\xampp\htdocs\TpFinalGrupo9\view\images" />
+      <recent name="C:\xampp\htdocs\TpFinalGrupo9\view" />
+      <recent name="C:\xampp\htdocs\PaginaJugadoresMvc\config" />
+      <recent name="C:\xampp\htdocs\PaginaJugadoresMvc\view" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\PaginaJugadoresMvc" />
+      <recent name="C:\xampp\htdocs\TpFinalGrupo9" />
+      <recent name="C:\xampp\htdocs\TpFinalMvc\view\images" />
+      <recent name="C:\xampp\htdocs\TpFinalMvc" />
+      <recent name="C:\xampp\htdocs" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="{" />
+    </option>
+  </component>
+  <component name="RunManager" selected="PHPUnit.Test.testNombreCompleto">
+    <configuration name="Test" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/Test.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.testNombreCompleto" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/IvanKekTpIntroduccionPhp/Test/Test.php" method="testNombreCompleto" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.testSumatoria" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/IvanKekTpIntroduccionPhp/Test/Test.php" method="testSumatoria" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.testSumatoriaA" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/IvanKekTpIntroduccionPhp/Test/Test.php" method="testSumatoriaA" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.testSumatoriaB" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/IvanKekTpIntroduccionPhp/Test/Test.php" method="testSumatoriaB" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.testSumatoriaC" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/IvanKekTpIntroduccionPhp/Test/Test.php" method="testSumatoriaC" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP-LOCAL" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Test" file="$PROJECT_DIR$/Test.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.test" />
+      <item itemvalue="PHPUnit.Test" />
+      <item itemvalue="PHPUnit.Test.testSumatoria" />
+      <item itemvalue="PHPUnit.Test.testSumatoriaA" />
+      <item itemvalue="PHPUnit.Test.testSumatoriaB" />
+      <item itemvalue="PHPUnit.Test.testSumatoriaC" />
+      <item itemvalue="PHPUnit.Test.testNombreCompleto" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.Test.testNombreCompleto" />
+        <item itemvalue="PHPUnit.Test.testSumatoriaC" />
+        <item itemvalue="PHPUnit.Test.testSumatoriaB" />
+        <item itemvalue="PHPUnit.Test.testSumatoriaA" />
+        <item itemvalue="PHPUnit.Test.testSumatoria" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="" />
+      <created>1600731477615</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600731477615</updated>
+      <workItem from="1600731478717" duration="3414000" />
+      <workItem from="1600791827179" duration="3586000" />
+      <workItem from="1601159721835" duration="14126000" />
+      <workItem from="1601176106498" duration="258000" />
+      <workItem from="1601179474646" duration="460000" />
+      <workItem from="1601179988662" duration="244000" />
+      <workItem from="1601180498526" duration="291000" />
+      <workItem from="1601229274609" duration="9620000" />
+      <workItem from="1601245296856" duration="220000" />
+      <workItem from="1601245540600" duration="9558000" />
+      <workItem from="1601264071196" duration="19000" />
+      <workItem from="1601264126580" duration="72000" />
+      <workItem from="1601327627875" duration="15917000" />
+      <workItem from="1601398690885" duration="883000" />
+      <workItem from="1601403112776" duration="9765000" />
+      <workItem from="1601826939432" duration="9678000" />
+      <workItem from="1601924000829" duration="20622000" />
+      <workItem from="1601999771118" duration="8450000" />
+      <workItem from="1602015264819" duration="2237000" />
+      <workItem from="1602019128885" duration="1341000" />
+      <workItem from="1602300825665" duration="6834000" />
+      <workItem from="1602349744659" duration="5541000" />
+      <workItem from="1602531063647" duration="8523000" />
+      <workItem from="1602618652704" duration="843000" />
+      <workItem from="1602965229592" duration="1500000" />
+      <workItem from="1602966946158" duration="10168000" />
+      <workItem from="1603077348254" duration="3536000" />
+      <workItem from="1603135659368" duration="8212000" />
+      <workItem from="1603145329910" duration="48000" />
+      <workItem from="1603145453537" duration="20000" />
+      <workItem from="1618442297598" duration="23000" />
+      <workItem from="1618956938294" duration="5320000" />
+      <workItem from="1619474712228" duration="13286000" />
+      <workItem from="1619536084096" duration="8231000" />
+      <workItem from="1619562546514" duration="1331000" />
+      <workItem from="1619894759365" duration="15623000" />
+      <workItem from="1619971204065" duration="15162000" />
+      <workItem from="1620072884525" duration="2101000" />
+      <workItem from="1620075559088" duration="14111000" />
+      <workItem from="1620101936524" duration="4493000" />
+      <workItem from="1620143131145" duration="11902000" />
+      <workItem from="1620328526074" duration="20335000" />
+      <workItem from="1620402954661" duration="10016000" />
+      <workItem from="1620430354952" duration="731000" />
+      <workItem from="1620434067468" duration="34476000" />
+      <workItem from="1620595902386" duration="143000" />
+      <workItem from="1620684777181" duration="8583000" />
+      <workItem from="1620702304766" duration="2539000" />
+      <workItem from="1620752734184" duration="3692000" />
+      <workItem from="1620761827867" duration="6401000" />
+      <workItem from="1620773461869" duration="607000" />
+      <workItem from="1620944882129" duration="8453000" />
+      <workItem from="1621005779684" duration="16496000" />
+      <workItem from="1621028552914" duration="12698000" />
+      <workItem from="1621090764119" duration="5816000" />
+      <workItem from="1621108749396" duration="1706000" />
+      <workItem from="1621175563339" duration="20104000" />
+      <workItem from="1621264394613" duration="3270000" />
+      <workItem from="1621273654398" duration="10353000" />
+      <workItem from="1621289442432" duration="1818000" />
+      <workItem from="1621293491422" duration="6305000" />
+      <workItem from="1621302732271" duration="4454000" />
+      <workItem from="1621354791964" duration="799000" />
+      <workItem from="1621371475181" duration="1652000" />
+      <workItem from="1621447951295" duration="8067000" />
+      <workItem from="1621465821400" duration="1854000" />
+      <workItem from="1621797374496" duration="200000" />
+      <workItem from="1622326712409" duration="9653000" />
+      <workItem from="1622344945396" duration="1815000" />
+      <workItem from="1622386990366" duration="17390000" />
+      <workItem from="1622475817830" duration="28796000" />
+      <workItem from="1622571912604" duration="1667000" />
+      <workItem from="1622584539441" duration="3431000" />
+      <workItem from="1622673573269" duration="4524000" />
+      <workItem from="1622740727358" duration="10174000" />
+      <workItem from="1623018438705" duration="4102000" />
+      <workItem from="1623085136551" duration="7526000" />
+      <workItem from="1623357441840" duration="14035000" />
+      <workItem from="1623459757851" duration="6403000" />
+      <workItem from="1623537443991" duration="9896000" />
+      <workItem from="1623617122235" duration="11778000" />
+      <workItem from="1623641860972" duration="2023000" />
+      <workItem from="1623775069393" duration="11472000" />
+      <workItem from="1623875326030" duration="1579000" />
+      <workItem from="1623883285120" duration="2761000" />
+      <workItem from="1623891123043" duration="45000" />
+      <workItem from="1624216071163" duration="26719000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="309" y="47" key="#Inspections" timestamp="1623364503962">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="309" y="47" key="#Inspections/0.0.1366.738@0.0.1366.738" timestamp="1623364503962" />
+    <state x="275" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620687811826">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1620687811826" />
+    <state x="92" y="92" width="1182" height="554" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1619485596204">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="92" y="92" width="1182" height="554" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1366.738@0.0.1366.738" timestamp="1619485596204" />
+    <state x="453" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1623383821092">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="453" y="171" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1623383821092" />
+    <state x="432" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1623862146805">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="432" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1623862146805" />
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1623632438237">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1623632438237" />
+    <state width="1323" height="2" key="GridCell.Tab.0.bottom" timestamp="1619544391673">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1619544391673" />
+    <state width="1323" height="2" key="GridCell.Tab.0.center" timestamp="1619544391673">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1619544391673" />
+    <state width="1323" height="2" key="GridCell.Tab.0.left" timestamp="1619544391672">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1619544391672" />
+    <state width="1323" height="2" key="GridCell.Tab.0.right" timestamp="1619544391673">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1619544391673" />
+    <state x="492" y="92" key="NewPhpClassDialog" timestamp="1624223311344">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="492" y="92" key="NewPhpClassDialog/0.0.1366.738@0.0.1366.738" timestamp="1624223311344" />
+    <state x="517" y="292" key="NewPhpFileDialog" timestamp="1623875371911">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="517" y="292" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1623875371911" />
+    <state x="320" y="28" width="916" height="710" key="SettingsEditor" timestamp="1623367292511">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="320" y="28" width="916" height="710" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1623367292511" />
+    <state width="527" height="446" key="SwitcherDM" timestamp="1623554816885">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="527" height="446" key="SwitcherDM/0.0.1366.738@0.0.1366.738" timestamp="1623554816885" />
+    <state x="434" y="37" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1623541656951">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="434" y="37" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.738@0.0.1366.738" timestamp="1623541656951" />
+    <state x="131" y="628" width="852" height="191" key="dock-window-1" timestamp="1623553321571">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="131" y="628" width="852" height="191" key="dock-window-1/0.0.1366.738@0.0.1366.738" timestamp="1623553321571" />
+    <state x="772" y="105" width="585" height="534" key="find.popup" timestamp="1624218491071">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="772" y="105" width="585" height="534" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624218491071" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1622745332684">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1366.738@0.0.1366.738" timestamp="1622745332684" />
+    <state x="526" y="130" key="refactoring.ChangeSignatureDialog" timestamp="1623632617812">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="526" y="130" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1623632617812" />
+    <state x="690" y="169" width="672" height="677" key="run.anything.popup" timestamp="1623890700985">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="690" y="169" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1623890700985" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1623126248271">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1623126248271" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/htdocs@Test.xml" NAME="Test Coverage Results" MODIFIED="1600793046553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

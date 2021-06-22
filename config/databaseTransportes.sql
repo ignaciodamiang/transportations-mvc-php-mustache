@@ -16,6 +16,8 @@ dni int,
 fecha_nacimiento varchar(50),
 tipo_licencia varchar(50),
 id_tipoUsuario int,
+email varchar(50),
+contraseña varchar(50),
 primary key (id),
 foreign key(id_tipoUsuario) references TipoUsuario(id)
 );
@@ -99,5 +101,5 @@ foreign key(id_usuario) references Usuario(id)
 insert into TipoUsuario(id, rol)
 values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "supervisor");
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipoUsuario)
-values(1, "pepe", "argento", 1, 42225, "01-01-1999", 1);
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipoUsuario, email, contraseña)
+values(1, "pepe", "argento", 1, 42225, "01-01-1999", 1, "pepeargento@gmail.com", "1234");
