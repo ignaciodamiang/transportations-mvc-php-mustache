@@ -105,6 +105,12 @@ insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipo
 values(1, "admin", "admin", 1, 42225, "01-01-1999", 1, "admin@gmail.com", "1234");
 
 /* usuarios sin rol*/
-/*insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
+/*
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
 values(2, "tomas", "lala", 2, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-		(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234");*/
+		(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234"),
+        (4, "ana", "poooo", 4, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
+        (5, "hola", "lk", 5, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
+        (6, "taza", "jjj", 6, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
+        (7, "equipo", "iiii", 7, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
+        (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomaslala@gmail.com", "1234");*/
