@@ -20,7 +20,7 @@ class AdminController {
         $idRol = $_POST['Rol'];
         $idUsuario = $_POST['id'];
         $this->adminModel->getAsignarNuevoRol($idRol,$idUsuario);
-        echo $this->execute();
+        header("location:/admin");
+        exit();
     }
-
 }
