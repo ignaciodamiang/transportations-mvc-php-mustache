@@ -14,7 +14,7 @@ class registroController
     public function execute()
     {
         $arrayVacio= array();
-        echo $this->render->render("view/registro.php");
+        echo $this->render->render("view/registro.mustache");
     }
 
     public function registrarUsuario()
@@ -31,7 +31,7 @@ class registroController
 
         if ($this->registroModel->registrarUsuario($nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia ,$email, $contraseña)) {
 
-            echo $this->render->render("view/login.php");
+            echo $this->render->render("view/login.mustache");
         } else {
 
             echo $this->execute();

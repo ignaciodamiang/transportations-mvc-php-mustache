@@ -14,7 +14,7 @@ class LoginController
 
     public function execute()
     {
-        echo $this->render->render("view/login.php");
+        echo $this->render->render("view/login.mustache");
 
     }
 
@@ -30,7 +30,7 @@ class LoginController
             echo $this->render->render("view/adminView.mustache");
 
         } else {
-            echo $this->render->render("view/login.php");
+            echo $this->render->render("view/login.mustache");
 
         }
 
