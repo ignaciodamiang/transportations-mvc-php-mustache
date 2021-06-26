@@ -36,5 +36,5 @@ VALUES( '$nombre',
             return true;
         }
     }
-
+*/
 }
