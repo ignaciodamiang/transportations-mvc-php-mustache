@@ -3,11 +3,15 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("helper/VerificacionDeRol.php");
+
+
 include_once("model/registroModel.php");
-include_once("controller/registroController.php");
+include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
-include_once("controller/loginController.php");
 include_once("model/AdminModel.php");
+
+include_once("controller/registroController.php");
+include_once("controller/loginController.php");
 include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
@@ -46,8 +50,9 @@ class Configuration
 
     public function getLoginController()
     {
+        $usuarioModel= $this->getUsuarioModel();
         $loginModel = $this->getLoginModel();
-        return new loginController($loginModel, $this->getRender());
+        return new loginController($loginModel, $this->getRender(),$usuarioModel);
     }
 
     public function getRegistroModel()
@@ -84,5 +89,10 @@ class Configuration
         return new AdminController($adminModel, $this->getRender());
     }
 
+    public function getUsuarioModel()
+    {
+        $database = $this->getDatabase();
+        return new UsuarioModel($database);
+    }
 
 }
