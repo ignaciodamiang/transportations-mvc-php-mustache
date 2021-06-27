@@ -2,7 +2,7 @@
 include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
-include_once("helper/VerificacionDeRol.php");
+include_once("helper/VerificacionDeRolModel.php");
 
 
 include_once("model/registroModel.php");
@@ -50,9 +50,10 @@ class Configuration
 
     public function getLoginController()
     {
-        $usuarioModel= $this->getUsuarioModel();
+        $usuarioModel = $this->getUsuarioModel();
         $loginModel = $this->getLoginModel();
-        return new loginController($loginModel, $this->getRender(),$usuarioModel);
+        $verificacionDeRolModel=$this->getVerificacionDeRolModel();
+        return new loginController($loginModel, $this->getRender(), $usuarioModel, $verificacionDeRolModel);
     }
 
     public function getRegistroModel()
@@ -95,4 +96,9 @@ class Configuration
         return new UsuarioModel($database);
     }
 
+    public function getVerificacionDeRolModel()
+    {
+        $database = $this->getDatabase();
+        return new VerificacionDeRolModel($database);
+    }
 }
