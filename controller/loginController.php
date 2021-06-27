@@ -2,14 +2,17 @@
 
 class LoginController
 {
-
+    private $usuarioModel;
     private $loginModel;
     private $render;
+    private $verificacionDeRolModel;
 
-    public function __construct($loginModel, $render)
+    public function __construct($loginModel, $render, $usuarioModel,$verificacionDeRolModel)
     {
         $this->loginModel = $loginModel;
         $this->render = $render;
+        $this->usuarioModel = $usuarioModel;
+        $this->verificacionDeRolModel=$verificacionDeRolModel;
     }
 
     public function execute()
@@ -26,20 +29,23 @@ class LoginController
 
     public function loguearUsuario()
     {
-
         $email = $_POST["email"];
-        $contraseña = $_POST["contraseña"];
+        $password = $_POST["password"];
 
-        if ($this->loginModel->obtenerUsuarioParaLoguear($email, $contraseña)) {
+        $siTieneRol=$this->loginModel->verificarUsuarioConRol($email, $password);
+        if ($siTieneRol){
 
-            $_SESSION["nombre"] = $email;
-            echo $this->render->render("view/adminView.mustache");
 
-        } else {
-            echo $this->render->render("view/login.mustache");
+            header("location:/admin");
 
         }
+        else{
+            header("location:/");
+        }
+
+        
+
+
 
     }
-
 }
