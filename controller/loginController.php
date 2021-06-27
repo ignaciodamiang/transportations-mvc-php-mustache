@@ -5,12 +5,14 @@ class LoginController
     private $usuarioModel;
     private $loginModel;
     private $render;
+    private $verificacionDeRolModel;
 
-    public function __construct($loginModel, $render, $usuarioModel)
+    public function __construct($loginModel, $render, $usuarioModel,$verificacionDeRolModel)
     {
         $this->loginModel = $loginModel;
         $this->render = $render;
         $this->usuarioModel = $usuarioModel;
+        $this->verificacionDeRolModel=$verificacionDeRolModel;
     }
 
     public function execute()
@@ -27,28 +29,27 @@ class LoginController
 
     public function loguearUsuario()
     {
-
         $email = $_POST["email"];
         $contraseña = $_POST["contraseña"];
-        /* verifico que el usuario exista y tenga rol
-        */
-        if ($this->loginModel->verificarUsuarioConRol($email, $contraseña)) {
-        /* $data["rol"]= $this->usuarioModel->getRolUsuario($email);
 
-            if( $data["rol"][0] == 1 ){
-                $_SESSION["nombre"] = $email;*/
+        if ($this->loginModel->verificarUsuarioConRol($email, $contraseña))
+        {
+           /* if($this->verificacionDeRolModel->esAdmin($this->usuarioModel->getRolUsuario($email))){
                 header("location:/admin");
-            /*}
-            else{
+
+            }else if ($this->verificacionDeRolModel->esGerente($this->usuarioModel->getRolUsuario($email))){
+
                 header("location:/registro");
+
             }
 
-*/
-        } else {
-            header("location:/");
-
+        */
+            header("location:/admin");
         }
+        else {
+                header("location:/registro");
+
+            }
 
     }
-
 }

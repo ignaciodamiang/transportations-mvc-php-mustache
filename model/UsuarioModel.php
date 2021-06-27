@@ -13,6 +13,8 @@ class UsuarioModel
     public function getRolUsuario($email){
 
         $sql = "SELECT id_tipoUsuario  FROM Usuario WHERE email like '$email'";
-        return $this->database->query($sql);
+
+        $resultado["rol"]= $this->database->query($sql);
+        return $resultado["rol"]["0"]["id_tipoUsuario"];
     }
 }
