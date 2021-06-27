@@ -30,26 +30,22 @@ class LoginController
     public function loguearUsuario()
     {
         $email = $_POST["email"];
-        $contraseña = $_POST["contraseña"];
+        $password = $_POST["password"];
 
-        if ($this->loginModel->verificarUsuarioConRol($email, $contraseña))
-        {
-           /* if($this->verificacionDeRolModel->esAdmin($this->usuarioModel->getRolUsuario($email))){
-                header("location:/admin");
+        $siTieneRol=$this->loginModel->verificarUsuarioConRol($email, $password);
+        if ($siTieneRol){
 
-            }else if ($this->verificacionDeRolModel->esGerente($this->usuarioModel->getRolUsuario($email))){
 
-                header("location:/registro");
-
-            }
-
-        */
             header("location:/admin");
-        }
-        else {
-                header("location:/registro");
 
-            }
+        }
+        else{
+            header("location:/");
+        }
+
+        
+
+
 
     }
 }
