@@ -22,7 +22,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/databaseTransportes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/config/databaseTransportes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/loginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/loginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/registroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/registroController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/registroModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/registroModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/login.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/login.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/loginView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/loginView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/registro.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/registro.mustache" afterDir="false" />
+    </list>
+>>>>>>> 2cad9360e60fc81a0d0d2bc958d4e86ce3cc0bec
+>>>>>>> master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,8 +293,16 @@
       <workItem from="1624571202772" duration="211000" />
       <workItem from="1624571420333" duration="612000" />
       <workItem from="1624575512847" duration="1589000" />
+<<<<<<< HEAD
+      <workItem from="1624730246753" duration="701000" />
+=======
       <workItem from="1624738402992" duration="3661000" />
+<<<<<<< HEAD
       <workItem from="1624745295204" duration="7430000" />
+=======
+      <workItem from="1624745295204" duration="7200000" />
+>>>>>>> 2cad9360e60fc81a0d0d2bc958d4e86ce3cc0bec
+>>>>>>> master
     </task>
     <servers />
   </component>
