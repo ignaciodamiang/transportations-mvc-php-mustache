@@ -9,26 +9,26 @@ class VerificacionDeRolModel
     {
         $this->database = $database;
     }
-    public function esAdmin($id){
-        if($id=='1'){
+    public function esAdmin($id_tipoUsuario){
+        if($id_tipoUsuario=="1"){
             return true;
         }
         return false;
     }
-    public function esGerente($id){
-        if($id=='2'){
+    public function esGerente($id_tipoUsuario){
+        if($id_tipoUsuario=="2"){
             return true;
         }
         return false;
     }
-    public function esChofer($id){
-        if($id=='3'){
+    public function esChofer($id_tipoUsuario){
+        if($id_tipoUsuario=="3"){
             return true;
         }
         return false;
     }
-    public function esMecanico($id){
-        if($id=='4'){
+    public function esMecanico($id_tipoUsuario){
+        if($id_tipoUsuario=="4"){
             return true;
         }
         return false;
