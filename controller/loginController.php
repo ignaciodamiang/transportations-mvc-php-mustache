@@ -35,13 +35,19 @@ class LoginController
         $siTieneRol=$this->loginModel->verificarUsuarioConRol($email, $password);
         if ($siTieneRol){
                 $rolDelUsuario=$this->usuarioModel->getRolUsuario($email);
-            var_dump($rolDelUsuario);
+
             if($this->verificacionDeRolModel->esAdmin($rolDelUsuario)){
                  header("location:/admin");
             }
            if ($this->verificacionDeRolModel->esGerente($rolDelUsuario)){
                header("location:/registro");
            }
+            if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)){
+                header("location:/registro");
+            }
+            if ($this->verificacionDeRolModel->esMecanico($rolDelUsuario)){
+                header("location:/registro");
+            }
 
         }
         else{
