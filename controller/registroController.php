@@ -13,28 +13,34 @@ class registroController
 
     public function execute()
     {
-        $arrayVacio= array();
-        echo $this->render->render("view/registro.mustache");
+        if (isset($_GET["mensaje"])) {
+
+            $mensaje["mensaje"] = $_GET["mensaje"];
+            echo $this->render->render("view/registro.mustache", $mensaje);
+        } else {
+            echo $this->render->render("view/registro.mustache");
+
+        }
     }
 
     public function registrarUsuario()
     {
-        $nombre = isset( $_POST["nombre"] ) ? $_POST["nombre"] : "null" ;
-        $apellido =$_POST["apellido"];
-        $legajo =$_POST["legajo"];
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $legajo = $_POST["legajo"];
         $dni = $_POST["dni"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
         $tipo_licencia = $_POST["tipo_licencia"];
         $email = $_POST["email"];
-        $contraseña =$_POST["contraseña"];
+        $contraseña = $_POST["contraseña"];
 
 
-        if ($this->registroModel->registrarUsuario($nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia ,$email, $contraseña)) {
-
-            echo $this->render->render("view/login.mustache");
+        if (!$this->registroModel->getValidarRegistro($dni, $legajo, $email)) {
+            $this->registroModel->registrarUsuario($nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia, $email, $contraseña);
+            header("location: ../login?mensaje=registrado");
         } else {
 
-            echo $this->execute();
+            header("location: ../registro?mensaje=yaExiste");
 
         }
     }

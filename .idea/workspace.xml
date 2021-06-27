@@ -22,7 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="" />
+    <list default="true" id="3e6a5e7a-65f1-42fd-8ee6-6fc2ef447c31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/databaseTransportes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/config/databaseTransportes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/loginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/loginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/registroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/registroController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/registroModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/registroModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/login.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/login.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/loginView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/loginView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/registro.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/registro.mustache" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +48,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/TpFinalGrupo9" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GithubPullRequestsUISettings">
@@ -60,7 +69,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/PaginaJugadoresMvc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -160,13 +169,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHPUnit.test" />
       <item itemvalue="PHPUnit.Test" />
-      <item itemvalue="PHPUnit.Test.testSumatoria" />
+      <item itemvalue="PHPUnit.test" />
+      <item itemvalue="PHPUnit.Test.testNombreCompleto" />
       <item itemvalue="PHPUnit.Test.testSumatoriaA" />
       <item itemvalue="PHPUnit.Test.testSumatoriaB" />
       <item itemvalue="PHPUnit.Test.testSumatoriaC" />
-      <item itemvalue="PHPUnit.Test.testNombreCompleto" />
+      <item itemvalue="PHPUnit.Test.testSumatoria" />
     </list>
     <recent_temporary>
       <list>
@@ -272,7 +281,12 @@
       <workItem from="1623875326030" duration="1579000" />
       <workItem from="1623883285120" duration="2761000" />
       <workItem from="1623891123043" duration="45000" />
-      <workItem from="1624216071163" duration="26719000" />
+      <workItem from="1624216071163" duration="26980000" />
+      <workItem from="1624571202772" duration="211000" />
+      <workItem from="1624571420333" duration="612000" />
+      <workItem from="1624575512847" duration="1589000" />
+      <workItem from="1624738402992" duration="3661000" />
+      <workItem from="1624745295204" duration="7200000" />
     </task>
     <servers />
   </component>
@@ -312,10 +326,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="432" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1623862146805" />
-    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1623632438237">
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1624571413948">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1623632438237" />
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1624571413948" />
     <state width="1323" height="2" key="GridCell.Tab.0.bottom" timestamp="1619544391673">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
