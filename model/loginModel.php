@@ -9,12 +9,12 @@ class loginModel
         $this->database = $database;
     }
 
-    public function verificarUsuario($email, $contraseña)
+    public function verificarUsuario($email, $password)
     {
-        $sql = "SELECT id FROM Usuario WHERE email like '$email' and contraseña like '$contraseña' ";
-
-        if(!empty($this->database->query($sql))){
-            return true;
+        $sql = "SELECT * FROM Usuario WHERE email like '$email' and contraseña like '$password' ";
+        $resultado["lista"]=$this->database->query($sql);
+        if(sizeof($resultado["lista"])>=1){
+            return $this->database->query($sql);;
         }
         else{
             return  false;
@@ -23,19 +23,24 @@ class loginModel
 
 
 
-    public function verificarUsuarioConRol($email, $contraseña)
+    public function verificarUsuarioConRol($email, $password)
     {
-        $this->verificarUsuario($email, $contraseña);
-        if ($this->verificarUsuario($email, $contraseña)) {
-            $sql = "SELECT id_tipoUsuario 
-                    FROM Usuario 
-                    WHERE email like '$email' and contraseña like '$contraseña' ";
-            if (!empty($this->database->query($sql))) {
+
+
+        if ($this->verificarUsuario($email, $password)!= false) {
+
+            $resultado["rol"]= $this->verificarUsuario($email, $password);
+
+
+            if ($resultado["rol"]["0"]["id_tipoUsuario"]!= null) {
                 return true;
             } else {
                 return false;
             }
 
+        }
+        else{
+            return false;
         }
     }
 }
