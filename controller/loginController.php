@@ -14,8 +14,14 @@ class LoginController
 
     public function execute()
     {
-        echo $this->render->render("view/login.mustache");
+        if (isset($_GET["mensaje"])) {
 
+            $mensaje["mensaje"] = $_GET["mensaje"];
+            echo $this->render->render("view/login.mustache", $mensaje);
+        } else {
+            echo $this->render->render("view/login.mustache");
+
+        }
     }
 
     public function loguearUsuario()

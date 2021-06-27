@@ -101,8 +101,8 @@ foreign key(id_usuario) references Usuario(id)
 insert into TipoUsuario(id, rol)
 values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, id_tipoUsuario, email, contraseña)
-values(1, "admin", "admin", 1, 42225, "01-01-1999", 1, "admin@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
+values(1, "admin", "admin", 1, 42225, "01-01-1999","A" , 1, "admin@gmail.com", "1234");
 
 /* usuarios sin rol*/
 /*
