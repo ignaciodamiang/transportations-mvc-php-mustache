@@ -30,19 +30,20 @@ class LoginController
 
         $email = $_POST["email"];
         $contraseña = $_POST["contraseña"];
-
+        /* verifico que el usuario exista y tenga rol
+        */
         if ($this->loginModel->verificarUsuarioConRol($email, $contraseña)) {
-         $data["rol"]= $this->usuarioModel->getRolUsuario($email);
+        /* $data["rol"]= $this->usuarioModel->getRolUsuario($email);
 
             if( $data["rol"][0] == 1 ){
-                $_SESSION["nombre"] = $email;
+                $_SESSION["nombre"] = $email;*/
                 header("location:/admin");
-            }
+            /*}
             else{
                 header("location:/registro");
             }
 
-
+*/
         } else {
             header("location:/");
 
