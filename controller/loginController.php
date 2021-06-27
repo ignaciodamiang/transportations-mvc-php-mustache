@@ -7,12 +7,12 @@ class LoginController
     private $render;
     private $verificacionDeRolModel;
 
-    public function __construct($loginModel, $render, $usuarioModel,$verificacionDeRolModel)
+    public function __construct($loginModel, $render, $usuarioModel, $verificacionDeRolModel)
     {
         $this->loginModel = $loginModel;
         $this->render = $render;
         $this->usuarioModel = $usuarioModel;
-        $this->verificacionDeRolModel=$verificacionDeRolModel;
+        $this->verificacionDeRolModel = $verificacionDeRolModel;
     }
 
     public function execute()
@@ -32,30 +32,28 @@ class LoginController
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $siTieneRol=$this->loginModel->verificarUsuarioConRol($email, $password);
-        if ($siTieneRol){
-                $rolDelUsuario=$this->usuarioModel->getRolUsuario($email);
+        $siTieneRol = $this->loginModel->verificarUsuarioConRol($email, $password);
+        if ($siTieneRol) {
+            $rolDelUsuario = $this->usuarioModel->getRolUsuario($email);
 
-            if($this->verificacionDeRolModel->esAdmin($rolDelUsuario)){
-                 header("location:/admin");
+            if ($this->verificacionDeRolModel->esAdmin($rolDelUsuario)) {
+
+                $_SESSION["Usuario"] = $email;
+                header("location:/admin");
             }
-           if ($this->verificacionDeRolModel->esGerente($rolDelUsuario)){
-               header("location:/registro");
-           }
-            if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)){
+            if ($this->verificacionDeRolModel->esGerente($rolDelUsuario)) {
                 header("location:/registro");
             }
-            if ($this->verificacionDeRolModel->esMecanico($rolDelUsuario)){
+            if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)) {
+                header("location:/registro");
+            }
+            if ($this->verificacionDeRolModel->esMecanico($rolDelUsuario)) {
                 header("location:/registro");
             }
 
-        }
-        else{
+        } else {
             header("location:/");
         }
-
-
-
 
 
     }
