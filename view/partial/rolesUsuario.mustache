@@ -41,7 +41,9 @@
                                 <form action="/admin/darRol" class="justify-content-between" method="post">
                                     <input type="hidden" name="id" value="{{id}}"/>
 
-                                    <select class="form-select" aria-label="Default select example" name="Rol">
+
+                                    <div class="d-flex">
+                                    <select class="form-select w-25" aria-label="Default select example" name="Rol">
                                         <option selected>Seleccione un Rol</option>
                                         <option value="1">Administrador</option>
                                         <option value="2">Gerente</option>
@@ -51,7 +53,7 @@
 
 
                                     <button type="submit" class="btn btn-primary">Dar Rol</button>
-
+                                    </div>
                                 </form>
 
                             </td>

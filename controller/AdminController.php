@@ -12,12 +12,13 @@ class AdminController
     }
 
 
-
     public function execute()
     {
-        $datas["usuariosSinRol"] = $this->AdminModel->getUsuariosSinRol();
+        $datas = array("usuariosSinRol" => $this->AdminModel->getUsuariosSinRol(), "todosLosVehiculos" => $this->AdminModel->getVehiculos());
         if ($this->validarSesion() == true) {
+
             echo $this->render->render("view/admin/adminView.mustache", $datas);
+
         } else {
             header("location:/login");
         }
@@ -50,7 +51,7 @@ class AdminController
         exit();
     }
 
-    public  function registrarVehiculo()
+    public function registrarVehiculo()
     {
         /*$modelo = $_POST["modelo"];
         $marca = $_POST["marca"];
@@ -63,13 +64,12 @@ class AdminController
         $tipoVehiculo = $_POST["tipoVehiculo"];
 
 
-
         if (!$this->AdminModel->getValidarVehiculo($patente)) {
             $this->AdminModel->registrarVehiculo($patente, $tipoVehiculo);
-            header("location: ../admin");
+            header("location: ../admin?vehiculoRegistrado");
         } else {
 
-            header("location: ../admin");
+            header("location: ../admin?vehiculoNoRegistrado");
         }
     }
 

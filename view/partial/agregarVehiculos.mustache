@@ -5,13 +5,13 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    Agregar Vehiculos
+                    Agregar Vehículos
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
 
-                    <form action="../admin/registrarVehiculo" method="post">
+                    <form action="/admin/registrarVehiculo" method="post">
     <div class="form-row mb-2">
         <!--<div class="form-group">
             <label class="font-weight-bold mb-1">Modelo<span class="text-danger">*</span></label>
@@ -26,8 +26,8 @@
             <input type="number" required name="NumeroMotor" class="form-control" placeholder="numero motor">
         </div>-->
         <div class="form-group mt-3">
-            <label class="font-weight-bold mb-1">patente<span class="text-danger">*</span></label>
-            <input type="text" required name="patente" class="form-control" placeholder="patente">
+            <label class="font-weight-bold mb-1">Patente<span class="text-danger">*</span></label>
+            <input type="text" required name="patente" class="form-control" placeholder="Patente">
         </div>
         <!--<div class="form-group mt-3">
             <label class="font-weight-bold mb-1">año fabricacion<span class="text-danger">*</span></label>
@@ -45,23 +45,16 @@
         </div>-->
         <div class="form-group mt-3">
             <select class="form-select" aria-label="Default select example" name="tipoVehiculo">
-                <option selected>Seleccione un Rol</option>
+                <option selected>Seleccione que tipo de vehículo es</option>
                 <option value="1">Camioneta</option>
-                <option value="2">Camion</option>
+                <option value="2">Camión</option>
                 <option value="3">Moto</option>
+                <option value="4">Auto</option>
 
             </select>
         </div>
 
-        <div class="form-group mb-3">
-            <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label text-muted">Al seleccionar esta casilla aceptas
-                    nuestro aviso de privacidad y los términos y condiciones</label>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary col-5 col-md-2">Regístrate</button>
-        <a href="login" class="btn btn-dark col-5 col-md-2">Atras</a>
+        <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">Registrar vehículo</button>
     </div>
 </form>
                 </div>

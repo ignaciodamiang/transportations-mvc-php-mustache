@@ -9,13 +9,10 @@ include_once("model/registroModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
 include_once("model/AdminModel.php");
-include_once("model/VehiculoModel.php");
-
 include_once("controller/registroController.php");
 include_once("controller/loginController.php");
 include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
-include_once("controller/VehiculoController.php");
 
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -106,16 +103,4 @@ class Configuration
         return new VerificacionDeRolModel($database);
     }
 
-    public function getVehiculoModel()
-    {
-        $database = $this->getDatabase();
-        return new VehiculoModel($database);
-    }
-
-    public function getVehiculoController()
-    {
-     
-        $vehiculoModel = $this->getVehiculoModel();
-        return new VehiculoController($vehiculoModel, $this->getRender());
-    }
 }
