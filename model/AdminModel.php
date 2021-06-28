@@ -9,28 +9,43 @@ class AdminModel
         $this->database = $database;
     }
 
-    public function getUsuarios(){
+    public function getUsuarios()
+    {
         return $this->database->query("SELECT * FROM usuario");
     }
 
-    public function getUsuariosSinRol(){
+    public function getUsuariosSinRol()
+    {
         $sql = "SELECT * FROM usuario WHERE id_tipoUsuario IS NULL";
         $consulta = $this->database->query($sql);
-        if(sizeof($consulta)!=0){
+        if (sizeof($consulta) != 0) {
             return $consulta;
         } else
-        return false;
+            return false;
     }
 
-    public function getUsuarioPorId($id){
+    public function getUsuarioPorId($id)
+    {
         $sql = "SELECT * FROM usuario where id = " . $id;
         return $this->database->query($sql);
     }
 
-    public  function getAsignarNuevoRol($idRol , $idUsuario){
+    public function getAsignarNuevoRol($idRol, $idUsuario)
+    {
 
-        $sql= " UPDATE Usuario SET id_tipoUsuario =$idRol WHERE id= $idUsuario";
+        $sql = " UPDATE Usuario SET id_tipoUsuario =$idRol WHERE id= $idUsuario";
         return $this->database->query($sql);
 
+    }
+
+    public function getValidarVehiculo($patente, $numeroMotor)
+    {
+        $sql = "SELECT * FROM Vehiculo where (patente =  '$patente') or (numero_motor = '$numeroMotor')";
+        $validarVehiculo = $this->database->query($sql);
+        if ($validarVehiculo == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

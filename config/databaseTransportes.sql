@@ -104,6 +104,10 @@ values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
 values(1, "admin", "admin", 1, 42225, "01-01-1999","A" , 1, "admin@gmail.com", "1234");
 
+insert into TipoVehiculo(id , tipo_vehiculo)
+values (1,"camioneta"),
+		(2,"camion"),
+        (3,"moto");
 /* usuarios sin rol*/
 /*
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
