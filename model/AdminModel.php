@@ -41,7 +41,7 @@ class AdminModel
     public function registrarVehiculo($patente,$tipoVehiculo)
     {
 
-        $sql2 = "INSERT INTO Usuario (patente,id_tipoVehiculo)
+        $sql2 = "INSERT INTO Vehiculo (patente,id_tipoVehiculo)
 VALUES( '$patente',
         '$tipoVehiculo')";
         $this->database->query($sql2);
@@ -59,4 +59,12 @@ VALUES( '$patente',
             return true;
         }
     }
+
+    public function getVehiculos()
+    {
+        $sql="SELECT * FROM Vehiculo";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
 }
