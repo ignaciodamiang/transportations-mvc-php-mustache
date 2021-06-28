@@ -38,9 +38,20 @@ class AdminModel
 
     }
 
-    public function getValidarVehiculo($patente, $numeroMotor)
+    public function registrarVehiculo($patente,$tipoVehiculo)
     {
-        $sql = "SELECT * FROM Vehiculo where (patente =  '$patente') or (numero_motor = '$numeroMotor')";
+
+        $sql2 = "INSERT INTO Usuario (patente,id_tipoVehiculo)
+VALUES( '$patente',
+        '$tipoVehiculo')";
+        $this->database->query($sql2);
+
+
+    }
+
+    public function getValidarVehiculo($patente)
+    {
+        $sql = "SELECT * FROM Vehiculo where (patente =  '$patente')";
         $validarVehiculo = $this->database->query($sql);
         if ($validarVehiculo == null) {
             return false;

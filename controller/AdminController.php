@@ -2,23 +2,24 @@
 
 class AdminController
 {
-    private $adminModel;
+    private $AdminModel;
     private $render;
 
-    public function __construct($adminModel, $render)
+    public function __construct($AdminModel, $render)
     {
-        $this->adminModel = $adminModel;
+        $this->AdminModel = $AdminModel;
         $this->render = $render;
     }
 
+
+
     public function execute()
     {
-        $data["usuariosSinRol"] = $this->adminModel->getUsuariosSinRol();
+        $datas["usuariosSinRol"] = $this->AdminModel->getUsuariosSinRol();
         if ($this->validarSesion() == true) {
-            echo $this->render->render("view/admin/adminView.mustache", $data);
+            echo $this->render->render("view/admin/adminView.mustache", $datas);
         } else {
             header("location:/login");
-
         }
     }
 
@@ -28,45 +29,49 @@ class AdminController
 
         if ($sesion == null || $sesion = '' || !isset($sesion)) {
             return false;
-
         } else {
 
             return true;
-
         }
-
     }
 
     public function cerrarSesion()
     {
         session_destroy();
         header("location:/login");
-
     }
 
     public function darRol()
     {
         $idRol = $_POST['Rol'];
         $idUsuario = $_POST['id'];
-        $this->adminModel->getAsignarNuevoRol($idRol, $idUsuario);
+        $this->AdminModel->getAsignarNuevoRol($idRol, $idUsuario);
         header("location:/admin");
         exit();
     }
 
-    public  function registrarVehiculo(){
-        $modelo=$_POST["modelo"];
-        $marca=$_POST["marca"];
-        $numeroMotor=$_POST["NumeroMotor"];
-        $patente=$_POST["patente"];
-        $año_fabricacion=$_POST["año_fabricacion"];
-        $estado=$_POST["estado"];
-        $kilometraje=$_POST["kilometraje"];
-        $tipoVehiculo=$_POST["tipoVehiculo"];
+    public  function registrarVehiculo()
+    {
+        /*$modelo = $_POST["modelo"];
+        $marca = $_POST["marca"];
+        $numeroMotor = $_POST["NumeroMotor"];
+        
+        $año_fabricacion = $_POST["año_fabricacion"];
+        $estado = $_POST["estado"];
+        $kilometraje = $_POST["kilometraje"];*/
+        $patente = $_POST["patente"];
+        $tipoVehiculo = $_POST["tipoVehiculo"];
 
 
 
+        if (!$this->AdminModel->getValidarVehiculo($patente)) {
+            $this->AdminModel->registrarVehiculo($patente, $tipoVehiculo);
+            header("location: ../admin");
+        } else {
 
-
-
+            header("location: ../admin");
+        }
     }
+
+
 }
