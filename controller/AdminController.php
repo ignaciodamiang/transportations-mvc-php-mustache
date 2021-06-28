@@ -52,4 +52,21 @@ class AdminController
         header("location:/admin");
         exit();
     }
+
+    public  function registrarVehiculo(){
+        $modelo=$_POST["modelo"];
+        $marca=$_POST["marca"];
+        $numeroMotor=$_POST["NumeroMotor"];
+        $patente=$_POST["patente"];
+        $año_fabricacion=$_POST["año_fabricacion"];
+        $estado=$_POST["estado"];
+        $kilometraje=$_POST["kilometraje"];
+        $tipoVehiculo=$_POST["tipoVehiculo"];
+
+
+
+
+
+
+    }
 }

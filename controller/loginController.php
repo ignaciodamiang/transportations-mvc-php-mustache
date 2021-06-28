@@ -42,6 +42,7 @@ class LoginController
                 header("location:/admin");
             }
             if ($this->verificacionDeRolModel->esGerente($rolDelUsuario)) {
+
                 header("location:/registro");
             }
             if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)) {
