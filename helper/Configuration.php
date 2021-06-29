@@ -4,7 +4,8 @@ include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("helper/VerificacionDeRolModel.php");
 
-
+include_once("model/GerenteModel.php");
+include_once("controller/GerenteController.php");
 include_once("model/registroModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
@@ -52,7 +53,7 @@ class Configuration
     {
         $usuarioModel = $this->getUsuarioModel();
         $loginModel = $this->getLoginModel();
-        $verificacionDeRolModel=$this->getVerificacionDeRolModel();
+        $verificacionDeRolModel = $this->getVerificacionDeRolModel();
         return new loginController($loginModel, $this->getRender(), $usuarioModel, $verificacionDeRolModel);
     }
 
@@ -91,6 +92,19 @@ class Configuration
         return new AdminController($adminModel, $this->getRender());
     }
 
+    public function getGerenteModel()
+    {
+        $database = $this->getDatabase();
+        return new GerenteModel($database);
+    }
+
+    public function getGerenteController()
+    {
+        $gerenteModel = $this->getAdminModel();
+
+        return new GerenteController($gerenteModel, $this->getRender());
+    }
+
     public function getUsuarioModel()
     {
         $database = $this->getDatabase();
@@ -102,5 +116,6 @@ class Configuration
         $database = $this->getDatabase();
         return new VerificacionDeRolModel($database);
     }
+
 
 }
