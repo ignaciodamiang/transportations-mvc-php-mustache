@@ -1,0 +1,134 @@
+<div class="container mb-5 col-12 justify-content-center rounded">
+
+    <h3 class="text-center mb-3">Carga de viajes</h3>
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                    Agregá un viaje
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                 aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+
+                    <form action="/gerente/registrarViaje" method="post">
+                        <div class="form-row mb-2">
+                            <div class="d-flex flex-wrap justify-content-center form-group ">
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Ciudad origen<span class="text-danger">*</span></label>
+                                    <input type="text" required name="ciudad_origen" class="form-control"
+                                           placeholder="Ciudad origen">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Ciudad destino<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="ciudad_destino" class="form-control"
+                                           placeholder="Ciudad destino">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Fecha de inicio<span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" required name="fecha_inicio" class="form-control"
+                                           placeholder="Fecha de inicio">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Hora de inicio<span
+                                            class="text-danger">*</span></label>
+                                    <input type="time" required name="hora_inicio" class="form-control"
+                                           placeholder="Hora de inicio">
+                                </div>
+
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Fecha de fin<span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" required name="fecha_fin" class="form-control"
+                                           placeholder="Fecha de fin">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Hora de fin<span
+                                            class="text-danger">*</span></label>
+                                    <input type="time" required name="hora_fin" class="form-control"
+                                           placeholder="Hora de fin">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Tiempo estimado<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="tiempo_estimado" class="form-control"
+                                           placeholder="Tiempo estimado">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Tiempo real<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="tiempo_real" class="form-control"
+                                           placeholder="Tiempo real">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Tipo carga<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="tipo_carga" class="form-control"
+                                           placeholder="Tiempo de carga">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Kilometros previstos<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="km_previsto" class="form-control"
+                                           placeholder="Kilometros previstos">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Kilometros reales<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="km_reales" class="form-control"
+                                           placeholder="Kilometros reales">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Desviación<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="desviacion" class="form-control"
+                                           placeholder="Desviación">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Posición gps<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="posicion_gps" class="form-control"
+                                           placeholder="Posición gps">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Combustible estimado<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="combustible_estimado" class="form-control"
+                                           placeholder="Combustible estimado">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Combustible real<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="combustible_real" class="form-control"
+                                           placeholder="Combustible real">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Vehículo<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="id_vehiculo" class="form-control"
+                                           placeholder="Vehículo">
+                                </div>
+                                <div class="me-3 mt-3 col-lg-2">
+                                    <label class="font-weight-bold mb-1">Chofer<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" required name="id_usuario" class="form-control"
+                                           placeholder="Chofer">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">Registrar viaje
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

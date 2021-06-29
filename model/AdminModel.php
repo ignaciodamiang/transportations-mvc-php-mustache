@@ -30,6 +30,14 @@ class AdminModel
         return $this->database->query($sql);
     }
 
+    public function getUsuarioPorEmail($email)
+    {
+
+        $sql = "SELECT * FROM Usuario where email = '$email'";
+        return $this->database->query($sql);
+
+    }
+
     public function getAsignarNuevoRol($idRol, $idUsuario)
     {
 
@@ -38,7 +46,7 @@ class AdminModel
 
     }
 
-    public function registrarVehiculo($patente,$tipoVehiculo)
+    public function registrarVehiculo($patente, $tipoVehiculo)
     {
 
         $sql2 = "INSERT INTO Vehiculo (patente,id_tipoVehiculo)
@@ -62,7 +70,7 @@ VALUES( '$patente',
 
     public function getVehiculos()
     {
-        $sql="SELECT * FROM Vehiculo";
+        $sql = "SELECT * FROM Vehiculo";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
