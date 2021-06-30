@@ -69,19 +69,21 @@ class AdminController
 
     public function registrarVehiculo()
     {
-        /*$modelo = $_POST["modelo"];
-        $marca = $_POST["marca"];
-        $numeroMotor = $_POST["NumeroMotor"];
-        
-        $año_fabricacion = $_POST["año_fabricacion"];
-        $estado = $_POST["estado"];
-        $kilometraje = $_POST["kilometraje"];*/
         $patente = $_POST["patente"];
+        $NumeroChasis = $_POST["NumeroChasis"];
+        $NumeroMotor = $_POST["NumeroMotor"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $año_fabricacion = $_POST["año_fabricacion"];
+        $kilometraje = $_POST["kilometraje"];
+        $estado = $_POST["estado"];
+        $alarma = $_POST["alarma"];
         $tipoVehiculo = $_POST["tipoVehiculo"];
+        
 
 
         if (!$this->AdminModel->getValidarVehiculo($patente)) {
-            $this->AdminModel->registrarVehiculo($patente, $tipoVehiculo);
+            $this->AdminModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
             header("location: ../admin?vehiculoRegistrado");
         } else {
 
