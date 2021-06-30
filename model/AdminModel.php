@@ -46,15 +46,22 @@ class AdminModel
 
     }
 
-    public function registrarVehiculo($patente, $tipoVehiculo)
+    public function registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo)
     {
 
-        $sql2 = "INSERT INTO Vehiculo (patente,id_tipoVehiculo)
-VALUES( '$patente',
+        $sql2 = "INSERT INTO Vehiculo (patente, numero_chasis, numero_motor, marca, modelo, año_Fabricacion, kilometraje, estado, alarma, id_tipoVehiculo)
+VALUES( 
+        '$patente',
+        '$NumeroChasis',
+        '$NumeroMotor',
+        '$marca',
+        '$modelo',
+        '$año_fabricacion',
+        '$kilometraje',
+        '$estado',
+        '$alarma',
         '$tipoVehiculo')";
         $this->database->execute($sql2);
-
-
     }
 
     public function getValidarVehiculo($patente)
