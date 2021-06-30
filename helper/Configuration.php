@@ -102,7 +102,7 @@ class Configuration
 
     public function getGerenteController()
     {
-        $gerenteModel = $this->getAdminModel();
+        $gerenteModel = $this->getGerenteModel();
 
         return new GerenteController($gerenteModel, $this->getRender());
     }
