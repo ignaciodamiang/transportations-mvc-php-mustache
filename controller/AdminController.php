@@ -106,18 +106,22 @@ class AdminController
     }
 
     public function modificarVehiculo(){
-        $id = $_POST["idVehiculo"];
         $patente = $_POST["patente"];
+        $NumeroChasis = $_POST["NumeroChasis"];
+        $NumeroMotor = $_POST["NumeroMotor"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $año_fabricacion = $_POST["año_fabricacion"];
+        $kilometraje = $_POST["kilometraje"];
+        $estado = $_POST["estado"];
+        $alarma = $_POST["alarma"];
         $tipoVehiculo = $_POST["tipoVehiculo"];
 
         if(isset( $_POST["idVehiculo"]) && isset($_POST["patente"])){
             $id = $_POST["idVehiculo"];
-            $patente = $_POST["patente"];
-            $tipoVehiculo = $_POST["tipoVehiculo"];
-
 
             if ($this->AdminModel->getVehiculosPorId($id)) {
-                $this->AdminModel->modificarVehiculo($id,$patente,$tipoVehiculo);
+                $this->AdminModel->modificarVehiculo($id, $patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
                 header("location:/admin?vehiculoModificado");
             }else{
                 header("location:/admin?errorAlmodificar");
