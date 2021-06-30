@@ -52,7 +52,7 @@ class AdminModel
         $sql2 = "INSERT INTO Vehiculo (patente,id_tipoVehiculo)
 VALUES( '$patente',
         '$tipoVehiculo')";
-        $this->database->query($sql2);
+        $this->database->execute($sql2);
 
 
     }
@@ -73,6 +73,33 @@ VALUES( '$patente',
         $sql = "SELECT * FROM Vehiculo";
         $consulta = $this->database->query($sql);
         return $consulta;
+    }
+
+    public function getVehiculosPorId($id)
+    {
+        $sql = "SELECT * FROM Vehiculo WHERE id = '$id'";
+        $consulta = $this->database->query($sql);
+
+        if ($consulta == null) {
+            return false;
+        } else {
+            return $consulta;
+        }
+        
+    }
+   
+    public function modificarVehiculo($id,$patente,$tipoVehiculo){
+        $sql = "UPDATE Vehiculo 
+                SET patente = '$patente', id_tipoVehiculo = '$tipoVehiculo' 
+                WHERE id = '$id'";
+
+        $this->database->execute($sql);
+        
+    }
+
+    public function borrarVehiculo($id){
+        $sql = "DELETE FROM Vehiculo WHERE id = '$id'";
+        $this->database->execute($sql);
     }
 
 }

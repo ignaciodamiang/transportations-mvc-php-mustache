@@ -1,31 +1,58 @@
 <!--Vehiculos-->
-<div class="container-fluid d-flex row flex-column justify-content-center mb-5">
-    <div>
-        <h4 class="text-center mb-3">Control de vehiculos</h4>
-    </div>
+<div class="container mb-5 col-12 justify-content-center rounded">
 
-    <!--Container Vehiculos-->
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    Todos mis Vehiculos
+                </button>
+            </h2>
+            <div id="acordeonTodosLosVehiculos" class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
 
-    <div class="justify-content-center d-flex flex-column flex-md-row flex-wrap mb-5">
-        {{#todosLosVehiculos}}
-        <div
-                class="card ms-3 mt-3 border-0 shadow"
-                style="width: 18rem; border-radius: 0.5em"
-        >
-        <div class="card-body">
+                    <!--Container Vehiculos-->
 
-                <h5 class="card-title">{{id}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ patente }}</h6>
-                <p class="card-text">
+                    <div class="justify-content-center d-flex flex-column flex-md-row flex-wrap mb-5">
+                        {{#todosLosVehiculos}}
+                        <div class="card ms-3 mt-3 border-0 shadow" style="width: 18rem; border-radius: 0.5em">
+                            <div class="card-body">
 
-                </p>
-                <a href="#" class="card-link text-decoration-none">Modificar</a>
-                <a href="#" class="card-link text-decoration-none">Borrar</a>
+
+                                <h5 class="card-title">Vehiculo: {{id}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Patente: {{ patente }}</h6>
+                                <p class="card-text">
+
+                                </p>
+                                
+                                <form action="/admin/irModificarVehiculo" method="post" class="card-link text-decoration-none d-inline-block">
+                                    <input type="hidden" name="idVehiculo" value="{{id}}" />
+                                    <input type="hidden" name="patente" value="{{patente}}" />
+                                    <input type="hidden" name="tipoVehiculo" value="{{id_tipoVehiculo}}" />
+                                    <button type="submit" class="btn btn-primary">Modificar</button>
+                                </form>
+
+
+                                <form action="/admin/BorrarVehiculo"
+                                    class="card-link text-decoration-none d-inline-block" method="post">
+                                    <input type="hidden" name="idVehiculo" value="{{id}}" />
+                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        {{/todosLosVehiculos}}
+                        <!--Fin Container Vehiculos-->
+                    </div>
+                </div>
             </div>
-
         </div>
-        {{/todosLosVehiculos}}
-        <!--Fin Container Vehiculos-->
     </div>
-    <!--Fin Vehiculos-->
+
+</div>
+<!--Fin Vehiculos-->
 </div>

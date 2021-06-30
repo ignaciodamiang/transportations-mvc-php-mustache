@@ -88,8 +88,10 @@ class Configuration
     public function getAdminController()
     {
         $adminModel = $this->getAdminModel();
+        $usuarioModel = $this->getUsuarioModel();
+        $verificacionRolModel = $this->getVerificacionDeRolModel();
 
-        return new AdminController($adminModel, $this->getRender());
+        return new AdminController($adminModel, $this->getRender(),$verificacionRolModel,$usuarioModel);
     }
 
     public function getGerenteModel()
@@ -100,7 +102,7 @@ class Configuration
 
     public function getGerenteController()
     {
-        $gerenteModel = $this->getGerenteModel();
+        $gerenteModel = $this->getAdminModel();
 
         return new GerenteController($gerenteModel, $this->getRender());
     }

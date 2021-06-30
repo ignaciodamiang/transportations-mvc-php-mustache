@@ -42,14 +42,14 @@ class LoginController
                 header("location:/admin");
             }
             if ($this->verificacionDeRolModel->esGerente($rolDelUsuario)) {
-
-                header("location:/registro");
+                $_SESSION["Usuario"] = $email;
+                header("location:/gerente");
             }
             if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)) {
-                header("location:/registro");
+                header("location:/login");
             }
             if ($this->verificacionDeRolModel->esMecanico($rolDelUsuario)) {
-                header("location:/registro");
+                header("location:/login");
             }
 
         } else {

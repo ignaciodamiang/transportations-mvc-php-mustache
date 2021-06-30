@@ -1,0 +1,60 @@
+{{> header}}
+{{>navbar}}
+
+<body class="bg-light">
+    <div class="container mb-5 col-12 justify-content-center rounded">
+
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Modificar Vehículos
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        {{#vehiculo}}
+                        <form action="/admin/modificarVehiculo" method="post">
+                            <div class="form-row mb-2">
+
+                                <div class="form-group mt-3">
+                                    <label class="font-weight-bold mb-1">Patente<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" required name="patente" value="{{patente}}" class="form-control"
+                                        placeholder="Patente">
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <select class="form-select" aria-label="Default select example" name="tipoVehiculo" ">
+                                        <option selected >Seleccione que tipo de vehículo es</option>
+                                        <option value="1">Camioneta</option>
+                                        <option value="2">Camión</option>
+                                        <option value="3">Moto</option>
+                                        <option value="4">Auto</option>
+
+                                    </select>
+                                </div>
+
+                                <input type="hidden" name="idVehiculo" value="{{id}}"/>
+
+                                <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">Modificar
+                                    vehículo</button>
+                            </div>
+                        </form>
+                        {{/vehiculo}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+</body>
