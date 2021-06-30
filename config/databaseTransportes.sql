@@ -78,10 +78,10 @@ create table Viaje(
 id int auto_increment,
 ciudad_origen varchar(50),
 ciudad_destino varchar(50),
-fecha_inicio varchar(50),
-hora_inicio varchar(50),
-fecha_fin varchar(50),
-hora_fin varchar(50),
+fecha_inicio date,
+hora_inicio time,
+fecha_fin date,
+hora_fin time,
 tiempo_estimado varchar(50),
 tiempo_real varchar(50),
 tipo_carga varchar(50),
@@ -103,6 +103,15 @@ values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
 values(1, "admin", "admin", 1, 42225, "01-01-1999","A" , 1, "admin@gmail.com", "1234");
+
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
+values(2, "gerente", "gerente", 2, 11222333, "01-01-1999","A" , 2, "gerente@gmail.com", "1234");
+
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
+values(3, "chofer", "chofer", 2, 22333444, "01-01-1999","A" , 3, "chofer@gmail.com", "1234");
+
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
+values(4, "mecanico", "mecanico", 2, 33444555, "01-01-1999","A" , 4, "mecanico@gmail.com", "1234");
 
 insert into TipoVehiculo(id , tipo_vehiculo)
 values (1,"camioneta"),
