@@ -95,9 +95,19 @@ VALUES(
         
     }
    
-    public function modificarVehiculo($id,$patente,$tipoVehiculo){
+    public function modificarVehiculo($id, $patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo){
         $sql = "UPDATE Vehiculo 
-                SET patente = '$patente', id_tipoVehiculo = '$tipoVehiculo' 
+                SET
+                patente = '$patente',
+                numero_chasis = '$NumeroChasis',
+                numero_motor = '$NumeroMotor',
+                marca = '$marca',
+                modelo = '$modelo',
+                año_Fabricacion = '$año_fabricacion',
+                kilometraje = '$kilometraje',
+                estado = '$estado',
+                alarma = '$alarma',
+                id_tipoVehiculo = '$tipoVehiculo' 
                 WHERE id = '$id'";
 
         $this->database->execute($sql);

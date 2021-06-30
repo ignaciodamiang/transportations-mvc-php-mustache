@@ -2,59 +2,192 @@
 {{>navbar}}
 
 <body class="bg-light">
-    <div class="container mb-5 col-12 justify-content-center rounded">
-
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                        aria-controls="panelsStayOpen-collapseOne">
-                        Modificar Vehículos
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                    aria-labelledby="panelsStayOpen-headingOne">
-                    <div class="accordion-body">
-                        {{#vehiculo}}
-                        <form action="/admin/modificarVehiculo" method="post">
-                            <div class="form-row mb-2">
-
-                                <div class="form-group mt-3">
-                                    <label class="font-weight-bold mb-1">Patente<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" required name="patente" value="{{patente}}" class="form-control"
-                                        placeholder="Patente">
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <select class="form-select" aria-label="Default select example" name="tipoVehiculo" ">
-                                        <option selected >Seleccione que tipo de vehículo es</option>
-                                        <option value="1">Camioneta</option>
-                                        <option value="2">Camión</option>
-                                        <option value="3">Moto</option>
-                                        <option value="4">Auto</option>
-
-                                    </select>
-                                </div>
-
-                                <input type="hidden" name="idVehiculo" value="{{id}}"/>
-
-                                <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">Modificar
-                                    vehículo</button>
-                            </div>
-                        </form>
-                        {{/vehiculo}}
-                    </div>
+  <div class="container mb-5 col-12 justify-content-center rounded">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne"
+            aria-expanded="true"
+            aria-controls="panelsStayOpen-collapseOne"
+          >
+            Modificar Vehículos
+          </button>
+        </h2>
+        <div
+          id="panelsStayOpen-collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="panelsStayOpen-headingOne"
+        >
+          <div class="accordion-body">
+            {{#vehiculo}}
+            <form action="/admin/modificarVehiculo" method="post">
+              <div class="form-row mb-2">
+                <div class="form-group">
+                  <label class="font-weight-bold mb-1"
+                    >Modelo<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="modelo"
+                    value="{{ modelo }}"
+                    class="form-control"
+                    placeholder="modelo"
+                  />
                 </div>
-            </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Marca<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="marca"
+                    value="{{ marca }}"
+                    class="form-control"
+                    placeholder="marca"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >numero motor <span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="number"
+                    required
+                    name="NumeroMotor"
+                    value="{{ numero_motor }}"
+                    class="form-control"
+                    placeholder="numero motor"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >numero chasis <span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="number"
+                    required
+                    name="NumeroChasis"
+                    value="{{ numero_chasis }}"
+                    class="form-control"
+                    placeholder="numero chasis"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Patente<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="patente"
+                    value="{{ patente }}"
+                    class="form-control"
+                    placeholder="Patente"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >año fabricacion<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="date"
+                    required
+                    name="año_fabricacion"
+                    value="{{ año_Fabricacion }}"
+                    class="form-control"
+                    placeholder="año fabricacion"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >estado<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="estado"
+                    value="{{ estado }}"
+                    class="form-control"
+                    placeholder="estado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >alarma<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    required
+                    name="alarma"
+                    value="{{ alarma }}"
+                    class="form-control"
+                    placeholder="alarma"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Kilometraje<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="number"
+                    required
+                    name="kilometraje"
+                    value="{{ kilometraje }}"
+                    class="form-control"
+                    placeholder="Kilometraje"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    name="tipoVehiculo"
+                  >
+                    <option>Seleccione que tipo de vehículo es</option>
+                    <option value="1">Camioneta</option>
+                    <option value="2">Camión</option>
+                    <option value="3">Moto</option>
+                    <option value="4">Auto</option>
+                  </select>
+                </div>
+
+                <input type="hidden" name="idVehiculo" value="{{ id }}" />
+
+                <button
+                  type="submit"
+                  class="btn btn-primary col-5 col-md-2 mt-4"
+                >
+                  Modificar vehículo
+                </button>
+              </div>
+            </form>
+            {{/vehiculo}}
+          </div>
         </div>
-
+      </div>
     </div>
+  </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
+  <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"
+  ></script>
 </body>
