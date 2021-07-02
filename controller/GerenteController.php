@@ -4,9 +4,13 @@ class GerenteController
 {
     private $GerenteModel;
     private $render;
+    private $usuarioModel;
+    private $verificarRolModel;
 
-    public function __construct($GerenteModel, $render)
+    public function __construct($GerenteModel, $render,$verificarRolModel,$usuarioModel)
     {
+        $this->usuarioModel = $usuarioModel;
+        $this->verificarRolModel = $verificarRolModel;
         $this->GerenteModel = $GerenteModel;
         $this->render = $render;
     }
@@ -15,8 +19,18 @@ class GerenteController
     public function execute()
     {
         if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
 
-            echo $this->render->render("view/gerenteView.mustache");
+            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario) ){
+
+                echo $this->render->render("view/gerenteView.mustache");
+            }
+
+            else {
+                $this->cerrarSesion();
+                header("location:/login");
+            }
 
         } else {
             header("location:/login");
@@ -45,22 +59,24 @@ class GerenteController
         $ciudad_origen = $_POST["ciudad_origen"];
         $ciudad_destino = $_POST["ciudad_destino"];
         $fecha_inicio = $_POST["fecha_inicio"];
-        $hora_inicio = $_POST["hora_inicio"];
         $fecha_fin = $_POST["fecha_fin"];
-        $hora_fin = $_POST["hora_fin"];
         $tiempo_estimado = $_POST["tiempo_estimado"];
-        $tiempo_real = $_POST["tiempo_real"];
         $tipo_carga = $_POST["tipo_carga"];
         $km_previsto = $_POST["km_previsto"];
-        $km_reales = $_POST["km_reales"];
-        $desviacion = $_POST["desviacion"];
-        $posicion_gps = $_POST["posicion_gps"];
         $combustible_estimado = $_POST["combustible_estimado"];
-        $combustible_real = $_POST["combustible_real"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-                      $this->GerenteModel->registrarViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $tiempo_estimado, $tiempo_real, $tipo_carga, $km_previsto, $km_reales, $desviacion, $posicion_gps, $combustible_estimado, $combustible_real, $id_vehiculo, $id_usuario);
-            header("location: ../gerente?viajeRegistrado");
+        $this->GerenteModel->registrarViaje( $ciudad_origen,
+                                             $ciudad_destino,
+                                             $fecha_inicio,
+                                             $fecha_fin,
+                                             $tiempo_estimado,
+                                             $tipo_carga,
+                                             $km_previsto,
+                                             $combustible_estimado,
+                                             $id_vehiculo,
+                                             $id_usuario);
+            header("location:/gerente?viajeRegistrado");
         }
     }
