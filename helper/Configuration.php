@@ -103,8 +103,10 @@ class Configuration
     public function getGerenteController()
     {
         $gerenteModel = $this->getGerenteModel();
+        $usuarioModel = $this->getUsuarioModel();
+        $verificacionRolModel = $this->getVerificacionDeRolModel();
 
-        return new GerenteController($gerenteModel, $this->getRender());
+        return new GerenteController($gerenteModel, $this->getRender(),$verificacionRolModel,$usuarioModel);
     }
 
     public function getUsuarioModel()
