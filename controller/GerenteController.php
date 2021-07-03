@@ -18,13 +18,15 @@ class GerenteController
 
     public function execute()
     {
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos());
+
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
 
             if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario) ){
 
-                echo $this->render->render("view/gerenteView.mustache");
+                echo $this->render->render("view/gerenteView.mustache",$datas);
             }
 
             else {
@@ -79,4 +81,84 @@ class GerenteController
                                              $id_usuario);
             header("location:/gerente?viajeRegistrado");
         }
+
+    public function registrarVehiculo()
+    {
+        $patente = $_POST["patente"];
+        $NumeroChasis = $_POST["NumeroChasis"];
+        $NumeroMotor = $_POST["NumeroMotor"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $año_fabricacion = $_POST["año_fabricacion"];
+        $kilometraje = $_POST["kilometraje"];
+        $estado = $_POST["estado"];
+        $alarma = $_POST["alarma"];
+        $tipoVehiculo = $_POST["tipoVehiculo"];
+
+
+
+        if (!$this->GerenteModel->getValidarVehiculo($patente)) {
+            $this->GerenteModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
+            header("location: ../gerente?vehiculoRegistrado");
+        } else {
+
+            header("location: ../gerente?vehiculoNoRegistrado");
+        }
+    }
+
+    public function irModificarVehiculo(){
+        $id = $_POST["idVehiculo"];
+        $patente = $_POST["patente"];
+        $tipoVehiculo = $_POST["tipoVehiculo"];
+
+        $data["vehiculo"] = $this->GerenteModel->getVehiculosPorId($id);
+        if ($data != null) {
+            echo $this->render->render("view/partial/modificarVehiculoView.mustache", $data);
+
+        }else{
+            header("location:/gerente?noRedirecciono");
+        }
+    }
+
+    public function modificarVehiculo(){
+        $patente = $_POST["patente"];
+        $NumeroChasis = $_POST["NumeroChasis"];
+        $NumeroMotor = $_POST["NumeroMotor"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $año_fabricacion = $_POST["año_fabricacion"];
+        $kilometraje = $_POST["kilometraje"];
+        $estado = $_POST["estado"];
+        $alarma = $_POST["alarma"];
+        $tipoVehiculo = $_POST["tipoVehiculo"];
+
+        if(isset( $_POST["idVehiculo"]) && isset($_POST["patente"])){
+            $id = $_POST["idVehiculo"];
+
+            if ($this->GerenteModel->getVehiculosPorId($id)) {
+                $this->GerenteModel->modificarVehiculo($id, $patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
+                header("location:/gerente?vehiculoModificado");
+            }else{
+                header("location:/gerente?errorAlmodificar");
+            }
+
+        }else{
+            header("location:/gerente?errorAlmodificar");
+        }
+
+    }
+
+    public function BorrarVehiculo(){
+        $idVehiculo = $_POST["idVehiculo"];
+
+
+        if ($this->GerenteModel->getVehiculosPorId($idVehiculo)) {
+            $this->GerenteModel->borrarVehiculo($idVehiculo);
+            header("location: ../gerente?vehiculoBorrado");
+        }else{
+
+            header("location: ../gerente?vehiculoNoBorrado");
+        }
+    }
+
     }
