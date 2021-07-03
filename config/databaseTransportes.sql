@@ -79,8 +79,10 @@ id int auto_increment,
 ciudad_origen varchar(50),
 ciudad_destino varchar(50),
 fecha_inicio date,
+fecha_inicioReal date,
 hora_inicio time,
 fecha_fin date,
+fecha_finReal date,
 hora_fin time,
 tiempo_estimado varchar(50),
 tiempo_real varchar(50),
@@ -91,6 +93,7 @@ desviacion double,
 posicion_gps varchar(50),
 combustible_estimado double, 
 combustible_real double,
+viaje_enCurso boolean,
 id_vehiculo int,
 id_usuario int,
 primary key(id),
@@ -119,12 +122,21 @@ values (1,"camioneta"),
         (3,"moto"),
         (4,"auto");
 /* usuarios sin rol*/
-/*
+
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
-values(2, "tomas", "lala", 2, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-		(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234"),
+values(9, "tomas", "lala", 2, 89878625, "05-02-1989","to@gmail.com", "1234"),
+		/*insert(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234"),
         (4, "ana", "poooo", 4, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-        (5, "hola", "lk", 5, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-        (6, "taza", "jjj", 6, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-        (7, "equipo", "iiii", 7, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
-        (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomaslala@gmail.com", "1234");*/
+        (5, "hola", "lk", 5, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),*/
+        (6, "taza", "jjj", 6, 89878625, "05-02-1989","tom@gmail.com", "1234"),
+        (7, "equipo", "iiii", 7, 89878625, "05-02-1989","t@gmail.com", "1234"),
+        (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomasla@gmail.com", "1234");
+        
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
+values(5, "cho2", "chofer2", 4, 44, "01-01-1999","A" , 3, "chofer2@gmail.com", "1234");
+ 
+select * from Viaje;
+select * from Usuario WHERE id_tipoUsuario = '3';
+select * from Usuario;
+
+select * from Viaje WHERE id_usuario = '5' and viaje_enCurso = 1;

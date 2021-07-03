@@ -1,0 +1,271 @@
+
+<div class="container mb-5 col-12 justify-content-center rounded">
+    <h3 class="text-center mb-3">Carga de viajes</h3>
+  
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne"
+            aria-expanded="true"
+            aria-controls="panelsStayOpen-collapseOne"
+          >
+           Informacion del Viaje en curso (anda a laburar)
+          </button>
+        </h2>
+        <div
+          id="panelsStayOpen-collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="panelsStayOpen-headingOne"
+        >
+          <div class="accordion-body">
+            <form action="/chofer/registrarViaje" method="post">
+                {{#viajeEnCurso}}
+              <div class="form-row mb-2">
+                <div class="d-flex flex-wrap justify-content-center form-group">
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Ciudad origen<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{ciudad_origen}}
+                    </p>
+                    
+                  </div>
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Ciudad destino<span class="text-danger">*</span></label
+                    >
+                    <p
+                    class="form-control"
+                  > {{ciudad_destino}}
+                  </p>
+                  </div>
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Fecha de inicio estipulada<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{fecha_inicio}}
+                    </p>
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Fecha de fin estipulada<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{fecha_fin}}
+                    </p>
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Tiempo estimado<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{tiempo_estimado}}
+                    </p>
+                  </div>
+
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Tipo carga<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{tipo_carga}}
+                    </p>
+                  </div>
+
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Kilometros previstos<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{km_previsto}}
+                    </p>
+                  </div>
+
+
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Combustible estimado<span class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{combustible_estimado}}
+                    </p>
+                  </div>
+  
+
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Vehiculo<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{id_vehiculo}}
+                    </p>
+                  </div>
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Chofer<span class="text-danger">*</span></label
+                    >
+                    <p
+                      class="form-control"
+                    > {{id_usuario}}
+                    </p>
+                  </div>
+
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Hora de inicio <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="time"
+                      required
+                      name="hora_inicio"
+                      class="form-control"
+                      placeholder="Hora de inicio"
+                    />
+                  </div>
+  
+
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Hora de fin<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="time"
+                      required
+                      name="hora_fin"
+                      class="form-control"
+                      placeholder="Hora de fin"
+                    />
+                  </div>
+  
+
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Tiempo real<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      required
+                      name="tiempo_real"
+                      class="form-control"
+                      placeholder="Tiempo real"
+                    />
+                  </div>
+
+
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Kilometros reales<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="number"
+                      required
+                      name="km_reales"
+                      class="form-control"
+                      placeholder="Kilometros reales"
+                    />
+                  </div>
+  
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Desviación<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="number"
+                      required
+                      name="desviacion"
+                      class="form-control"
+                      placeholder="Desviación"
+                    />
+                  </div>
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Posición gps<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      required
+                      name="posicion_gps"
+                      class="form-control"
+                      placeholder="Posición gps"
+                    />
+                  </div>
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Combustible real<span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="number"
+                      required
+                      name="combustible_real"
+                      class="form-control"
+                      placeholder="Combustible real"
+                    />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Fecha de inicio estipulada<span class="text-danger">*</span></label
+                    >
+                    <input
+                    type="date"
+                    required
+                    name="fecha_inicio_estipulada"
+                    class="form-control"
+                    placeholder="Fecha de inicio estipulada"
+                    />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                    <label class="font-weight-bold mb-1"
+                      >Fecha de fin estipulada<span class="text-danger">*</span></label
+                    >
+                    <input
+                        type="date"
+                        required
+                      name="combustible_real_estipulada"
+                      class="form-control"
+                      placeholder="Combustible real estipulada"
+                    />
+                  </div>
+
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">
+                Registrar viaje
+              </button>
+              {{/viajeEnCurso}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

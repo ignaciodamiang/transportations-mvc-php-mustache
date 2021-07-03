@@ -46,10 +46,12 @@ class LoginController
                 header("location:/gerente");
             }
             if ($this->verificacionDeRolModel->esChofer($rolDelUsuario)) {
-                header("location:/login");
+                $_SESSION["Usuario"] = $email;
+                header("location:/chofer");
             }
             if ($this->verificacionDeRolModel->esMecanico($rolDelUsuario)) {
-                header("location:/login");
+                $_SESSION["Usuario"] = $email;
+                header("location:/mecanico");
             }
 
         } else {

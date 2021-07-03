@@ -10,10 +10,15 @@ include_once("model/registroModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
 include_once("model/AdminModel.php");
+include_once("model/ChoferModel.php");
+
+
+
 include_once("controller/registroController.php");
 include_once("controller/loginController.php");
 include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
+include_once("controller/ChoferController.php");
 
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -121,5 +126,19 @@ class Configuration
         return new VerificacionDeRolModel($database);
     }
 
+
+    public function getChoferModel()
+    {
+        $database = $this->getDatabase();
+        return new ChoferModel($database);
+    }
+
+    public function getChoferController()
+    {
+        $ChoferModel = $this->getChoferModel();
+        $usuarioModel = $this->getUsuarioModel();
+        $verificacionRolModel = $this->getVerificacionDeRolModel();
+        return new ChoferController($ChoferModel,$this->getRender(),$usuarioModel,$verificacionRolModel);
+    }
 
 }
