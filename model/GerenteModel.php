@@ -101,4 +101,12 @@ VALUES(
         $this->database->execute($sql);
     }
 
+
+    public function getListaDeChoferes()
+    {
+        $sql = "SELECT * FROM Usuario WHERE id_tipoUsuario = '3'";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
 }

@@ -18,7 +18,7 @@ class AdminController
 
     public function execute()
     {
-        $datas = array("usuariosSinRol" => $this->AdminModel->getUsuariosSinRol(), "todosLosVehiculos" => $this->AdminModel->getVehiculos());
+        $datas = array("usuariosSinRol" => $this->AdminModel->getUsuariosSinRol());
         if ($this->validarSesion() == true) {
 
             $sesion = $_SESSION["Usuario"];

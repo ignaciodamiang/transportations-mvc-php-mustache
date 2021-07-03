@@ -145,28 +145,31 @@
 
                 <div class="me-3 mt-3 col-lg-2">
                   <label class="font-weight-bold mb-1"
-                    >Vehiculo<span class="text-danger">*</span></label
+                    >Vehiculos<span class="text-danger">*</span></label
                   >
-                  <input
-                    type="number"
-                    required
-                    name="id_vehiculo"
-                    class="form-control"
-                    placeholder="Vehiculo"
-                  />
+                  <select class="form-control" aria-label="Default select example" name="id_vehiculo">
+                    <option selected>Seleccione</option>
+                    {{#todosLosVehiculos}}
+                    <option value="{{id}}" >{{patente}} {{modelo}} </option>
+                    {{/todosLosVehiculos}}
+  
+                </select>
                 </div>
+
+                
+
+               
 
                 <div class="me-3 mt-3 col-lg-2">
                   <label class="font-weight-bold mb-1"
-                    >Chofer<span class="text-danger">*</span></label
+                    >Vehiculos<span class="text-danger">*</span></label
                   >
-                  <input
-                    type="number"
-                    required
-                    name="id_usuario"
-                    class="form-control"
-                    placeholder="Chofer"
-                  />
+                  <select class="form-control font-weight-bold mb-1" aria-label="Default select example" name="id_usuario">
+                    <option selected>Seleccione</option>
+                    {{#todosLosChoferes}}
+                    <option value="{{id}}" >{{nombre}} {{apellido}}  {{dni}}</option>
+                    {{/todosLosChoferes}}
+                </select>
                 </div>
               </div>
             </div>
