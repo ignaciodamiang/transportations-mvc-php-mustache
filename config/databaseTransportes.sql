@@ -117,7 +117,7 @@ insert into TipoVehiculo(id , tipo_vehiculo)
 values (1,"camioneta"),
 		(2,"camion"),
         (3,"moto"),
-        (3,"auto");
+        (4,"auto");
 /* usuarios sin rol*/
 /*
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)

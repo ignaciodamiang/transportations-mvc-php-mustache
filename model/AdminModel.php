@@ -42,7 +42,7 @@ class AdminModel
     {
 
         $sql = " UPDATE Usuario SET id_tipoUsuario =$idRol WHERE id= $idUsuario";
-        return $this->database->query($sql);
+        return $this->database->execute($sql);
 
     }
 

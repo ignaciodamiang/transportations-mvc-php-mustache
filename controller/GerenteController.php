@@ -18,7 +18,7 @@ class GerenteController
 
     public function execute()
     {
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos());
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
