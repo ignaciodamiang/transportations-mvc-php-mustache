@@ -28,7 +28,7 @@
 
                                 </p>
                                 
-                                <form action="/admin/irModificarVehiculo" method="post" class="card-link text-decoration-none d-inline-block">
+                                <form action="/gerente/irModificarVehiculo" method="post" class="card-link text-decoration-none d-inline-block">
                                     <input type="hidden" name="idVehiculo" value="{{id}}" />
                                     <input type="hidden" name="patente" value="{{patente}}" />
                                     <input type="hidden" name="tipoVehiculo" value="{{id_tipoVehiculo}}" />
@@ -36,7 +36,7 @@
                                 </form>
 
 
-                                <form action="/admin/BorrarVehiculo"
+                                <form action="/gerente/BorrarVehiculo"
                                     class="card-link text-decoration-none d-inline-block" method="post">
                                     <input type="hidden" name="idVehiculo" value="{{id}}" />
                                     <button type="submit" class="btn btn-danger">Borrar</button>

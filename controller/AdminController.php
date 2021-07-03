@@ -67,82 +67,11 @@ class AdminController
         exit();
     }
 
-    public function registrarVehiculo()
-    {
-        $patente = $_POST["patente"];
-        $NumeroChasis = $_POST["NumeroChasis"];
-        $NumeroMotor = $_POST["NumeroMotor"];
-        $marca = $_POST["marca"];
-        $modelo = $_POST["modelo"];
-        $año_fabricacion = $_POST["año_fabricacion"];
-        $kilometraje = $_POST["kilometraje"];
-        $estado = $_POST["estado"];
-        $alarma = $_POST["alarma"];
-        $tipoVehiculo = $_POST["tipoVehiculo"];
-        
 
 
-        if (!$this->AdminModel->getValidarVehiculo($patente)) {
-            $this->AdminModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
-            header("location: ../admin?vehiculoRegistrado");
-        } else {
-
-            header("location: ../admin?vehiculoNoRegistrado");
-        }
-    }
-
-    public function irModificarVehiculo(){
-        $id = $_POST["idVehiculo"];
-        $patente = $_POST["patente"];
-        $tipoVehiculo = $_POST["tipoVehiculo"];
-
-        $data["vehiculo"] = $this->AdminModel->getVehiculosPorId($id);
-        if ($data != null) {
-            echo $this->render->render("view/partial/modificarVehiculoView.mustache", $data);
-
-        }else{
-            header("location:/admin?noRedirecciono");
-        }
-    }
-
-    public function modificarVehiculo(){
-        $patente = $_POST["patente"];
-        $NumeroChasis = $_POST["NumeroChasis"];
-        $NumeroMotor = $_POST["NumeroMotor"];
-        $marca = $_POST["marca"];
-        $modelo = $_POST["modelo"];
-        $año_fabricacion = $_POST["año_fabricacion"];
-        $kilometraje = $_POST["kilometraje"];
-        $estado = $_POST["estado"];
-        $alarma = $_POST["alarma"];
-        $tipoVehiculo = $_POST["tipoVehiculo"];
-
-        if(isset( $_POST["idVehiculo"]) && isset($_POST["patente"])){
-            $id = $_POST["idVehiculo"];
-
-            if ($this->AdminModel->getVehiculosPorId($id)) {
-                $this->AdminModel->modificarVehiculo($id, $patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
-                header("location:/admin?vehiculoModificado");
-            }else{
-                header("location:/admin?errorAlmodificar");
-            }
-            
-        }else{
-            header("location:/admin?errorAlmodificar");
-        }
-
-    }
-
-    public function BorrarVehiculo(){
-        $idVehiculo = $_POST["idVehiculo"];
 
 
-        if ($this->AdminModel->getVehiculosPorId($idVehiculo)) {
-            $this->AdminModel->borrarVehiculo($idVehiculo);
-            header("location: ../admin?vehiculoBorrado");
-        }else{
 
-            header("location: ../admin?vehiculoNoBorrado");
-        }
-    }
+
+
 }

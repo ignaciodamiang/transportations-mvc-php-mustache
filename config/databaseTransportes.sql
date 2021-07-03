@@ -116,7 +116,8 @@ values(4, "mecanico", "mecanico", 2, 33444555, "01-01-1999","A" , 4, "mecanico@g
 insert into TipoVehiculo(id , tipo_vehiculo)
 values (1,"camioneta"),
 		(2,"camion"),
-        (3,"moto");
+        (3,"moto"),
+        (3,"auto");
 /* usuarios sin rol*/
 /*
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
