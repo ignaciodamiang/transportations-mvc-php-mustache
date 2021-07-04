@@ -38,4 +38,13 @@ VALUES( '$nombre',
         }
     }
 
+    public function getActivarCuenta($email)
+    {
+
+        $sql = "UPDATE Usuario set cuenta_activada=1 where (email = '$email')";
+        $this->database->query($sql);
+
+
+    }
+
 }

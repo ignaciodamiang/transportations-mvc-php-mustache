@@ -33,7 +33,8 @@ class LoginController
         $password = $_POST["password"];
 
         $siTieneRol = $this->loginModel->verificarUsuarioConRol($email, $password);
-        if ($siTieneRol) {
+        $siEstaActivada = $this->usuarioModel->getActivacionUsuario($email);
+        if ($siTieneRol && $siEstaActivada) {
             $rolDelUsuario = $this->usuarioModel->getRolUsuario($email);
 
             if ($this->verificacionDeRolModel->esAdmin($rolDelUsuario)) {
