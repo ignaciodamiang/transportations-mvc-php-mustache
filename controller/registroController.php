@@ -32,6 +32,7 @@ class registroController
 
     public function enviarMailConfirmacion($email, $nombre, $apellido)
     {
+        $hash = md5(rand(0, 1000));
         $mail = new PHPMailer(true);
 
         try {
@@ -52,13 +53,31 @@ class registroController
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Confirmar registro';
-            $mail->Body = 'Hola, ' . $nombre .'&nbsp' . $apellido . '. Haga click aquí para activar su cuenta en nuestra plataforma! <br><br><button>Activar cuenta</button>';
+            $mail->Body = 'Hola, ' . $nombre . ' ' . " " . ' ' . $apellido . '. Haga click aquí para activar su cuenta en nuestra plataforma! <br><br><a class="btn btn-primary" href="http://localhost/registro/validarActivacion?email=' . $email . '&hash=' . $hash . '">Activar cuenta</a>';
+
 
             $mail->send();
             header("location: ../login?mensaje=registrado");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+    }
+
+    public function validarActivacion()
+    {
+
+        if (isset($_GET["email"]) && isset($_GET["hash"]) && !empty($_GET["hash"])) {
+
+            $email = $_GET["email"];
+
+            $this->registroModel->getActivarCuenta($email);
+
+            header("location: ../login?cuentaActivada");
+
+        } else {
+            header("location: ../login?cuentaNoActivada");
+        }
+
     }
 
     public function registrarUsuario()

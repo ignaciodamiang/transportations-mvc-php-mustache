@@ -18,6 +18,7 @@ tipo_licencia varchar(50),
 id_tipoUsuario int,
 email varchar(50),
 contraseña varchar(50),
+cuenta_activada boolean,
 primary key (id),
 foreign key(id_tipoUsuario) references TipoUsuario(id)
 );
@@ -104,17 +105,17 @@ foreign key(id_usuario) references Usuario(id)
 insert into TipoUsuario(id, rol)
 values(1, "administrador"), (2, "gerente"), (3, "chofer"), (4, "mecanico");
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
-values(1, "admin", "admin", 1, 42225, "01-01-1999","A" , 1, "admin@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
+values(1, "admin", "admin", 1, 42225, "01-01-1999","A" , 1, "admin@gmail.com", "1234", true);
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
-values(2, "gerente", "gerente", 2, 11222333, "01-01-1999","A" , 2, "gerente@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
+values(2, "gerente", "gerente", 2, 11222333, "01-01-1999","A" , 2, "gerente@gmail.com", "1234", true);
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
-values(3, "chofer", "chofer", 2, 22333444, "01-01-1999","A" , 3, "chofer@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
+values(3, "chofer", "chofer", 2, 22333444, "01-01-1999","A" , 3, "chofer@gmail.com", "1234", true);
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
-values(4, "mecanico", "mecanico", 2, 33444555, "01-01-1999","A" , 4, "mecanico@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
+values(4, "mecanico", "mecanico", 2, 33444555, "01-01-1999","A" , 4, "mecanico@gmail.com", "1234", true);
 
 insert into TipoVehiculo(id , tipo_vehiculo)
 values (1,"camioneta"),
@@ -123,17 +124,17 @@ values (1,"camioneta"),
         (4,"auto");
 /* usuarios sin rol*/
 
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña)
-values(9, "tomas", "lala", 2, 89878625, "05-02-1989","to@gmail.com", "1234"),
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, email, contraseña, cuenta_activada)
+values(9, "tomas", "lala", 2, 89878625, "05-02-1989","to@gmail.com", "1234", true),
 		/*insert(3, "matias", "maradona", 3, 855578625, "05-02-1989","matiasmaradona@gmail.com", "1234"),
         (4, "ana", "poooo", 4, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),
         (5, "hola", "lk", 5, 89878625, "05-02-1989","tomaslala@gmail.com", "1234"),*/
-        (6, "taza", "jjj", 6, 89878625, "05-02-1989","tom@gmail.com", "1234"),
-        (7, "equipo", "iiii", 7, 89878625, "05-02-1989","t@gmail.com", "1234"),
-        (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomasla@gmail.com", "1234");
+        (6, "taza", "jjj", 6, 89878625, "05-02-1989","tom@gmail.com", "1234", true),
+        (7, "equipo", "iiii", 7, 89878625, "05-02-1989","t@gmail.com", "1234", true),
+        (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomasla@gmail.com", "1234", true);
         
-insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña)
-values(5, "cho2", "chofer2", 4, 44, "01-01-1999","A" , 3, "chofer2@gmail.com", "1234");
+insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
+values(5, "cho2", "chofer2", 4, 44, "01-01-1999","A" , 3, "chofer2@gmail.com", "1234", true);
  
 select * from Viaje;
 select * from Usuario WHERE id_tipoUsuario = '3';

@@ -10,6 +10,23 @@
 
 {{/mensaje}}
 
+
+{{#cuentaActivada}}
+
+    <div class="alert alert-success text-center" role="alert">
+        Cuenta activada con éxito, puede ingresar al sistema.
+    </div>
+
+{{/cuentaActivada}}
+
+{{#cuentaNoActivada}}
+
+    <div class="alert alert-danger text-center" role="alert">
+        Hubo un error al activar su cuenta, intente nuevamente.
+    </div>
+
+{{/cuentaNoActivada}}
+
 <div class="w-100 h-25 d-flex justify-content-center">
 
     <main class="form-signin col-8 col-md-6 col-lg-3">
@@ -23,7 +40,8 @@
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating mt-2">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword"
+                       placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
 

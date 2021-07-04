@@ -10,19 +10,33 @@ class UsuarioModel
         $this->database = $database;
     }
 
-    public function getRolUsuario($email){
+    public function getRolUsuario($email)
+    {
 
         $sql = "SELECT id_tipoUsuario  FROM Usuario WHERE email like '$email'";
 
-        $resultado["rol"]= $this->database->query($sql);
+        $resultado["rol"] = $this->database->query($sql);
         return $resultado["rol"]["0"]["id_tipoUsuario"];
     }
 
-    public function getIdUsuario($email){
+    public function getIdUsuario($email)
+    {
 
         $sql = "SELECT id FROM Usuario WHERE email like '$email'";
 
-        $resultado["idUsuario"]= $this->database->query($sql);
+        $resultado["idUsuario"] = $this->database->query($sql);
         return $resultado["idUsuario"]["0"]["id"];
     }
+
+    public function getActivacionUsuario($email)
+    {
+
+        $sql = "SELECT cuenta_activada FROM Usuario WHERE (email = '$email')";
+
+        $resultado["activacion"] = $this->database->query($sql);
+
+        return $resultado["activacion"]["0"]["cuenta_activada"];
+
+    }
+
 }
