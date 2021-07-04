@@ -52,7 +52,7 @@ class registroController
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Confirmar registro';
-            $mail->Body = 'Hola, ' . $nombre . $apellido . ' "Haga click aquí para confirmar su registro a nuestra plataforma! <br><br><button>Confirmar</button>';
+            $mail->Body = 'Hola, ' . $nombre .'&nbsp' . $apellido . '. Haga click aquí para activar su cuenta en nuestra plataforma! <br><br><button>Activar cuenta</button>';
 
             $mail->send();
             header("location: ../login?mensaje=registrado");
