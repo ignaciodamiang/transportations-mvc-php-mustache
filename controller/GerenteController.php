@@ -187,4 +187,25 @@ class GerenteController
         }
     }
 
+    public function registrarArrastre(){
+
+        $patente = $_POST["patente"];
+        $numeroDeChasis = $_POST["numeroDeChasis"];
+        $tipo = $_POST["tipo"];
+        $pesoNeto =  $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
+        $reefer = $_POST["reefer"];
+        $temperatura = $_POST["temperatura"];
+
+        if (!$this->GerenteModel->getValidarArrastre($patente)) {
+            $this->GerenteModel->registrarArrastre($patente, $numeroDeChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura);
+            header("location: ../gerente?ArrastreRegistrado");
+        } else {
+
+            header("location: ../gerente?ArrastreNoRegistrado");
+        }
+
+
+    }
+
 }

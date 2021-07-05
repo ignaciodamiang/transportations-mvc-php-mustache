@@ -86,6 +86,32 @@ VALUES(
         }
     }
 
+    public function getValidarArrastre($patente)
+    {
+
+        $sql = "SELECT * FROM Arrastre where (patente =  '$patente')";
+        $validarArrastre = $this->database->query($sql);
+        if ($validarArrastre == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function registrarArrastre($patente, $NumeroChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura)
+    {
+
+        $sql2 = "INSERT INTO Arrastre (patente, numeroDeChasis, tipo, peso_Neto, hazard, reefer, temperatura)
+VALUES('$patente',
+        '$NumeroChasis',
+        '$tipo',
+        '$pesoNeto',
+        '$hazard',
+        '$reefer',
+        '$temperatura')";
+        $this->database->execute($sql2);
+    }
+
     public function getListaArrastre()
     {
         $sql = "SELECT * FROM Arrastre";
