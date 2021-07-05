@@ -214,5 +214,9 @@ WHERE id_usuario = '3' and viaje_enCurso = 1;
 select * from ProformaChofer;
 select  sum(combustible_actual),sum(precioPeajes_actual)
 from ProformaChofer
-where id_viaje=1
+where id_viaje=1;
+
+select  sum(combustible_actual)as 'Total Combustible', sum(precioPeajes_actual )as 'Total Peaje',sum(precioViaticos_actual)as 'Total Viaticos'
+from ProformaChofer
+where id_viaje=1;
 

@@ -73,4 +73,36 @@ class ChoferController
 
     }
 
+    public function recargaCombustible(){
+        $combustible_real = $_POST["combustible_real"];
+        $precioCombustible_real = $_POST["precioCombustible_real"];
+        $id_viaje = $_POST["id_viaje"];
+
+        $this->ChoferModel->recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje);
+        header("location: /chofer?funciona");
+    }
+
+    public function gastoPeajeYExtra(){
+
+        $precioPeajes_actual =$_POST["precioPeajes_actual"];
+        $precioExtras_actual =$_POST["precioExtras_actual"];
+        $precioViaticos_actual =$_POST["precioViaticos_actual"];
+        $id_viaje = $_POST["id_viaje"];
+
+        if ($precioPeajes_actual==null) {
+            $precioPeajes_actual=0;
+        }
+
+        if ( $precioExtras_actual==null) {
+            $precioExtras_actual =0;
+        }
+   
+        if ( $precioViaticos_actual==null) {
+            $precioViaticos_actual =0;
+        }
+
+        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje);
+        header("location: /chofer?funciona");
+    }
+
 }
