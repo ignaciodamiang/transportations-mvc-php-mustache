@@ -102,9 +102,9 @@
                   <input
                     type="text"
                     required
-                    name="tipo_carga"
+                    name="descripcion_carga"
                     class="form-control"
-                    placeholder="Tiempo de carga"
+                    placeholder="Tipo de carga"
                   />
                 </div>
                 <div class="me-3 mt-3 col-lg-2">
@@ -137,11 +137,99 @@
                     required
                     name="combustible_estimado"
                     class="form-control"
-                    placeholder="Combustible estimado"
+                    placeholder="Costo combustible estimado"
                   />
                 </div>
 
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo viáticos estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioViaticos_estimado"
+                              class="form-control"
+                              placeholder="Costo viáticos estimado"
+                      />
+                  </div>
 
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo peajes estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioPeajes_estimado"
+                              class="form-control"
+                              placeholder="Costo peajes estimado"
+                      />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo extras estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioExtras_estimado"
+                              class="form-control"
+                              placeholder="Costo extras estimado"
+                      />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo fee estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioFee_estimado"
+                              class="form-control"
+                              placeholder="Costo fee estimado"
+                      />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo hazard estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioHazard_estimado"
+                              class="form-control"
+                              placeholder="Costo hazard estimado"
+                      />
+                  </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Costo reefer estimado<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+                              required
+                              name="precioReefer_estimado"
+                              class="form-control"
+                              placeholder="Costo reefer estimado"
+                      />
+                  </div>
 
                 <div class="me-3 mt-3 col-lg-2">
                   <label class="font-weight-bold mb-1"
@@ -152,13 +240,10 @@
                     {{#todosLosVehiculos}}
                     <option value="{{id}}" >{{patente}} {{modelo}} </option>
                     {{/todosLosVehiculos}}
-  
+
                 </select>
                 </div>
 
-                
-
-               
 
                 <div class="me-3 mt-3 col-lg-2">
                   <label class="font-weight-bold mb-1"
@@ -171,6 +256,15 @@
                     {{/todosLosChoferes}}
                 </select>
                 </div>
+
+                  <div class="d-flex align-self-end mt-4 mt-lg-0 ms-lg-4">
+
+                      <h2>Total estimado:&nbsp</h2>
+
+                      <h2 class="text-success">$1000</h2>
+
+                  </div>
+
               </div>
             </div>
             <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">
