@@ -21,7 +21,7 @@ class ChoferModel
         $sql="UPDATE `transporteslamatanza`.`Viaje` 
                 SET `latitud_inicio` = '$latitud', `longitud_inicio` = '$longitud' ,
                 fecha_inicioReal='$fechaInicioReal', hora_inicio='$horaInicioReal',
-                viaje_enCurso='true';
+                viaje_enCurso= true;
                 WHERE (`id` = '$id_viaje')";
         $this->database->execute($sql);
 
