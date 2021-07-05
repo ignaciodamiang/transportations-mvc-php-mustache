@@ -68,7 +68,7 @@ class GerenteController
         $combustible_estimado = $_POST["combustible_estimado"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
-        $viaje_enCurso = true;
+        $viaje_enCurso = false;
 
         include('phpqrcode/qrlib.php'); 
         $codesDir = "images/";   

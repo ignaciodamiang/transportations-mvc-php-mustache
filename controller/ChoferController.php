@@ -57,5 +57,20 @@ class ChoferController
         header("location:/login");
     }
 
+    public function empezarViaje(){
+        /* agreegar isset*/
+        $latitud=$_POST["latitud"];;
+        $longitud=$_POST["longitud"];;
+
+        $fechaInicioReal= date('y-m-d');
+        $horita=new DateTime();
+        $horaInicioReal= $horita->format('H:i:s');
+        $id_viaje=$_POST["id_viaje"];
+
+
+        $this->ChoferModel->getEmpezarViaje($id_viaje,$latitud, $longitud,$fechaInicioReal,$horaInicioReal);
+        header("location: /chofer");
+
+    }
 
 }
