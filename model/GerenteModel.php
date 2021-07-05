@@ -17,6 +17,7 @@ class GerenteModel
                                    $tipo_carga,
                                    $km_previsto,
                                    $combustible_estimado,
+                                   $precioCombustibleEstimado,
                                    $CostoViaticos_estimado,
                                    $CostoPeajesEstimado,
                                    $CostoExtrasEstimado,
@@ -30,7 +31,7 @@ class GerenteModel
     )
     {
 
-        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio,  fecha_fin,  tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, precioFee_estimado, precioHazard_estimado, precioReefer_estimado, precioTotal_estimado,id_arrastre,id_vehiculo, id_usuario)
+        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio,  fecha_fin,  tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioCombustible_estimado,precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, precioFee_estimado, precioHazard_estimado, precioReefer_estimado, precioTotal_estimado,id_arrastre,id_vehiculo, id_usuario)
 VALUES( 
         '$ciudad_origen',
         '$ciudad_destino',
@@ -40,6 +41,7 @@ VALUES(
         '$tipo_carga',
         '$km_previsto',        
         '$combustible_estimado',
+        '$precioCombustibleEstimado',
         '$CostoViaticos_estimado,',
         '$CostoPeajesEstimado',
         '$CostoExtrasEstimado',

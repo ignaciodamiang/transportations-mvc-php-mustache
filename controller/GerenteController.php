@@ -74,7 +74,8 @@ class GerenteController
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-        $CostoTotalEstimado = "";
+        $precioCombustibleEstimado = $km_previsto / ($combustible_estimado * 85.0);
+        $CostoTotalEstimado = $precioCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoFeeEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
 
         /*include('phpqrcode/qrlib.php');
         $codesDir = "images/";   
@@ -90,6 +91,7 @@ class GerenteController
             $tipo_carga,
             $km_previsto,
             $combustible_estimado,
+            $precioCombustibleEstimado,
             $CostoViaticos_estimado,
             $CostoPeajesEstimado,
             $CostoExtrasEstimado,
