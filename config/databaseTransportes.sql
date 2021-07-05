@@ -73,7 +73,7 @@ foreign key (id_usuario) references Usuario(id)
 create table cliente(
     id int auto_increment,
     nombre varchar(50),
-    apellido varchar(50), 
+    apellido varchar(50),
     primary key(id)
 );
 
@@ -104,7 +104,7 @@ precioReefer_estimado double,
 precioTotal_estimado double,
 precioExtras_real double,
 precioViaticos_Real double,
-precioPeajes_Real double, 
+precioPeajes_Real double,
 combustible_real double,
 precioCombustible_real double,
 precioTotal_real double,
@@ -122,7 +122,7 @@ create table Factura(
     id int auto_increment,
     fecha varchar(50),
     monto double,
-    abonado boolean, 
+    abonado boolean,
     descripcion varchar(100),
     id_cliente int,
     id_viaje int,
@@ -173,10 +173,10 @@ values(9, "tomas", "lala", 2, 89878625, "05-02-1989","to@gmail.com", "1234", tru
         (6, "taza", "jjj", 6, 89878625, "05-02-1989","tom@gmail.com", "1234", true),
         (7, "equipo", "iiii", 7, 89878625, "05-02-1989","t@gmail.com", "1234", true),
         (8, "ventana", "tttt", 8, 89878625, "05-02-1989","tomasla@gmail.com", "1234", true);
-        
+
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
 values(5, "cho2", "chofer2", 4, 44, "01-01-1999","A" , 3, "chofer2@gmail.com", "1234", true);
- 
+
 
 insert into TipoVehiculo(id,tipo_vehiculo)
 values(1,"Camioneta"),
@@ -189,13 +189,13 @@ insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilome
 
 
 insert into Viaje(
-id,ciudad_origen ,ciudad_destino,fecha_inicio, 
+id,ciudad_origen ,ciudad_destino,fecha_inicio,
 fecha_fin ,tiempo_estimado , km_previsto , descripcion_carga,
 combustible_estimado ,precioCombustible_estimado ,
 precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
 precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
-values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,true,1,3); 
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,true,1,3);
 
 
 select * from Viaje;
@@ -203,6 +203,7 @@ select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
 select * from Usuario;
 
-select * 
+
+select *
 from Viaje inner join TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
 WHERE id_usuario = '3' and viaje_enCurso = 1;
