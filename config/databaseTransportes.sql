@@ -91,6 +91,7 @@ tiempo_estimado varchar(50),
 tiempo_real varchar(50),
 km_previsto double,
 km_reales double,
+descripcion_carga varchar(50),
 desviacion double,
 combustible_estimado double,
 precioCombustible_estimado double,
@@ -176,8 +177,32 @@ values(9, "tomas", "lala", 2, 89878625, "05-02-1989","to@gmail.com", "1234", tru
 insert into Usuario(id, nombre, apellido, legajo, dni, fecha_nacimiento, tipo_licencia ,id_tipoUsuario, email, contraseña, cuenta_activada)
 values(5, "cho2", "chofer2", 4, 44, "01-01-1999","A" , 3, "chofer2@gmail.com", "1234", true);
  
-/*select * from Viaje;
+
+insert into TipoVehiculo(id,tipo_vehiculo)
+values(1,"Camioneta"),
+	(2,"Camion"),
+    (3,"Moto"),
+    (4,"Auto");
+
+insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilometraje ,estado,alarma,id_tipoVehiculo)
+			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4);
+
+
+insert into Viaje(
+id,ciudad_origen ,ciudad_destino,fecha_inicio, 
+fecha_fin ,tiempo_estimado , km_previsto , descripcion_carga,
+combustible_estimado ,precioCombustible_estimado ,
+precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
+precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
+precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,true,1,3); 
+
+
+select * from Viaje;
+select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
 select * from Usuario;
 
-select * from Viaje WHERE id_usuario = '5' and viaje_enCurso = 1;*/
+select * 
+from Viaje inner join TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
+WHERE id_usuario = '3' and viaje_enCurso = 1;
