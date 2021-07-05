@@ -81,6 +81,10 @@ create table Viaje(
 id int auto_increment,
 ciudad_origen varchar(50),
 ciudad_destino varchar(50),
+latitud_inicio double,
+longitud_inicio double,
+latitud_final double,
+longitud_final double,
 fecha_inicio date,
 fecha_inicioReal date,
 hora_inicio time,
@@ -195,7 +199,7 @@ combustible_estimado ,precioCombustible_estimado ,
 precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
 precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
-values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,true,1,3);
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3);
 
 
 select * from Viaje;
@@ -203,7 +207,12 @@ select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
 select * from Usuario;
 
-
 select *
 from Viaje inner join TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
 WHERE id_usuario = '3' and viaje_enCurso = 1;
+
+select * from ProformaChofer;
+select  sum(combustible_actual),sum(precioPeajes_actual)
+from ProformaChofer
+where id_viaje=1
+
