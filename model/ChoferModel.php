@@ -21,12 +21,26 @@ class ChoferModel
         $sql="UPDATE `transporteslamatanza`.`Viaje` 
                 SET `latitud_inicio` = '$latitud', `longitud_inicio` = '$longitud' ,
                 fecha_inicioReal='$fechaInicioReal', hora_inicio='$horaInicioReal',
-                viaje_enCurso= true;
+                viaje_enCurso= '1'
                 WHERE (`id` = '$id_viaje')";
         $this->database->execute($sql);
 
     }
 
+    public function recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje){
 
+        $sql= "INSERT INTO `transporteslamatanza`.`ProformaChofer` (`combustible_actual`, `precioCombustible_actual`, `id_viaje`)   
+        VALUES ( '$combustible_real', '$precioCombustible_real', '$id_viaje')";
+        $this->database->execute($sql);
+    }
+
+    public function gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje){
+
+            $sql= "INSERT INTO `transporteslamatanza`.`ProformaChofer` (`precioPeajes_actual`, `precioExtras_actual`,`precioViaticos_actual`, `id_viaje`)   
+            VALUES ( '$precioPeajes_actual', '$precioExtras_actual','$precioViaticos_actual', '$id_viaje')";
+            $this->database->execute($sql);
+        
+
+    }
 
 }
