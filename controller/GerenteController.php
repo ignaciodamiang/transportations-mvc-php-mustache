@@ -124,6 +124,54 @@ class GerenteController
          }*/
     }
 
+    public function irModificarViaje(){
+        $id = $_POST["idViaje"];
+        $viaje = $this->GerenteModel->getViajePorId($id);
+        $datas = array("viaje"=> $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
+
+        if ($viaje != null) {
+            echo $this->render->render("view/partial/modificarViaje.mustache", $datas);
+
+        }else{
+            header("location:/gerente?noRedirecciono");
+        }
+    }
+
+        public function modificarViaje(){
+        $id = $_POST["idViaje"];
+        $ciudad_origen = $_POST["ciudad_origen"];
+        $ciudad_destino = $_POST["ciudad_destino"];
+        $fecha_inicio = $_POST["fecha_inicio"];
+        $fecha_fin = $_POST["fecha_fin"];
+        $tiempo_estimado = $_POST["tiempo_estimado"];
+        $descripcion_carga = $_POST["descripcion_carga"];
+        $km_previsto = $_POST["km_previsto"];
+        $combustible_estimado = $_POST["combustible_estimado"];
+        $precioViaticos_estimado = $_POST["precioViaticos_estimado"];
+        $precioPeajes_estimado = $_POST["precioPeajes_estimado"];
+        $precioExtras_estimado = $_POST["precioExtras_estimado"];
+        $precioFee_estimado = $_POST["precioFee_estimado"];
+        $precioHazard_estimado = $_POST["precioHazard_estimado"];
+        $precioReefer_estimado = $_POST["precioReefer_estimado"];
+        $id_arrastre = $_POST["id_arrastre"];
+        $id_vehiculo = $_POST["id_vehiculo"];
+        $id_usuario = $_POST["id_usuario"];
+
+        if(isset( $_POST["idViaje"])){
+
+            if ($this->GerenteModel->getViajePorId($id)) {
+                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario);
+                header("location:/gerente?viajeModificado");
+            }else{
+                header("location:/gerente?errorAlModificarViaje");
+            }
+
+        }else{
+            header("location:/gerente?errorAlModificarViaje");
+        }
+
+    }
+
 
     public function registrarVehiculo()
     {

@@ -1,0 +1,305 @@
+{{> header}}
+{{>navbar}}
+
+<body class="bg-light">
+  <div class="container mt-5 mb-5 col-12 justify-content-center rounded">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne"
+            aria-expanded="true"
+            aria-controls="panelsStayOpen-collapseOne"
+          >
+            Modificar Viaje
+          </button>
+        </h2>
+        <div
+          id="panelsStayOpen-collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="panelsStayOpen-headingOne"
+        >
+          <div class="accordion-body">
+            {{#viaje}}
+            <form action="/gerente/modificarViaje" method="post">
+              <div class="form-row mb-2">
+                <div class="form-group">
+                  <label class="font-weight-bold mb-1"
+                    >Ciudad de Origen<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="ciudad_origen"
+                    value="{{ ciudad_origen }}"
+                    class="form-control"
+                    placeholder="Ciudad de Origen"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Ciudad de destino<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="ciudad_destino"
+                    value="{{ ciudad_destino }}"
+                    class="form-control"
+                    placeholder="Ciudad de destino"
+                  />
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Fecha inicio prevista<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="date"
+                    name="fecha_inicio"
+                    value="{{ fecha_inicio }}"
+                    class="form-control"
+                    placeholder="Fecha inicio prevista"
+                  />
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Fecha fin prevista<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="date"
+                    name="fecha_fin"
+                    value="{{ fecha_fin }}"
+                    class="form-control"
+                    placeholder="Fecha fin prevista"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Tiempo estimado<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="number"
+                    name="tiempo_estimado"
+                    value="{{ tiempo_estimado }}"
+                    class="form-control"
+                    placeholder="Tiempo estimado"
+                  />
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Tipo de carga<span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="descripcion_carga"
+                    value="{{ descripcion_carga }}"
+                    class="form-control"
+                    placeholder="Tipo de carga"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Kilmetros previstos<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="km_previsto"
+                    value="{{ km_previsto }}"
+                    class="form-control"
+                    placeholder="Kilmetros previstos"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Combustible estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="combustible_estimado"
+                    value="{{ combustible_estimado }}"
+                    class="form-control"
+                    placeholder="Combustible estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Costo viaticos estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioViaticos_estimado"
+                    value="{{ precioViaticos_estimado }}"
+                    class="form-control"
+                    placeholder="Costo viaticos estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Costo peajes estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioPeajes_estimado"
+                    value="{{ precioPeajes_estimado }}"
+                    class="form-control"
+                    placeholder="Costo peajes estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Costo extras estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioExtras_estimado"
+                    value="{{ precioExtras_estimado }}"
+                    class="form-control"
+                    placeholder="Costo extras estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Precio fee estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioFee_estimado"
+                    value="{{ precioFee_estimado }}"
+                    class="form-control"
+                    placeholder="Precio fee estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Costo hazard estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioHazard_estimado"
+                    value="{{ precioHazard_estimado }}"
+                    class="form-control"
+                    placeholder="Costo hazard estimado"
+                  />
+                </div>
+
+                <div class="form-group mt-3">
+                  <label class="font-weight-bold mb-1"
+                    >Costo reefer estimado<span class="text-danger"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    name="precioReefer_estimado"
+                    value="{{ precioReefer_estimado }}"
+                    class="form-control"
+                    placeholder="Costo reefer estimado"
+                  />
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Arrastre<span class="text-danger">*</span></label
+                  >
+                  <select
+                    class="form-control"
+                    aria-label="Default select example"
+                    name="id_arrastre"
+                  >
+                    <option selected>Seleccione</option>
+                    {{#todosLosArrastres}}
+                    <option value="{{ id }}">
+                      {{ patente }} {{ tipo }} {{ peso_Neto }}
+                    </option>
+                    {{/todosLosArrastres}}
+                  </select>
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Vehiculos<span class="text-danger">*</span></label
+                  >
+                  <select
+                    class="form-control"
+                    aria-label="Default select example"
+                    name="id_vehiculo"
+                  >
+                    <option selected>Seleccione</option>
+                    {{#todosLosVehiculos}}
+                    <option value="{{ id }}">{{ patente }} {{ modelo }}</option>
+                    {{/todosLosVehiculos}}
+                  </select>
+                </div>
+
+                <div class="me-3 mt-3 col-lg-2">
+                  <label class="font-weight-bold mb-1"
+                    >Choferes<span class="text-danger">*</span></label
+                  >
+                  <select
+                    class="form-control font-weight-bold mb-1"
+                    aria-label="Default select example"
+                    name="id_usuario"
+                  >
+                    <option selected>Seleccione</option>
+                    {{#todosLosChoferes}}
+                    <option value="{{ id }}">
+                      {{ nombre }} {{ apellido }} {{ dni }}
+                    </option>
+                    {{/todosLosChoferes}}
+                  </select>
+                </div>
+
+                <input type="hidden" name="idViaje" value="{{ id }}" />
+
+                <button
+                  type="submit"
+                  class="btn btn-primary col-5 col-md-2 mt-4"
+                >
+                  Modificar vehículo
+                </button>
+              </div>
+            </form>
+            {{/viaje}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"
+  ></script>
+</body>
