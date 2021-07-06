@@ -169,7 +169,20 @@ class GerenteController
         }else{
             header("location:/gerente?errorAlModificarViaje");
         }
+    }
 
+        public function BorrarViaje()
+    {
+        $idViaje = $_POST["idViaje"];
+
+
+        if ($this->GerenteModel->getViajePorId($idViaje)) {
+            $this->GerenteModel->borrarViaje($idViaje);
+            header("location: ../gerente?viajeBorrado");
+        } else {
+
+            header("location: ../gerente?viajeNoBorrado");
+        }
     }
 
 
