@@ -29,8 +29,8 @@ class LoginController
 
     public function loguearUsuario()
     {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $email = $_GET["email"];
+        $password = $_GET["password"];
 
         $siTieneRol = $this->loginModel->verificarUsuarioConRol($email, $password);
         $siEstaActivada = $this->usuarioModel->getActivacionUsuario($email);
