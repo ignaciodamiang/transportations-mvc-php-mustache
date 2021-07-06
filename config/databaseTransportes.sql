@@ -124,7 +124,7 @@ foreign key(id_usuario) references Usuario(id)
 
 create table Factura(
     id int auto_increment,
-    fecha varchar(50),
+    fecha date,
     monto double,
     abonado boolean,
     descripcion varchar(100),
@@ -201,7 +201,7 @@ precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
 values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3);
 
-
+/*
 select * from Viaje;
 select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
@@ -218,5 +218,5 @@ where id_viaje=1;
 
 select  sum(combustible_actual)as 'Total Combustible', sum(precioPeajes_actual )as 'Total Peaje',sum(precioViaticos_actual)as 'Total Viaticos'
 from ProformaChofer
-where id_viaje=1;
+where id_viaje=1;*/
 

@@ -74,37 +74,50 @@ class GerenteController
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-        $precioCombustibleEstimado = $km_previsto / ($combustible_estimado * 85.0);
+        $precioCombustibleEstimado = $km_previsto / ($combustible_estimado * 85);
         $CostoTotalEstimado = $precioCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoFeeEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
+
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
 
         /*include('phpqrcode/qrlib.php');
         $codesDir = "images/";   
         $codeFile = $ciudad_origen . $ciudad_destino. '.png';
 
         QRcode::png($tipo_carga,$codesDir.$codeFile,QR_ECLEVEL_L ,4);*/
+        /*if (!getValidarViaje($fecha_inicio, $fecha_fin, $id_usuario)) {*/
+            $this->GerenteModel->registrarViaje($ciudad_origen,
+                $ciudad_destino,
+                $fecha_inicio,
+                $fecha_fin,
+                $tiempo_estimado,
+                $tipo_carga,
+                $km_previsto,
+                $combustible_estimado,
+                $precioCombustibleEstimado,
+                $CostoViaticos_estimado,
+                $CostoPeajesEstimado,
+                $CostoExtrasEstimado,
+                $CostoFeeEstimado,
+                $CostoHazardEstimado,
+                $CostoReeferEstimado,
+                $CostoTotalEstimado,
+                $id_arrastre,
+                $id_vehiculo,
+                $id_usuario
+            );
 
-        $this->GerenteModel->registrarViaje($ciudad_origen,
-            $ciudad_destino,
-            $fecha_inicio,
-            $fecha_fin,
-            $tiempo_estimado,
-            $tipo_carga,
-            $km_previsto,
-            $combustible_estimado,
-            $precioCombustibleEstimado,
-            $CostoViaticos_estimado,
-            $CostoPeajesEstimado,
-            $CostoExtrasEstimado,
-            $CostoFeeEstimado,
-            $CostoHazardEstimado,
-            $CostoReeferEstimado,
-            $CostoTotalEstimado,
-            $id_arrastre,
-            $id_vehiculo,
-            $id_usuario
-        );
-        header("location:/gerente?viajeRegistrado");
+            $this->GerenteModel->registrarCliente($nombre, $apellido);
+            $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);
+            $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
+            $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
+
+            header("location:/gerente?viajeRegistrado");
+       /* } else {
+            header("location:/gerente?viajeNoRegistrado");
+        }*/
     }
+
 
     public function registrarVehiculo()
     {
@@ -187,12 +200,13 @@ class GerenteController
         }
     }
 
-    public function registrarArrastre(){
+    public function registrarArrastre()
+    {
 
         $patente = $_POST["patente"];
         $numeroDeChasis = $_POST["numeroDeChasis"];
         $tipo = $_POST["tipo"];
-        $pesoNeto =  $_POST["peso_Neto"];
+        $pesoNeto = $_POST["peso_Neto"];
         $hazard = $_POST["hazard"];
         $reefer = $_POST["reefer"];
         $temperatura = $_POST["temperatura"];
