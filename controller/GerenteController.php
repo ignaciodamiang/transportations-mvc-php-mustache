@@ -80,13 +80,16 @@ class GerenteController
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
 
-        include('phpqrcode/qrlib.php');
+        /*include('phpqrcode/qrlib.php');
 
 
-        /*$codesDir = "images/";
-        $codeFile = $ciudad_origen . $ciudad_destino. '.png';
+        $email = $this->usuarioModel->getMailUsuario($id_usuario);
+        $contraseña = $this->usuarioModel->getPasswordUsuario($id_usuario);
 
-        QRcode::png($tipo_carga,$codesDir.$codeFile,QR_ECLEVEL_L ,4);*/
+        $contenido = "http://localhost/login/loguearUsuario?email='$email'&&password='$contraseña'";
+        QRcode::png($contenido);*/
+
+       /* , $filename, $level, $tamaño, $framesize*/
 
         /*if (!getValidarViaje($fecha_inicio, $fecha_fin, $id_usuario)) {*/
         $this->GerenteModel->registrarViaje($ciudad_origen,
