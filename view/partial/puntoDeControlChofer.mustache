@@ -5,13 +5,12 @@
   <div class="accordion" id="accordionPanelsStayOpenExample">
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#puntoDeControl" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#puntoDeControl"
+          aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
           Punto de Control
         </button>
       </h2>
-      <div id="puntoDeControl" class="accordion-collapse collapse show"
-        aria-labelledby="panelsStayOpen-headingOne">
+      <div id="puntoDeControl" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
         <div class="accordion-body">
 
           <div class="row">
@@ -22,16 +21,19 @@
                   <form action="chofer/recargaCombustible" method="post">
                     <h5 class="card-title">Nueva recarga de Combustible</h5>
                     <div class="card-text">
-                      <label class="font-weight-bold mb-1"
-                        >Cantidad de Combustible<span class="text-danger">*</span></label>
-                      <input type="number" required name="combustible_real" class="form-control" placeholder="Cantidad de Combustible"/>
+                      <label class="font-weight-bold mb-1">Cantidad de Combustible<span
+                          class="text-danger">*</span></label>
+                      <input type="number" required name="combustible_real" class="form-control"
+                        placeholder="Cantidad de Combustible" />
                     </div>
                     <br>
-                    <div class="card-text"><label class="font-weight-bold mb-1">Precio de Combustible<span class="text-danger">*</span></label>
-                      <input type="number" required name="precioCombustible_real" class="form-control"placeholder="Precio de Combustible"/>
+                    <div class="card-text"><label class="font-weight-bold mb-1">Precio de Combustible<span
+                          class="text-danger">*</span></label>
+                      <input type="number" required name="precioCombustible_real" class="form-control"
+                        placeholder="Precio de Combustible" />
                     </div>
                     <br>
-                    <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control"/>
+                    <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <button type="submit" class="btn btn-primary ">Registrar nueva recarga</button>
                   </form>
                 </div>
@@ -43,22 +45,26 @@
                 <div class="card-body">
                   <form action="chofer/gastoPeajeYExtra" method="post">
                     <h5 class="card-title">Nueva Pago De Peaje/Extras</h5>
-  
-                    <div class="card-text"><label class="font-weight-bold mb-1">Precio de Peaje<span class="text-danger">*</span></label>
-                      <input type="number"  name="precioPeajes_actual" class="form-control"placeholder="Precio de Peaje"/>
+
+                    <div class="card-text"><label class="font-weight-bold mb-1">Precio de Peaje<span
+                          class="text-danger">*</span></label>
+                      <input type="number" name="precioPeajes_actual" class="form-control"
+                        placeholder="Precio de Peaje" />
                     </div>
                     <br>
-                    <div class="card-text"><label class="font-weight-bold mb-1">Gastos Extra<span class="text-danger">*</span></label>
-                      
-                      <input type="number"  name="precioExtras_actual" class="form-control"placeholder="Gastos Extra"/>
+                    <div class="card-text"><label class="font-weight-bold mb-1">Gastos Extra<span
+                          class="text-danger">*</span></label>
+
+                      <input type="number" name="precioExtras_actual" class="form-control" placeholder="Gastos Extra" />
                     </div>
                     <br>
-                    <div class="card-text"><label class="font-weight-bold mb-1">Viaticos<span class="text-danger">*</span></label>
-                      
-                      <input type="number"  name="precioViaticos_actual" class="form-control"placeholder="Viaticos"/>
+                    <div class="card-text"><label class="font-weight-bold mb-1">Viaticos<span
+                          class="text-danger">*</span></label>
+
+                      <input type="number" name="precioViaticos_actual" class="form-control" placeholder="Viaticos" />
                     </div>
                     <br>
-                    <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control"/>
+                    <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <button type="submit" class="btn btn-primary ">Registrar Gastos</button>
                   </form>
                 </div>
@@ -68,26 +74,32 @@
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
-                  <form action="">
-                    <h5 class="card-title">Nueva recarga de Combustible</h5>
+                  <form action="chofer/informarPosicion" method="post">
+                    <h5 class="card-title">Informar Posicion</h5>
+
                     <div class="card-text">
-                      <label class="font-weight-bold mb-1"
-                        >Cantidad de Combustible<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitud" class="form-control" placeholder="Cantidad de Combustible"/>
+                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
+                      <input type="number" required name="latitud_actual" class="form-control"
+                        placeholder="Cantidad de Combustible" />
                     </div>
+
                     <br>
-                    <div class="card-text"><label class="font-weight-bold mb-1">Precio de Combustible<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitud" class="form-control"placeholder="Precio de Combustible"/>
+
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
+                      <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
+                        id="longitud" />
                     </div>
+
                     <br>
-                    <button type="submit" class="btn btn-primary ">Registrar nueva recarga</button>
+                    <div id="mapa" style="width:310px; height:100px;"></div>
+                    <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
+                    <button type="submit" class="btn btn-primary ">Mandar posicion</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-
-
 
         </div>
       </div>

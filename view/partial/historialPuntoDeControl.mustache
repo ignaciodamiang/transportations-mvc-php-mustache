@@ -1,0 +1,99 @@
+<!--Vehiculos -->
+<div class="container mb-5 col-12 justify-content-center rounded">
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    Historial de Puntos De Control
+                </button>
+            </h2>
+            <div id="acordeonTodosLosVehiculos" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+
+                    <!--Container Vehiculos-->
+
+                    <div class="justify-content-center d-flex flex-column flex-md-row flex-wrap mb-5">
+
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha y Hora</th>
+                                    <th scope="col">Precio Peaje</th>
+                                    <th scope="col">Viaticos</th>
+                                    <th scope="col">Extras</th>
+                                    <th scope="col">Combustible</th>
+                                    <th scope="col">Precio Combustible</th>
+                                    <th scope="col">Latitud</th>
+                                    <th scope="col">Longitud</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#historialPuntoDeControl}}
+                                <tr>
+                                    <td>{{fechaHoraPuntoControl}}</td>
+                                    <td>{{precioPeajes_actual}}</td>
+                                    <td>{{precioViaticos_actual}}</td>
+                                    <td>{{precioExtras_actual}}</td>
+                                    <td>{{combustible_actual}}</td>
+                                    <td>{{precioCombustible_actual}}</td>
+                                    <td>{{latitud_actual}}</td>
+                                    <td>{{longitud_actual}}</td>
+                                </tr>
+                                {{/historialPuntoDeControl}}
+                            </tbody>
+                        </table>
+
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">KM total recorridos</th>
+                                    <th scope="col">Costo Total Peajes</th>
+                                    <th scope="col">Costo Total Viaticos</th>
+                                    <th scope="col">Costo Total Extras</th>
+                                    <th scope="col">Costo total Combustible</th>
+                                    <th scope="col">Monto total del viaje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#sumaTotalPuntoDeControl}}
+                                <form action="chofer/finalizarViaje" method="post">
+                                        
+                                <tr>
+                                    <td>NAN</td>
+                                    <td>{{TotalPeaje}}</td>
+                                    <td>{{TotalViaticos}}</td>
+                                    <td>{{TotalExtras}}</td>
+                                    <td>{{totalCombustible}}</td>
+                                    <td>NAN</td>    
+                                </tr>
+
+                                <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>
+                                <input type="hidden" name="promedioPrecioCombustible" value="{{promedioPrecioCombustible}}"/>
+                                <input type="hidden" name="id_viaje" value="{{id_viaje}}"/>
+                                <input type="hidden" name="totalPeaje" value="{{TotalPeaje}}"/>
+                                <input type="hidden" name="totalViaticos" value="{{TotalViaticos}}"/>
+                                <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>
+                                <input type="hidden" name="totalCombustible" value="{{totalCombustible}}"/>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">finalizar Viaje</button>
+                                </div>
+                                
+                            </form>
+                            {{/sumaTotalPuntoDeControl}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Fin Vehiculos-->
+</div>
