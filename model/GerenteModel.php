@@ -96,6 +96,18 @@ VALUES(
         }
     }
 
+        public function getArrastrePorId($idArrastre)
+    {
+
+        $sql = "SELECT * FROM Arrastre where (id =  '$idArrastre')";
+        $resultado = $this->database->query($sql);
+        if ($resultado != null) {
+            return $resultado;
+        } else {
+            return null;
+        }
+    }
+
     public function registrarArrastre($patente, $NumeroChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura)
     {
 
@@ -115,6 +127,28 @@ VALUES('$patente',
         $sql = "SELECT * FROM Arrastre";
         $consulta = $this->database->query($sql);
         return $consulta;
+    }
+
+    public function modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura){
+            $sql = "UPDATE Arrastre 
+                    SET
+                    patente = '$patente',
+                    numeroDeChasis = '$numeroDeChasis',
+                    tipo = '$tipo',
+                    peso_Neto = '$peso_Neto',
+                    hazard = '$hazard',
+                    reefer = '$reefer',
+                    temperatura = '$temperatura'
+                    WHERE id = '$id'";
+
+            $this->database->execute($sql);
+
+        }
+
+        public function borrarArrastre($id)
+    {
+        $sql = "DELETE FROM Arrastre WHERE id = '$id'";
+        $this->database->execute($sql);
     }
 
     public function getVehiculos()

@@ -224,8 +224,64 @@ class GerenteController
 
             header("location: ../gerente?ArrastreNoRegistrado");
         }
+    }
 
+        public function irModificarArrastre(){
+        $id = $_POST["idArrastre"];
+        $data["arrastre"]= $this->GerenteModel->getArrastrePorId($id);
 
+        if ($data != null) {
+            echo $this->render->render("view/partial/modificarArrastre.mustache", $data);
+
+        }else{
+            header("location:/gerente?noRedirecciono");
+        }
+    }
+
+        public function modificarArrastre(){
+        $id = $_POST["idArrastre"];
+        $patente = $_POST["patente"];
+        $numeroDeChasis = $_POST["numeroDeChasis"];
+        $tipo = $_POST["tipo"];
+        $peso_Neto = $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
+        $reefer = $_POST["reefer"];
+        $temperatura = $_POST["temperatura"];
+
+        if(isset( $_POST["idArrastre"])){
+
+            if ($this->GerenteModel->getArrastrePorId($id)) {
+                $this->GerenteModel->modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura);
+                header("location:/gerente?arrastreModificado");
+            }else{
+                header("location:/gerente?errorAlModificarArrastre");
+            }
+
+        }else{
+            header("location:/gerente?errorAlModificarArrastre");
+        }
+    }
+
+        public function borrarArrastre(){
+        $idArrastre = $_POST["idArrastre"];
+
+        if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)){
+                if ($this->GerenteModel->getArrastrePorId($idArrastre)) {
+                    $this->GerenteModel->borrarArrastre($idArrastre);
+                    header("location: ../gerente?arrastreBorrado");
+                }else{
+                    header("location: ../gerente?arrastreNoBorrado");
+                }
+            }else{
+                $this->cerrarSesion();
+                header("location:/login");
+            }
+        } else {
+            header("location:/login");
+        }
     }
 
 }
