@@ -1,5 +1,7 @@
 <?php
 
+require_once("fpdf17/fpdf.php");
+
 class GerenteController
 {
     private $GerenteModel;
@@ -80,17 +82,6 @@ class GerenteController
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
 
-        /*include('phpqrcode/qrlib.php');
-
-
-        $email = $this->usuarioModel->getMailUsuario($id_usuario);
-        $contraseña = $this->usuarioModel->getPasswordUsuario($id_usuario);
-
-        $contenido = "http://localhost/login/loguearUsuario?email='$email'&&password='$contraseña'";
-        QRcode::png($contenido);*/
-
-       /* , $filename, $level, $tamaño, $framesize*/
-
         /*if (!getValidarViaje($fecha_inicio, $fecha_fin, $id_usuario)) {*/
         $this->GerenteModel->registrarViaje($ciudad_origen,
             $ciudad_destino,
@@ -118,26 +109,49 @@ class GerenteController
         $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
         $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
 
-        header("location:/gerente?viajeRegistrado");
+        /* , $filename, $level, $tamaño, $framesize*/
+
+        header("location:/gerente/crearPdf?id_usuario=$id_usuario");
         /* } else {
              header("location:/gerente?viajeNoRegistrado");
          }*/
     }
 
-    public function irModificarViaje(){
+    public function generarQr(){
+        $id_usuario = $_GET["id_usuario"];
+        include('phpqrcode/qrlib.php');
+        $email = $this->usuarioModel->getMailUsuario($id_usuario);
+        $contraseña = $this->usuarioModel->getPasswordUsuario($id_usuario);
+        $contenido = "http://localhost/login/loguearUsuario?email=$email&&password=$contraseña";
+        $imagen = QRcode::png($contenido);
+    }
+
+    public function crearPdf()
+    {
+        $id_usuario = $_GET["id_usuario"];
+        $pdf = new FPDF('p', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->Image("http://localhost/gerente/generarQr?id_usuario=$id_usuario", 10, 10, 30, 30, "png");
+        $pdf->Output();
+
+    }
+
+    public function irModificarViaje()
+    {
         $id = $_POST["idViaje"];
         $viaje = $this->GerenteModel->getViajePorId($id);
-        $datas = array("viaje"=> $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
+        $datas = array("viaje" => $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
 
         if ($viaje != null) {
             echo $this->render->render("view/partial/modificarViaje.mustache", $datas);
 
-        }else{
+        } else {
             header("location:/gerente?noRedirecciono");
         }
     }
 
-        public function modificarViaje(){
+    public function modificarViaje()
+    {
         $id = $_POST["idViaje"];
         $ciudad_origen = $_POST["ciudad_origen"];
         $ciudad_destino = $_POST["ciudad_destino"];
@@ -157,21 +171,21 @@ class GerenteController
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-        if(isset( $_POST["idViaje"])){
+        if (isset($_POST["idViaje"])) {
 
             if ($this->GerenteModel->getViajePorId($id)) {
                 $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario);
                 header("location:/gerente?viajeModificado");
-            }else{
+            } else {
                 header("location:/gerente?errorAlModificarViaje");
             }
 
-        }else{
+        } else {
             header("location:/gerente?errorAlModificarViaje");
         }
     }
 
-        public function BorrarViaje()
+    public function BorrarViaje()
     {
         $idViaje = $_POST["idViaje"];
 
@@ -287,19 +301,21 @@ class GerenteController
         }
     }
 
-        public function irModificarArrastre(){
+    public function irModificarArrastre()
+    {
         $id = $_POST["idArrastre"];
-        $data["arrastre"]= $this->GerenteModel->getArrastrePorId($id);
+        $data["arrastre"] = $this->GerenteModel->getArrastrePorId($id);
 
         if ($data != null) {
             echo $this->render->render("view/partial/modificarArrastre.mustache", $data);
 
-        }else{
+        } else {
             header("location:/gerente?noRedirecciono");
         }
     }
 
-        public function modificarArrastre(){
+    public function modificarArrastre()
+    {
         $id = $_POST["idArrastre"];
         $patente = $_POST["patente"];
         $numeroDeChasis = $_POST["numeroDeChasis"];
@@ -309,34 +325,35 @@ class GerenteController
         $reefer = $_POST["reefer"];
         $temperatura = $_POST["temperatura"];
 
-        if(isset( $_POST["idArrastre"])){
+        if (isset($_POST["idArrastre"])) {
 
             if ($this->GerenteModel->getArrastrePorId($id)) {
                 $this->GerenteModel->modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura);
                 header("location:/gerente?arrastreModificado");
-            }else{
+            } else {
                 header("location:/gerente?errorAlModificarArrastre");
             }
 
-        }else{
+        } else {
             header("location:/gerente?errorAlModificarArrastre");
         }
     }
 
-        public function borrarArrastre(){
+    public function borrarArrastre()
+    {
         $idArrastre = $_POST["idArrastre"];
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
-            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)){
+            if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
                 if ($this->GerenteModel->getArrastrePorId($idArrastre)) {
                     $this->GerenteModel->borrarArrastre($idArrastre);
                     header("location: ../gerente?arrastreBorrado");
-                }else{
+                } else {
                     header("location: ../gerente?arrastreNoBorrado");
                 }
-            }else{
+            } else {
                 $this->cerrarSesion();
                 header("location:/login");
             }
