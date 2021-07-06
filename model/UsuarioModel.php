@@ -28,6 +28,20 @@ class UsuarioModel
         return $resultado["idUsuario"]["0"]["id"];
     }
 
+    public function getMailUsuario($id){
+        $sql = "SELECT email FROM Usuario WHERE id like '$id'";
+
+        $resultado["emailUsuario"] = $this->database->query($sql);
+        return $resultado["emailUsuario"]["0"]["email"];
+    }
+
+    public function getPasswordUsuario($id){
+        $sql = "SELECT contraseña FROM Usuario WHERE id like '$id'";
+
+        $resultado["contraseñaUsuario"] = $this->database->query($sql);
+        return $resultado["contraseñaUsuario"]["0"]["contraseña"];
+    }
+
     public function getActivacionUsuario($email)
     {
 
