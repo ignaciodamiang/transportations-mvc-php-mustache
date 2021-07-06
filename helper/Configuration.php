@@ -11,6 +11,7 @@ include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
 include_once("model/AdminModel.php");
 include_once("model/ChoferModel.php");
+include_once("model/MecanicoModel.php");
 
 
 
@@ -19,6 +20,7 @@ include_once("controller/loginController.php");
 include_once("controller/AdminController.php");
 include_once("controller/LoginController.php");
 include_once("controller/ChoferController.php");
+include_once("controller/MecanicoController.php");
 
 include_once('third-party/mustache.php/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -139,6 +141,20 @@ class Configuration
         $usuarioModel = $this->getUsuarioModel();
         $verificacionRolModel = $this->getVerificacionDeRolModel();
         return new ChoferController($ChoferModel,$this->getRender(),$usuarioModel,$verificacionRolModel);
+    }
+
+        public function getMecanicoModel()
+    {
+        $database = $this->getDatabase();
+        return new MecanicoModel($database);
+    }
+
+    public function getMecanicoController()
+    {
+        $MecanicoModel = $this->getMecanicoModel();
+        $usuarioModel = $this->getUsuarioModel();
+        $verificacionRolModel = $this->getVerificacionDeRolModel();
+        return new MecanicoModel($MecanicoModel,$this->getRender(),$usuarioModel,$verificacionRolModel);
     }
 
 }

@@ -55,6 +55,38 @@ VALUES( '$ciudad_origen',
         $this->database->execute($sql1);
     }
 
+        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario)
+    {
+        $sql = "UPDATE Viaje 
+                SET
+                ciudad_origen = '$ciudad_origen',
+                ciudad_destino = '$ciudad_destino',
+                fecha_inicio = '$fecha_inicio',
+                fecha_fin = '$fecha_fin',
+                tiempo_estimado = '$tiempo_estimado',
+                descripcion_carga = '$descripcion_carga',
+                km_previsto = '$km_previsto',
+                combustible_estimado = '$combustible_estimado',
+                precioViaticos_estimado = '$precioViaticos_estimado',
+                precioPeajes_estimado = '$precioPeajes_estimado',
+                precioFee_estimado = '$precioFee_estimado',
+                precioExtras_estimado = '$precioExtras_estimado',
+                precioHazard_estimado = '$precioHazard_estimado',
+                precioReefer_estimado = '$precioReefer_estimado',
+                id_arrastre = '$id_arrastre',
+                id_vehiculo = '$id_vehiculo',
+                id_usuario = '$id_usuario'
+                WHERE id = '$id'";
+
+        $this->database->execute($sql);
+    }
+
+            public function BorrarViaje($id)
+    {
+        $sql = "DELETE FROM Viaje WHERE id = '$id'";
+        $this->database->execute($sql);
+    }
+
     public function registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo)
     {
 
@@ -96,6 +128,18 @@ VALUES(
         }
     }
 
+        public function getArrastrePorId($idArrastre)
+    {
+
+        $sql = "SELECT * FROM Arrastre where (id =  '$idArrastre')";
+        $resultado = $this->database->query($sql);
+        if ($resultado != null) {
+            return $resultado;
+        } else {
+            return null;
+        }
+    }
+
     public function registrarArrastre($patente, $NumeroChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura)
     {
 
@@ -115,6 +159,28 @@ VALUES('$patente',
         $sql = "SELECT * FROM Arrastre";
         $consulta = $this->database->query($sql);
         return $consulta;
+    }
+
+    public function modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura){
+            $sql = "UPDATE Arrastre 
+                    SET
+                    patente = '$patente',
+                    numeroDeChasis = '$numeroDeChasis',
+                    tipo = '$tipo',
+                    peso_Neto = '$peso_Neto',
+                    hazard = '$hazard',
+                    reefer = '$reefer',
+                    temperatura = '$temperatura'
+                    WHERE id = '$id'";
+
+            $this->database->execute($sql);
+
+        }
+
+        public function borrarArrastre($id)
+    {
+        $sql = "DELETE FROM Arrastre WHERE id = '$id'";
+        $this->database->execute($sql);
     }
 
     public function getVehiculos()
@@ -221,6 +287,12 @@ VALUES('$nombre',
         $sql = "SELECT * FROM Viaje";
         $consulta = $this->database->query($sql);
         return $consulta;
+    }
+
+    public function getViajePorId($id)
+    {
+        $sql = "SELECT * FROM viaje WHERE id = " . $id;
+        return $this->database->query($sql);
     }
 
 }

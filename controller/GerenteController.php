@@ -126,6 +126,67 @@ class GerenteController
          }*/
     }
 
+    public function irModificarViaje(){
+        $id = $_POST["idViaje"];
+        $viaje = $this->GerenteModel->getViajePorId($id);
+        $datas = array("viaje"=> $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
+
+        if ($viaje != null) {
+            echo $this->render->render("view/partial/modificarViaje.mustache", $datas);
+
+        }else{
+            header("location:/gerente?noRedirecciono");
+        }
+    }
+
+        public function modificarViaje(){
+        $id = $_POST["idViaje"];
+        $ciudad_origen = $_POST["ciudad_origen"];
+        $ciudad_destino = $_POST["ciudad_destino"];
+        $fecha_inicio = $_POST["fecha_inicio"];
+        $fecha_fin = $_POST["fecha_fin"];
+        $tiempo_estimado = $_POST["tiempo_estimado"];
+        $descripcion_carga = $_POST["descripcion_carga"];
+        $km_previsto = $_POST["km_previsto"];
+        $combustible_estimado = $_POST["combustible_estimado"];
+        $precioViaticos_estimado = $_POST["precioViaticos_estimado"];
+        $precioPeajes_estimado = $_POST["precioPeajes_estimado"];
+        $precioExtras_estimado = $_POST["precioExtras_estimado"];
+        $precioFee_estimado = $_POST["precioFee_estimado"];
+        $precioHazard_estimado = $_POST["precioHazard_estimado"];
+        $precioReefer_estimado = $_POST["precioReefer_estimado"];
+        $id_arrastre = $_POST["id_arrastre"];
+        $id_vehiculo = $_POST["id_vehiculo"];
+        $id_usuario = $_POST["id_usuario"];
+
+        if(isset( $_POST["idViaje"])){
+
+            if ($this->GerenteModel->getViajePorId($id)) {
+                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario);
+                header("location:/gerente?viajeModificado");
+            }else{
+                header("location:/gerente?errorAlModificarViaje");
+            }
+
+        }else{
+            header("location:/gerente?errorAlModificarViaje");
+        }
+    }
+
+        public function BorrarViaje()
+    {
+        $idViaje = $_POST["idViaje"];
+
+
+        if ($this->GerenteModel->getViajePorId($idViaje)) {
+            $this->GerenteModel->borrarViaje($idViaje);
+            header("location: ../gerente?viajeBorrado");
+        } else {
+
+            header("location: ../gerente?viajeNoBorrado");
+        }
+    }
+
 
 
     public function registrarVehiculo()
@@ -227,8 +288,64 @@ class GerenteController
 
             header("location: ../gerente?ArrastreNoRegistrado");
         }
+    }
 
+        public function irModificarArrastre(){
+        $id = $_POST["idArrastre"];
+        $data["arrastre"]= $this->GerenteModel->getArrastrePorId($id);
 
+        if ($data != null) {
+            echo $this->render->render("view/partial/modificarArrastre.mustache", $data);
+
+        }else{
+            header("location:/gerente?noRedirecciono");
+        }
+    }
+
+        public function modificarArrastre(){
+        $id = $_POST["idArrastre"];
+        $patente = $_POST["patente"];
+        $numeroDeChasis = $_POST["numeroDeChasis"];
+        $tipo = $_POST["tipo"];
+        $peso_Neto = $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
+        $reefer = $_POST["reefer"];
+        $temperatura = $_POST["temperatura"];
+
+        if(isset( $_POST["idArrastre"])){
+
+            if ($this->GerenteModel->getArrastrePorId($id)) {
+                $this->GerenteModel->modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura);
+                header("location:/gerente?arrastreModificado");
+            }else{
+                header("location:/gerente?errorAlModificarArrastre");
+            }
+
+        }else{
+            header("location:/gerente?errorAlModificarArrastre");
+        }
+    }
+
+        public function borrarArrastre(){
+        $idArrastre = $_POST["idArrastre"];
+
+        if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)){
+                if ($this->GerenteModel->getArrastrePorId($idArrastre)) {
+                    $this->GerenteModel->borrarArrastre($idArrastre);
+                    header("location: ../gerente?arrastreBorrado");
+                }else{
+                    header("location: ../gerente?arrastreNoBorrado");
+                }
+            }else{
+                $this->cerrarSesion();
+                header("location:/login");
+            }
+        } else {
+            header("location:/login");
+        }
     }
 
 }
