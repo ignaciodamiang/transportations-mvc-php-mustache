@@ -111,6 +111,7 @@ precioViaticos_Real double,
 precioPeajes_Real double,
 combustible_real double,
 precioCombustible_real double,
+costoTotalCombustible_real double,
 precioTotal_real double,
 viaje_enCurso boolean,
 id_arrastre int,
@@ -147,6 +148,7 @@ desviacion_actual double,
 precioViaticos_actual double,
 precioPeajes_actual double,
 precioExtras_actual double,
+fechaHoraPuntoControl datetime,
 id_viaje int,
 primary key(id_notificacion),
 foreign key(id_viaje) references Viaje(id)
@@ -189,7 +191,10 @@ values(1,"Camioneta"),
     (4,"Auto");
 
 insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilometraje ,estado,alarma,id_tipoVehiculo)
-			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4);
+			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4),
+					(2,"ABC22",22,22,"Ford","dos",2222,"usado","ring ring",3);
+                    
+
 
 
 insert into Viaje(
@@ -199,10 +204,12 @@ combustible_estimado ,precioCombustible_estimado ,
 precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
 precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
-values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3);
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3),
+	(2, "lima", "chile",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,2,5);
+    
 
-/*
-select * from Viaje;
+
+/*select * from Viaje;
 select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
 select * from Usuario;
@@ -212,11 +219,33 @@ from Viaje inner join TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
 WHERE id_usuario = '3' and viaje_enCurso = 1;
 
 select * from ProformaChofer;
+
 select  sum(combustible_actual),sum(precioPeajes_actual)
 from ProformaChofer
 where id_viaje=1;
 
-select  sum(combustible_actual)as 'Total Combustible', sum(precioPeajes_actual )as 'Total Peaje',sum(precioViaticos_actual)as 'Total Viaticos'
+select  sum(combustible_actual)as 'Costo Combustible', sum(precioPeajes_actual )as 'Total Peaje',sum(precioViaticos_actual)as 'Total Viaticos'
 from ProformaChofer
-where id_viaje=1;*/
+where id_viaje=1;
 
+select * from ProformaChofer;
+
+
+SELECT 
+sum((combustible_actual*precioCombustible_actual)) as totalCombustible,
+sum(precioPeajes_actual )as 'TotalPeaje',
+sum(precioViaticos_actual)as 'TotalViaticos',
+sum(precioExtras_actual)as 'TotalExtras',
+sum(combustible_actual) as 'cantidadDeCombustible',
+avg(precioCombustible_actual) as 'promedioPrecioCombustible'
+from ProformaChofer
+where id_viaje='1';
+
+UPDATE `transporteslamatanza`.`Viaje`
+                SET `precioExtras_real` = '10', 
+                    `precioViaticos_Real` = '5', 
+                    `precioPeajes_Real` = ' 4', 
+                    `combustible_real` = '6', 
+                    `precioCombustible_real` = '2', 
+                    `costoTotalCombustible_real` = '4' 
+                WHERE (`id` = '1');*/
