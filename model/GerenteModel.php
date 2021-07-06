@@ -216,4 +216,11 @@ VALUES('$nombre',
         return $resultado["id_viaje"]["0"]["id"];
 
     }
+
+    public function getViajes(){
+        $sql = "SELECT * FROM Viaje";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
 }
