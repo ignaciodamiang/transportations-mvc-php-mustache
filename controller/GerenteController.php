@@ -70,11 +70,7 @@ class GerenteController
         $id_usuario = $_POST["id_usuario"];
         $viaje_enCurso = false;
 
-        include('phpqrcode/qrlib.php'); 
-        $codesDir = "images/";   
-        $codeFile = $ciudad_origen . $ciudad_destino. '.png';
 
-        QRcode::png($tipo_carga,$codesDir.$codeFile,QR_ECLEVEL_L ,4);
 
         $this->GerenteModel->registrarViaje( $ciudad_origen,
                                              $ciudad_destino,

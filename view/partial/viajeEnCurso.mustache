@@ -123,19 +123,19 @@
                     </p>
                   </div>
   
-
-
   
                   <div class="me-3 mt-3 col-lg-2">
                     <label class="font-weight-bold mb-1"
                       >Latitud<span class="text-danger">*</span></label
                     >
                     <input
-                      type="number"
+                      type="text"
                       required
                       name="latitud"
                       class="form-control"
                       placeholder="latitud"
+                      id="latitud"
+                    
                     />
                   </div>
 
@@ -146,14 +146,17 @@
                       >Longitud<span class="text-danger">*</span></label
                     >
                     <input
-                      type="number"
+                      type="text"
                       required
                       name="longitud"
                       class="form-control"
                       placeholder="Longitud"
+                      id="longitud"
+                      
                     />
                   </div>
-  
+
+                  <div id="mapa" style="width:500px; height:400px;"></div>
 
                 <input type="hidden" name="id_viaje" value="{{id}}">
 
@@ -171,3 +174,4 @@
       </div>
     </div>
   </div>
+
