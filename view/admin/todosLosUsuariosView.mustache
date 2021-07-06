@@ -1,3 +1,5 @@
+{{> header}} {{>navbar}}
+
 <!--Container Usuarios-->
 <div class="container mb-5 col-12 justify-content-center rounded">
   <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -11,7 +13,7 @@
           aria-expanded="true"
           aria-controls="panelsStayOpen-collapseOne"
         >
-          Usuarios sin Rol
+          Todos los usuarios
         </button>
       </h2>
       <div
@@ -32,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#usuariosSinRol}}
+              {{#todosLosUsuarios}}
               <tr>
                 <th scope="row">{{ legajo }}</th>
                 <td>{{ nombre }}</td>
@@ -95,11 +97,11 @@
                   </div>
                 </td>
               </tr>
-              {{/usuariosSinRol}}
+              {{/todosLosUsuarios}}
             </tbody>
           </table>
             <form
-                action="/admin/verTodosLosUsuarios"
+                action="/admin/borrarUsuario"
                 method="post"
                 class="card-link text-decoration-none d-inline-block"
                 >

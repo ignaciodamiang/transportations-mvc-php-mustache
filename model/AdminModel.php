@@ -46,8 +46,26 @@ class AdminModel
 
     }
 
+    public function modificarUsuario($id, $nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia, $id_tipoUsuario, $email, $contrasenia){
+            $sql = "UPDATE Usuario 
+                    SET
+                    nombre = '$nombre',
+                    apellido = '$apellido',
+                    legajo = '$legajo',
+                    dni = '$dni',
+                    fecha_nacimiento = '$fecha_nacimiento',
+                    tipo_licencia = '$tipo_licencia',
+                    id_tipoUsuario = '$id_tipoUsuario',
+                    email = '$email',
+                    contraseña = '$contrasenia'
+                    WHERE id = '$id'";
 
+            $this->database->execute($sql);
 
+        }
 
-
+        public function borrarUsuario($id){
+        $sql = "DELETE FROM Usuario WHERE id = '$id'";
+        $this->database->execute($sql);
+    }
 }
