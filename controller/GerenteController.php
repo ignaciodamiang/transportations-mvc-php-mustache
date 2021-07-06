@@ -18,7 +18,7 @@ class GerenteController
 
     public function execute()
     {
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre());
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosViajes" => $this->GerenteModel->getViajes());
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -86,36 +86,36 @@ class GerenteController
 
         QRcode::png($tipo_carga,$codesDir.$codeFile,QR_ECLEVEL_L ,4);*/
         /*if (!getValidarViaje($fecha_inicio, $fecha_fin, $id_usuario)) {*/
-            $this->GerenteModel->registrarViaje($ciudad_origen,
-                $ciudad_destino,
-                $fecha_inicio,
-                $fecha_fin,
-                $tiempo_estimado,
-                $tipo_carga,
-                $km_previsto,
-                $combustible_estimado,
-                $precioCombustibleEstimado,
-                $CostoViaticos_estimado,
-                $CostoPeajesEstimado,
-                $CostoExtrasEstimado,
-                $CostoFeeEstimado,
-                $CostoHazardEstimado,
-                $CostoReeferEstimado,
-                $CostoTotalEstimado,
-                $id_arrastre,
-                $id_vehiculo,
-                $id_usuario
-            );
+        $this->GerenteModel->registrarViaje($ciudad_origen,
+            $ciudad_destino,
+            $fecha_inicio,
+            $fecha_fin,
+            $tiempo_estimado,
+            $tipo_carga,
+            $km_previsto,
+            $combustible_estimado,
+            $precioCombustibleEstimado,
+            $CostoViaticos_estimado,
+            $CostoPeajesEstimado,
+            $CostoExtrasEstimado,
+            $CostoFeeEstimado,
+            $CostoHazardEstimado,
+            $CostoReeferEstimado,
+            $CostoTotalEstimado,
+            $id_arrastre,
+            $id_vehiculo,
+            $id_usuario
+        );
 
-            $this->GerenteModel->registrarCliente($nombre, $apellido);
-            $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);
-            $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
-            $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
+        $this->GerenteModel->registrarCliente($nombre, $apellido);
+        $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);
+        $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
+        $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
 
-            header("location:/gerente?viajeRegistrado");
-       /* } else {
-            header("location:/gerente?viajeNoRegistrado");
-        }*/
+        header("location:/gerente?viajeRegistrado");
+        /* } else {
+             header("location:/gerente?viajeNoRegistrado");
+         }*/
     }
 
 
