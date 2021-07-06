@@ -79,7 +79,12 @@ VALUES( '$ciudad_origen',
                 WHERE id = '$id'";
 
         $this->database->execute($sql);
+    }
 
+            public function BorrarViaje($id)
+    {
+        $sql = "DELETE FROM Viaje WHERE id = '$id'";
+        $this->database->execute($sql);
     }
 
     public function registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo)
