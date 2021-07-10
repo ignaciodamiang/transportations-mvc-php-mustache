@@ -181,6 +181,21 @@
                   />
                 </div>
 
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Peso carga<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+
+                              name="peso_neto"
+                              class="form-control"
+                              placeholder="Peso carga"
+                      />
+                  </div>
+
                 <div class="form-group mt-3">
                   <label class="font-weight-bold mb-1"
                     >Precio fee estimado<span class="text-danger"
@@ -195,6 +210,19 @@
                     placeholder="Precio fee estimado"
                   />
                 </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Hazard<span class="text-danger">*</span></label
+                      >
+                      <select class="form-control font-weight-bold mb-1"
+                              aria-label="Default select example" name="hazard">
+                          <option selected>Seleccione</option>
+
+                          <option value="1">Si</option>
+                          <option value="0">No</option>
+                      </select>
+                  </div>
 
                 <div class="form-group mt-3">
                   <label class="font-weight-bold mb-1"
@@ -211,6 +239,19 @@
                   />
                 </div>
 
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Reefer<span class="text-danger">*</span></label
+                      >
+                      <select class="form-control font-weight-bold mb-1"
+                              aria-label="Default select example" name="reefer">
+                          <option selected>Seleccione</option>
+
+                          <option value="1">Si</option>
+                          <option value="0">No</option>
+                      </select>
+                  </div>
+
                 <div class="form-group mt-3">
                   <label class="font-weight-bold mb-1"
                     >Costo reefer estimado<span class="text-danger"
@@ -226,23 +267,21 @@
                   />
                 </div>
 
-                <div class="me-3 mt-3 col-lg-2">
-                  <label class="font-weight-bold mb-1"
-                    >Arrastre<span class="text-danger">*</span></label
-                  >
-                  <select
-                    class="form-control"
-                    aria-label="Default select example"
-                    name="id_arrastre"
-                  >
-                    <option selected>Seleccione</option>
-                    {{#todosLosArrastres}}
-                    <option value="{{ id }}">
-                      {{ patente }} {{ tipo }} {{ peso_Neto }}
-                    </option>
-                    {{/todosLosArrastres}}
-                  </select>
-                </div>
+
+                  <div class="me-3 mt-3 col-lg-2">
+                      <label class="font-weight-bold mb-1"
+                      >Temperatura de carga<span class="text-danger"
+                      >*</span
+                      ></label
+                      >
+                      <input
+                              type="number"
+
+                              name="temperatura"
+                              class="form-control"
+                              placeholder="Temperatura de carga"
+                      />
+                  </div>
 
                 <div class="me-3 mt-3 col-lg-2">
                   <label class="font-weight-bold mb-1"

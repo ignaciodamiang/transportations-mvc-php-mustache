@@ -22,16 +22,19 @@ class GerenteModel
                                    $CostoPeajesEstimado,
                                    $CostoExtrasEstimado,
                                    $CostoFeeEstimado,
+                                   $peso_Neto,
+                                   $hazard,
                                    $CostoHazardEstimado,
+                                   $reefer,
                                    $CostoReeferEstimado,
+                                   $temperatura,
                                    $CostoTotalEstimado,
-                                   $id_arrastre,
                                    $id_vehiculo,
                                    $id_usuario
     )
     {
 
-        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio,  fecha_fin,  tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioCombustible_estimado,precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, precioFee_estimado, precioHazard_estimado, precioReefer_estimado, precioTotal_estimado,id_arrastre,id_vehiculo, id_usuario)
+        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio,  fecha_fin,  tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioCombustible_estimado,precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, precioFee_estimado, peso_Neto, hazard, precioHazard_estimado,  reefer,precioReefer_estimado, temperatura,precioTotal_estimado,id_vehiculo, id_usuario)
 VALUES( '$ciudad_origen',
         '$ciudad_destino',
         '$fecha_inicio',        
@@ -45,17 +48,20 @@ VALUES( '$ciudad_origen',
         '$CostoPeajesEstimado',
         '$CostoExtrasEstimado',
         '$CostoFeeEstimado',
+        '$peso_Neto',
+        '$hazard',
         '$CostoHazardEstimado',
+        '$reefer',
         '$CostoReeferEstimado',
+        '$temperatura',
         '$CostoTotalEstimado',
-        '$id_arrastre',
         '$id_vehiculo',
         '$id_usuario'
         )";
         $this->database->execute($sql1);
     }
 
-        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario)
+        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $temperatura,$id_vehiculo, $id_usuario)
     {
         $sql = "UPDATE Viaje 
                 SET
@@ -70,10 +76,13 @@ VALUES( '$ciudad_origen',
                 precioViaticos_estimado = '$precioViaticos_estimado',
                 precioPeajes_estimado = '$precioPeajes_estimado',
                 precioFee_estimado = '$precioFee_estimado',
+                peso_Neto = '$peso_Neto',
+                hazard = '$hazard',
                 precioExtras_estimado = '$precioExtras_estimado',
                 precioHazard_estimado = '$precioHazard_estimado',
+                reefer = '$reefer',
                 precioReefer_estimado = '$precioReefer_estimado',
-                id_arrastre = '$id_arrastre',
+                temperatura = '$temperatura',
                 id_vehiculo = '$id_vehiculo',
                 id_usuario = '$id_usuario'
                 WHERE id = '$id'";

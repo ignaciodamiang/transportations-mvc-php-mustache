@@ -70,9 +70,12 @@ class GerenteController
         $CostoPeajesEstimado = $_POST["precioPeajes_estimado"];
         $CostoExtrasEstimado = $_POST["precioExtras_estimado"];
         $CostoFeeEstimado = $_POST["precioFee_estimado"];
+        $peso_Neto= $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
         $CostoHazardEstimado = $_POST["precioHazard_estimado"];
+        $reefer = $_POST["reefer"];
         $CostoReeferEstimado = $_POST["precioReefer_estimado"];
-        $id_arrastre = $_POST["id_arrastre"];
+        $temperatura = $_POST["temperatura"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
@@ -96,10 +99,13 @@ class GerenteController
             $CostoPeajesEstimado,
             $CostoExtrasEstimado,
             $CostoFeeEstimado,
+            $peso_Neto,
+            $hazard,
             $CostoHazardEstimado,
+            $reefer,
             $CostoReeferEstimado,
+            $temperatura,
             $CostoTotalEstimado,
-            $id_arrastre,
             $id_vehiculo,
             $id_usuario
         );
@@ -165,16 +171,19 @@ class GerenteController
         $precioPeajes_estimado = $_POST["precioPeajes_estimado"];
         $precioExtras_estimado = $_POST["precioExtras_estimado"];
         $precioFee_estimado = $_POST["precioFee_estimado"];
+        $peso_Neto= $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
         $precioHazard_estimado = $_POST["precioHazard_estimado"];
+        $reefer = $_POST["reefer"];
         $precioReefer_estimado = $_POST["precioReefer_estimado"];
-        $id_arrastre = $_POST["id_arrastre"];
+        $temperatura = $_POST["temperatura"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
         if (isset($_POST["idViaje"])) {
 
             if ($this->GerenteModel->getViajePorId($id)) {
-                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario);
+                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $temperatura, $id_vehiculo, $id_usuario);
                 header("location:/gerente?viajeModificado");
             } else {
                 header("location:/gerente?errorAlModificarViaje");

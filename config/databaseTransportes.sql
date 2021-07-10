@@ -29,18 +29,6 @@ tipo_vehiculo varchar(50),
 primary key(id)
 );
 
-create table Arrastre(
-id int auto_increment,
-patente varchar(40),
-numeroDeChasis int,
-tipo varchar(50),
-peso_Neto float not null,
-hazard boolean not null,
-reefer boolean not null,
-temperatura DECIMAL(5,2),
-primary key(id)
-);
-
 create table Vehiculo(
 id int auto_increment,
 patente varchar(20),
@@ -102,6 +90,10 @@ precioCombustible_estimado double,
 precioViaticos_estimado double,
 precioPeajes_estimado double,
 precioExtras_estimado double,
+peso_Neto float not null,
+hazard boolean not null,
+reefer boolean not null,
+temperatura DECIMAL(5,2),
 precioFee_estimado double,
 precioHazard_estimado double,
 precioReefer_estimado double,
@@ -113,12 +105,10 @@ combustible_real double,
 precioCombustible_real double,
 precioTotal_real double,
 viaje_enCurso boolean,
-id_arrastre int,
 id_vehiculo int,
 id_usuario int,
 primary key(id),
 foreign key(id_vehiculo) references Vehiculo(id),
-foreign key(id_arrastre) references Arrastre(id),
 foreign key(id_usuario) references Usuario(id)
 );
 
@@ -147,6 +137,7 @@ desviacion_actual double,
 precioViaticos_actual double,
 precioPeajes_actual double,
 precioExtras_actual double,
+fechaHoraPuntoControl datetime,
 id_viaje int,
 primary key(id_notificacion),
 foreign key(id_viaje) references Viaje(id)
@@ -194,12 +185,13 @@ insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilome
 
 insert into Viaje(
 id,ciudad_origen ,ciudad_destino,fecha_inicio,
-fecha_fin ,tiempo_estimado , km_previsto , descripcion_carga,
+fecha_fin ,tiempo_estimado , km_previsto , peso_neto, descripcion_carga,
+hazard, reefer, temperatura,
 combustible_estimado ,precioCombustible_estimado ,
 precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
 precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
-values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3);
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,500 ,"pescado", true, true, 20, 8000,100,5000,4000,2000,1,1,1,11111,false,1,3);
 
 /*
 select * from Viaje;
