@@ -196,9 +196,6 @@ values(1,"Camioneta"),
 insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilometraje ,estado,alarma,id_tipoVehiculo)
 			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4),
 					(2,"ABC22",22,22,"Ford","dos",2222,"usado","ring ring",3);
-                    
-
-
 
 insert into Viaje(
 id,ciudad_origen ,ciudad_destino,fecha_inicio,
@@ -213,6 +210,13 @@ values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado", 30 ,8000
 
 
 /*select * from Viaje;
+
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3),
+	(2, "lima", "chile",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,2,5);
+
+
+    /* CONSULTAS QUE ESTAMOS USANDO DE PRUEBA .. LAS DEJO PARA ACA PARA NO PERDERLAS */
+    /* /*select * from Viaje;
 select * from Vehiculo;
 select * from Usuario WHERE id_tipoUsuario = '3';
 select * from Usuario;
@@ -231,10 +235,11 @@ select  sum(combustible_actual)as 'Costo Combustible', sum(precioPeajes_actual )
 from ProformaChofer
 where id_viaje=1;
 
+
 select * from ProformaChofer;
 
 
-SELECT 
+SELECT
 sum((combustible_actual*precioCombustible_actual)) as totalCombustible,
 sum(precioPeajes_actual )as 'TotalPeaje',
 sum(precioViaticos_actual)as 'TotalViaticos',
@@ -252,3 +257,19 @@ UPDATE `transporteslamatanza`.`Viaje`
                     `precioCombustible_real` = '2', 
                     `costoTotalCombustible_real` = '4' 
                 WHERE (`id` = '1');*/
+ /*            select * from arrastre;
+             select * from Viaje;
+CREATE VIEW
+costos_del_viaje AS
+SELECT
+sum((combustible_actual*precioCombustible_actual)) as totalCombustible,
+sum(precioPeajes_actual )as 'TotalPeaje',
+sum(precioViaticos_actual)as 'TotalViaticos',
+sum(precioExtras_actual)as 'TotalExtras',
+sum(combustible_actual) as 'cantidadDeCombustible',
+avg(precioCombustible_actual) as 'promedioPrecioCombustible'
+from ProformaChofer
+where id_viaje='1';
+select * from costos_del_viaje;
+select sum(totalCombustible + TotalPeaje + TotalViaticos + TotalExtras) as totales
+from costos_del_viaje;*/

@@ -1,4 +1,4 @@
-
+{{#viajeEnCurso}}
 <div class="container mb-5 col-12 justify-content-center rounded">
     <h3 class="text-center mb-3">Empezar Viaje</h3>
   
@@ -23,7 +23,7 @@
         >
           <div class="accordion-body">
             <form action="/chofer/empezarViaje" method="post">
-                {{#viajeEnCurso}}
+                
               <div class="form-row mb-2">
                 <div class="d-flex flex-wrap justify-content-center form-group">
                   <div class="me-3 mt-3 col-lg-2">
@@ -123,8 +123,6 @@
                     </p>
                   </div>
   
-
-
   
                   <div class="me-3 mt-3 col-lg-2">
                     <label class="font-weight-bold mb-1"
@@ -132,10 +130,13 @@
                     >
                     <input
                       type="number"
-                      required
-                      name="latitud"
+                      step="any"
+                      name="latitud_inicio"
                       class="form-control"
                       placeholder="latitud"
+                      id="latitud_inicio"
+                     
+                      
                     />
                   </div>
 
@@ -147,13 +148,14 @@
                     >
                     <input
                       type="number"
-                      required
-                      name="longitud"
+                      step="any"
+                      name="longitud_inicio"
                       class="form-control"
                       placeholder="Longitud"
+                      id="longitud_inicio"            
                     />
                   </div>
-  
+
 
                 <input type="hidden" name="id_viaje" value="{{id}}">
 
@@ -163,7 +165,7 @@
               <button type="submit" class="btn btn-primary col-5 col-md-2 mt-4">
                 Empezar viaje
               </button>
-              {{/viajeEnCurso}}
+              
             </form>
             
           </div>
@@ -171,3 +173,4 @@
       </div>
     </div>
   </div>
+  {{/viajeEnCurso}}
