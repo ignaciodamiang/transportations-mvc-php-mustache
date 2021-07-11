@@ -18,10 +18,11 @@ class GerenteModel
                                    $km_previsto,
                                    $combustible_estimado,
                                    $precioCombustibleEstimado,
+                                   $costoTotalCombustibleEstimado,
                                    $CostoViaticos_estimado,
                                    $CostoPeajesEstimado,
                                    $CostoExtrasEstimado,
-                                   $CostoFeeEstimado,
+                                   $feeEstimado,
                                    $peso_Neto,
                                    $hazard,
                                    $CostoHazardEstimado,
@@ -34,7 +35,7 @@ class GerenteModel
     )
     {
 
-        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio,  fecha_fin,  tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioCombustible_estimado,precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, precioFee_estimado, peso_Neto, hazard, precioHazard_estimado,  reefer,precioReefer_estimado, temperatura,precioTotal_estimado,id_vehiculo, id_usuario)
+        $sql1 = "INSERT INTO Viaje (ciudad_origen, ciudad_destino, fecha_inicio, fecha_fin, tiempo_estimado,  descripcion_carga, km_previsto, combustible_estimado, precioCombustible_estimado, costoTotalCombustible_estimado, precioViaticos_estimado, precioPeajes_estimado, precioExtras_estimado, fee_estimado, peso_Neto, hazard, precioHazard_estimado, reefer, precioReefer_estimado, temperatura, precioTotal_estimado, id_vehiculo, id_usuario)
 VALUES( '$ciudad_origen',
         '$ciudad_destino',
         '$fecha_inicio',        
@@ -44,10 +45,11 @@ VALUES( '$ciudad_origen',
         '$km_previsto',        
         '$combustible_estimado',
         '$precioCombustibleEstimado',
+        '$costoTotalCombustibleEstimado',
         '$CostoViaticos_estimado',
         '$CostoPeajesEstimado',
         '$CostoExtrasEstimado',
-        '$CostoFeeEstimado',
+        '$feeEstimado',
         '$peso_Neto',
         '$hazard',
         '$CostoHazardEstimado',
@@ -61,7 +63,7 @@ VALUES( '$ciudad_origen',
         $this->database->execute($sql1);
     }
 
-        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $temperatura,$id_vehiculo, $id_usuario)
+        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustible_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $CostoTotalEstimado, $id_vehiculo, $id_usuario)
     {
         $sql = "UPDATE Viaje 
                 SET
@@ -75,14 +77,17 @@ VALUES( '$ciudad_origen',
                 combustible_estimado = '$combustible_estimado',
                 precioViaticos_estimado = '$precioViaticos_estimado',
                 precioPeajes_estimado = '$precioPeajes_estimado',
-                precioFee_estimado = '$precioFee_estimado',
+                precioCombustible_estimado = '$precioCombustible_estimado',
+                costoTotalCombustible_estimado = '$costoTotalCombustible_estimado',
                 peso_Neto = '$peso_Neto',
                 hazard = '$hazard',
                 precioExtras_estimado = '$precioExtras_estimado',
                 precioHazard_estimado = '$precioHazard_estimado',
                 reefer = '$reefer',
                 precioReefer_estimado = '$precioReefer_estimado',
+                fee_estimado = '$fee_estimado';
                 temperatura = '$temperatura',
+                precioTotal_estimado = '$CostoTotalEstimado',
                 id_vehiculo = '$id_vehiculo',
                 id_usuario = '$id_usuario'
                 WHERE id = '$id'";
@@ -123,73 +128,6 @@ VALUES(
         } else {
             return true;
         }
-    }
-
-    public function getValidarArrastre($patente)
-    {
-
-        $sql = "SELECT * FROM Arrastre where (patente =  '$patente')";
-        $validarArrastre = $this->database->query($sql);
-        if ($validarArrastre == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-        public function getArrastrePorId($idArrastre)
-    {
-
-        $sql = "SELECT * FROM Arrastre where (id =  '$idArrastre')";
-        $resultado = $this->database->query($sql);
-        if ($resultado != null) {
-            return $resultado;
-        } else {
-            return null;
-        }
-    }
-
-    public function registrarArrastre($patente, $NumeroChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura)
-    {
-
-        $sql2 = "INSERT INTO Arrastre (patente, numeroDeChasis, tipo, peso_Neto, hazard, reefer, temperatura)
-VALUES('$patente',
-        '$NumeroChasis',
-        '$tipo',
-        '$pesoNeto',
-        '$hazard',
-        '$reefer',
-        '$temperatura')";
-        $this->database->execute($sql2);
-    }
-
-    public function getListaArrastre()
-    {
-        $sql = "SELECT * FROM Arrastre";
-        $consulta = $this->database->query($sql);
-        return $consulta;
-    }
-
-    public function modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura){
-            $sql = "UPDATE Arrastre 
-                    SET
-                    patente = '$patente',
-                    numeroDeChasis = '$numeroDeChasis',
-                    tipo = '$tipo',
-                    peso_Neto = '$peso_Neto',
-                    hazard = '$hazard',
-                    reefer = '$reefer',
-                    temperatura = '$temperatura'
-                    WHERE id = '$id'";
-
-            $this->database->execute($sql);
-
-        }
-
-        public function borrarArrastre($id)
-    {
-        $sql = "DELETE FROM Arrastre WHERE id = '$id'";
-        $this->database->execute($sql);
     }
 
     public function getVehiculos()
