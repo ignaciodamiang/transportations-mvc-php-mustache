@@ -20,7 +20,7 @@ class GerenteController
 
     public function execute()
     {
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosViajes" => $this->GerenteModel->getViajes());
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes());
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -66,18 +66,25 @@ class GerenteController
         $tipo_carga = $_POST["descripcion_carga"];
         $km_previsto = $_POST["km_previsto"];
         $combustible_estimado = $_POST["combustible_estimado"];
+        $peso_Neto = $_POST["peso_neto"];
+        $precioCombustibleEstimado = $_POST["precioCombustible_estimado"];
         $CostoViaticos_estimado = $_POST["precioViaticos_estimado"];
         $CostoPeajesEstimado = $_POST["precioPeajes_estimado"];
         $CostoExtrasEstimado = $_POST["precioExtras_estimado"];
-        $CostoFeeEstimado = $_POST["precioFee_estimado"];
+        $hazard = $_POST["hazard"];
         $CostoHazardEstimado = $_POST["precioHazard_estimado"];
+        $reefer = $_POST["reefer"];
         $CostoReeferEstimado = $_POST["precioReefer_estimado"];
-        $id_arrastre = $_POST["id_arrastre"];
+        $temperatura = $_POST["temperatura"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-        $precioCombustibleEstimado = $km_previsto / ($combustible_estimado * 85);
-        $CostoTotalEstimado = $precioCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoFeeEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
+        /*$costoTotalCombustibleEstimado = $km_previsto / ($combustible_estimado * $precioCombustibleEstimado);*/
+        $costoTotalCombustibleEstimado = $combustible_estimado * $precioCombustibleEstimado;
+        $CostoTotalEstimado = $costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
+         $AumentoHazardYReefer = $CostoTotalEstimado - ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
+        $feeCalculo = $AumentoHazardYReefer / ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
+        $feeEstimado = $feeCalculo * 100;
 
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
@@ -92,14 +99,18 @@ class GerenteController
             $km_previsto,
             $combustible_estimado,
             $precioCombustibleEstimado,
+            $costoTotalCombustibleEstimado,
             $CostoViaticos_estimado,
             $CostoPeajesEstimado,
             $CostoExtrasEstimado,
-            $CostoFeeEstimado,
+            $feeEstimado,
+            $peso_Neto,
+            $hazard,
             $CostoHazardEstimado,
+            $reefer,
             $CostoReeferEstimado,
+            $temperatura,
             $CostoTotalEstimado,
-            $id_arrastre,
             $id_vehiculo,
             $id_usuario
         );
@@ -117,7 +128,8 @@ class GerenteController
          }*/
     }
 
-    public function generarQr(){
+    public function generarQr()
+    {
         $id_usuario = $_GET["id_usuario"];
         include('phpqrcode/qrlib.php');
         $email = $this->usuarioModel->getMailUsuario($id_usuario);
@@ -140,7 +152,7 @@ class GerenteController
     {
         $id = $_POST["idViaje"];
         $viaje = $this->GerenteModel->getViajePorId($id);
-        $datas = array("viaje" => $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosArrastres" => $this->GerenteModel->getListaArrastre(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
+        $datas = array("viaje" => $viaje, "todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes());
 
         if ($viaje != null) {
             echo $this->render->render("view/partial/modificarViaje.mustache", $datas);
@@ -164,17 +176,26 @@ class GerenteController
         $precioViaticos_estimado = $_POST["precioViaticos_estimado"];
         $precioPeajes_estimado = $_POST["precioPeajes_estimado"];
         $precioExtras_estimado = $_POST["precioExtras_estimado"];
-        $precioFee_estimado = $_POST["precioFee_estimado"];
+        $precioCombustible_estimado = $_POST["precioCombustible_estimado"];
+        $peso_Neto = $_POST["peso_Neto"];
+        $hazard = $_POST["hazard"];
         $precioHazard_estimado = $_POST["precioHazard_estimado"];
+        $reefer = $_POST["reefer"];
         $precioReefer_estimado = $_POST["precioReefer_estimado"];
-        $id_arrastre = $_POST["id_arrastre"];
+        $temperatura = $_POST["temperatura"];
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
+
+        $costoTotalCombustibleEstimado = $combustible_estimado * $precioCombustible_estimado;
+        $CostoTotalEstimado = $costoTotalCombustibleEstimado + $precioViaticos_estimado + $precioPeajes_estimado + $precioExtras_estimado + $precioHazard_estimado + $precioReefer_estimado;
+        $AumentoHazardYReefer = $CostoTotalEstimado - ($costoTotalCombustibleEstimado + $precioViaticos_estimado + $precioPeajes_estimado + $precioExtras_estimado);
+        $feeCalculo = $AumentoHazardYReefer / ($costoTotalCombustibleEstimado + $precioViaticos_estimado + $precioPeajes_estimado + $precioExtras_estimado);
+        $fee_estimado = $feeCalculo * 100;
 
         if (isset($_POST["idViaje"])) {
 
             if ($this->GerenteModel->getViajePorId($id)) {
-                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioFee_estimado, $precioHazard_estimado, $precioReefer_estimado, $id_arrastre, $id_vehiculo, $id_usuario);
+                $this->GerenteModel->modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustibleEstimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $CostoTotalEstimado, $id_vehiculo, $id_usuario);
                 header("location:/gerente?viajeModificado");
             } else {
                 header("location:/gerente?errorAlModificarViaje");
@@ -278,87 +299,6 @@ class GerenteController
         } else {
 
             header("location: ../gerente?vehiculoNoBorrado");
-        }
-    }
-
-    public function registrarArrastre()
-    {
-
-        $patente = $_POST["patente"];
-        $numeroDeChasis = $_POST["numeroDeChasis"];
-        $tipo = $_POST["tipo"];
-        $pesoNeto = $_POST["peso_Neto"];
-        $hazard = $_POST["hazard"];
-        $reefer = $_POST["reefer"];
-        $temperatura = $_POST["temperatura"];
-
-        if (!$this->GerenteModel->getValidarArrastre($patente)) {
-            $this->GerenteModel->registrarArrastre($patente, $numeroDeChasis, $tipo, $pesoNeto, $hazard, $reefer, $temperatura);
-            header("location: ../gerente?ArrastreRegistrado");
-        } else {
-
-            header("location: ../gerente?ArrastreNoRegistrado");
-        }
-    }
-
-    public function irModificarArrastre()
-    {
-        $id = $_POST["idArrastre"];
-        $data["arrastre"] = $this->GerenteModel->getArrastrePorId($id);
-
-        if ($data != null) {
-            echo $this->render->render("view/partial/modificarArrastre.mustache", $data);
-
-        } else {
-            header("location:/gerente?noRedirecciono");
-        }
-    }
-
-    public function modificarArrastre()
-    {
-        $id = $_POST["idArrastre"];
-        $patente = $_POST["patente"];
-        $numeroDeChasis = $_POST["numeroDeChasis"];
-        $tipo = $_POST["tipo"];
-        $peso_Neto = $_POST["peso_Neto"];
-        $hazard = $_POST["hazard"];
-        $reefer = $_POST["reefer"];
-        $temperatura = $_POST["temperatura"];
-
-        if (isset($_POST["idArrastre"])) {
-
-            if ($this->GerenteModel->getArrastrePorId($id)) {
-                $this->GerenteModel->modificarArrastre($id, $patente, $numeroDeChasis, $tipo, $peso_Neto, $hazard, $reefer, $temperatura);
-                header("location:/gerente?arrastreModificado");
-            } else {
-                header("location:/gerente?errorAlModificarArrastre");
-            }
-
-        } else {
-            header("location:/gerente?errorAlModificarArrastre");
-        }
-    }
-
-    public function borrarArrastre()
-    {
-        $idArrastre = $_POST["idArrastre"];
-
-        if ($this->validarSesion() == true) {
-            $sesion = $_SESSION["Usuario"];
-            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
-            if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
-                if ($this->GerenteModel->getArrastrePorId($idArrastre)) {
-                    $this->GerenteModel->borrarArrastre($idArrastre);
-                    header("location: ../gerente?arrastreBorrado");
-                } else {
-                    header("location: ../gerente?arrastreNoBorrado");
-                }
-            } else {
-                $this->cerrarSesion();
-                header("location:/login");
-            }
-        } else {
-            header("location:/login");
         }
     }
 

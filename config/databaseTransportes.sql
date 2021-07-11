@@ -91,6 +91,10 @@ hora_inicio time,
 fecha_fin date,
 fecha_finReal date,
 hora_fin time,
+peso_Neto float not null,
+hazard boolean not null,
+reefer boolean not null,
+temperatura DECIMAL(5,2),
 tiempo_estimado varchar(50),
 tiempo_real varchar(50),
 km_previsto double,
@@ -99,10 +103,11 @@ descripcion_carga varchar(50),
 desviacion double,
 combustible_estimado double,
 precioCombustible_estimado double,
+costoTotalCombustible_estimado double,
 precioViaticos_estimado double,
 precioPeajes_estimado double,
 precioExtras_estimado double,
-precioFee_estimado double,
+fee_estimado double,
 precioHazard_estimado double,
 precioReefer_estimado double,
 precioTotal_estimado double,
@@ -114,12 +119,10 @@ precioCombustible_real double,
 costoTotalCombustible_real double,
 precioTotal_real double,
 viaje_enCurso boolean,
-id_arrastre int,
 id_vehiculo int,
 id_usuario int,
 primary key(id),
 foreign key(id_vehiculo) references Vehiculo(id),
-foreign key(id_arrastre) references Arrastre(id),
 foreign key(id_usuario) references Usuario(id)
 );
 
@@ -194,16 +197,20 @@ insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilome
 			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4),
 					(2,"ABC22",22,22,"Ford","dos",2222,"usado","ring ring",3);
 
-
-
-
 insert into Viaje(
 id,ciudad_origen ,ciudad_destino,fecha_inicio,
 fecha_fin ,tiempo_estimado , km_previsto , descripcion_carga,
-combustible_estimado ,precioCombustible_estimado ,
-precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
-precioFee_estimado,precioHazard_estimado,precioReefer_estimado,
+combustible_estimado ,precioCombustible_estimado , peso_Neto,
+hazard, reefer, temperatura, precioViaticos_estimado ,precioPeajes_estimado ,precioExtras_estimado,
+fee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
+values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado", 30 ,8000,100, true, true, 24, 5000,4000,2000,1,1,1,11111,false,1,3),
+	(2, "lima", "chile",'21/05/03','21/06/03',10,2000,"pescado", 30, 8000,100,true, true, 24, 5000,4000,2000,1,1,1,11111,false,2,5);
+    
+
+
+/*select * from Viaje;
+
 values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,1,3),
 	(2, "lima", "chile",'21/05/03','21/06/03',10,2000,"pescado",8000,100,5000,4000,2000,1,1,1,11111,false,2,5);
 
@@ -228,6 +235,7 @@ select  sum(combustible_actual)as 'Costo Combustible', sum(precioPeajes_actual )
 from ProformaChofer
 where id_viaje=1;
 
+
 select * from ProformaChofer;
 
 
@@ -242,13 +250,13 @@ from ProformaChofer
 where id_viaje='1';
 
 UPDATE `transporteslamatanza`.`Viaje`
-                SET `precioExtras_real` = '10',
-                    `precioViaticos_Real` = '5',
-                    `precioPeajes_Real` = ' 4',
-                    `combustible_real` = '6',
-                    `precioCombustible_real` = '2',
-                    `costoTotalCombustible_real` = '4'
-             s*/
+                SET `precioExtras_real` = '10', 
+                    `precioViaticos_Real` = '5', 
+                    `precioPeajes_Real` = ' 4', 
+                    `combustible_real` = '6', 
+                    `precioCombustible_real` = '2', 
+                    `costoTotalCombustible_real` = '4' 
+                WHERE (`id` = '1');*/
  /*            select * from arrastre;
              select * from Viaje;
 CREATE VIEW
