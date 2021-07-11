@@ -19,14 +19,20 @@ class ChoferController
     public function execute()
 
     {   
+        
+        
+       
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
 
             $idChofer = $this->usuarioModel->getIdUsuario($sesion);
-            $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer));
 
-            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esChofer($tipoUsuario) ){               
+            $IdViaje=$this->ChoferModel->getViajeDelChofer($idChofer);
+            $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer),"historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
+                            "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje));
+
+            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esChofer($tipoUsuario) ){
                 echo $this->render->render("view/choferView.mustache",$datas);
             }
 
@@ -59,26 +65,39 @@ class ChoferController
 
     public function empezarViaje(){
         /* agreegar isset*/
-        $latitud=$_POST["latitud"];;
-        $longitud=$_POST["longitud"];;
+        $latitud_inicio=$_POST["latitud_inicio"];
+        $longitud_inicio=$_POST["longitud_inicio"];
 
+        if ($latitud_inicio==null) {
+            $latitud_inicio=0;
+        }
+
+        if ( $longitud_inicio==null) {
+            $longitud_inicio =0;
+        }
+   
         $fechaInicioReal= date('y-m-d');
         $horita=new DateTime();
         $horaInicioReal= $horita->format('H:i:s');
         $id_viaje=$_POST["id_viaje"];
 
-
-        $this->ChoferModel->getEmpezarViaje($id_viaje,$latitud, $longitud,$fechaInicioReal,$horaInicioReal);
+        $this->ChoferModel->getEmpezarViaje($id_viaje,$latitud_inicio, $longitud_inicio,$fechaInicioReal,$horaInicioReal);
+        $this->ChoferModel->cargaProforma($id_viaje);
         header("location: /chofer");
 
     }
+
+
+
 
     public function recargaCombustible(){
         $combustible_real = $_POST["combustible_real"];
         $precioCombustible_real = $_POST["precioCombustible_real"];
         $id_viaje = $_POST["id_viaje"];
 
-        $this->ChoferModel->recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje);
+        $horita=date('Y-m-d H:i:s');
+
+        $this->ChoferModel->recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$horita);
         header("location: /chofer?funciona");
     }
 
@@ -101,8 +120,37 @@ class ChoferController
             $precioViaticos_actual =0;
         }
 
-        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje);
+        $horita=date('Y-m-d H:i:s');
+       
+
+        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$horita);
         header("location: /chofer?funciona");
+    }
+
+    public function informarPosicion(){
+        /* agreegar isset*/
+        $latitud_actual=$_POST["latitud_actual"];
+        $longitud_actual=$_POST["longitud_actual"];
+        $id_viaje = $_POST["id_viaje"];
+
+        $horita=date('Y-m-d H:i:s');
+     
+        $this->ChoferModel->informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$horita);
+        header("location: /chofer");
+
+    }
+
+    public function finalizarViaje(){
+        $cantidadDeCombustible= $_POST["cantidadDeCombustible"];
+        $promedioPrecioCombustible= $_POST["promedioPrecioCombustible"];
+        $totalPeaje= $_POST["totalPeaje"];
+        $totalViaticos= $_POST["totalViaticos"];
+        $totalExtras= $_POST["totalExtras"];
+        $totalCombustible= $_POST["totalCombustible"];
+        $id_viaje= $_POST["id_viaje"];
+
+        $this->ChoferModel->finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,$totalViaticos,$totalExtras,$totalCombustible,$id_viaje);
+        header("location: /chofer");
     }
 
 }
