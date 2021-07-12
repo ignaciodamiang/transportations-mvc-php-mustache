@@ -68,7 +68,7 @@
                                     <td>{{TotalViaticos}}</td>
                                     <td>{{TotalExtras}}</td>
                                     <td>{{totalCombustible}}</td>
-                                    <td>NAN</td>    
+                                    <td>{{#totalDeTotales}} {{totalDeTotales}} {{/totalDeTotales}}</td>    
                                 </tr>
 
                                 <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>
@@ -79,15 +79,16 @@
                                 <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>
                                 <input type="hidden" name="totalCombustible" value="{{totalCombustible}}"/>
 
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">finalizar Viaje</button>
-                                </div>
+
                                 
-                            </form>
+                            
                             {{/sumaTotalPuntoDeControl}}
                             </tbody>
                         </table>
-
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">finalizar Viaje</button>
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>
