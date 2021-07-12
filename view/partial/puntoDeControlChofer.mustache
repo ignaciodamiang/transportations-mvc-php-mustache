@@ -1,4 +1,4 @@
-{{#viajeEnCurso}}
+{{#viajeEmpezado}}
 <div class="container mb-5 col-12 justify-content-center rounded">
   <h3 class="text-center mb-3">Punto de Control</h3>
 
@@ -29,10 +29,23 @@
                     <br>
                     <div class="card-text"><label class="font-weight-bold mb-1">Precio de Combustible<span
                           class="text-danger">*</span></label>
-                      <input type="number" required name="precioCombustible_real" class="form-control"
+                      <input type="number"  name="precioCombustible_real" class="form-control"
                         placeholder="Precio de Combustible" />
                     </div>
                     <br>
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
+                      <input type="number" required name="latitud_actual" class="form-control" value=""
+                      step="any" placeholder="Latitud" id="latitudCombustible" />
+                    </div>
+
+                    <br>
+
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
+                      <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
+                        id="longitudCombustible" value=""/>
+                    </div>
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <button type="submit" class="btn btn-primary ">Registrar nueva recarga</button>
                   </form>
@@ -63,6 +76,21 @@
 
                       <input type="number" name="precioViaticos_actual" class="form-control" placeholder="Viaticos" />
                     </div>
+
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
+                      <input type="number" required name="latitud_actual" class="form-control" value=""
+                      step="any" placeholder="Latitud" id="latitudGastos" />
+                    </div>
+
+                    <br>
+
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
+                      <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
+                        id="longitudGastos" value=""/>
+                    </div>
+
                     <br>
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <button type="submit" class="btn btn-primary ">Registrar Gastos</button>
@@ -79,8 +107,8 @@
 
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitud_actual" class="form-control"
-                        placeholder="Cantidad de Combustible" />
+                      <input type="number" required name="latitud_actual" class="form-control" value=""
+                      step="any" placeholder="Latitud" id="latitudPocicionActual" />
                     </div>
 
                     <br>
@@ -88,11 +116,13 @@
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
                       <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
-                        id="longitud" />
+                        id="longitudPocicionActual" value=""/>
                     </div>
 
+                    <div id="mapa" style="width:350px; height:200px;"></div>
+
                     <br>
-                    <div id="mapa" style="width:310px; height:100px;"></div>
+
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <button type="submit" class="btn btn-primary ">Mandar posicion</button>
                   </form>
@@ -106,4 +136,4 @@
     </div>
   </div>
 </div>
-{{/viajeEnCurso}}
+{{/viajeEmpezado}}

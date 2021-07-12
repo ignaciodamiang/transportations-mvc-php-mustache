@@ -12,7 +12,14 @@ class ChoferModel
 
     public function getViajeEnCurso($idChofer){
         $sql = "SELECT * FROM Viaje INNER JOIN TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
-                WHERE id_usuario = '$idChofer'";
+                WHERE id_usuario = '$idChofer' and viaje_enCurso = '0' ";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
+    public function getViajeEmpezado($idChofer){
+        $sql = "SELECT * FROM Viaje
+                WHERE id_usuario = '$idChofer' and viaje_enCurso = '1' ";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
