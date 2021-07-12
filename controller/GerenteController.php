@@ -63,7 +63,23 @@ class GerenteController
         $href = "/gerente";
 
         $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href);
-        echo $this->render->render("view/proformaCarga.mustache", $datas);
+
+        if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+
+            if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
+
+                echo $this->render->render("view/proformaCarga.mustache", $datas);
+            } else {
+                $this->cerrarSesion();
+                header("location:/login");
+            }
+
+        } else {
+            header("location:/login");
+        }
+
 
         if (isset($_POST["ciudad_origen"], $_POST["ciudad_destino"], $_POST["fecha_inicio"], $_POST["fecha_fin"], $_POST["tiempo_estimado"], $_POST["tiempo_estimado"], $_POST["descripcion_carga"], $_POST["km_previsto"], $_POST["combustible_estimado"], $_POST["peso_neto"], $_POST["precioCombustible_estimado"], $_POST["precioViaticos_estimado"], $_POST["precioPeajes_estimado"], $_POST["precioExtras_estimado"], $_POST["hazard"], $_POST["precioHazard_estimado"], $_POST["reefer"], $_POST["precioReefer_estimado"], $_POST["temperatura"], $_POST["id_vehiculo"], $_POST["id_usuario"], $_POST["nombre"], $_POST["apellido"])) {
 
@@ -234,6 +250,29 @@ class GerenteController
     public function registrarVehiculo()
     {
 
+        $href = "/gerente";
+
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href);
+
+        if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+
+            if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
+
+                echo $this->render->render("view/agregarVehiculos.mustache", $datas);
+            } else {
+                $this->cerrarSesion();
+                header("location:/login");
+            }
+
+        } else {
+            header("location:/login");
+        }
+
+
+        if(isset($_POST["patente"], $_POST["NumeroChasis"], $_POST["NumeroMotor"], $_POST["marca"], $_POST["modelo"], $_POST["año_fabricacion"], $_POST["kilometraje"], $_POST["estado"], $_POST["alarma"], $_POST["tipoVehiculo"])){
+
         $patente = $_POST["patente"];
         $NumeroChasis = $_POST["NumeroChasis"];
         $NumeroMotor = $_POST["NumeroMotor"];
@@ -253,6 +292,30 @@ class GerenteController
 
             header("location: ../gerente?vehiculoNoRegistrado");
         }
+        }
+    }
+
+    public function vehiculos(){
+        $href = "/gerente";
+        $urlRegistrarVehiculo = "../gerente/registrarVehiculo";
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href, "urlRegistrarVehiculo" => $urlRegistrarVehiculo);
+
+        if ($this->validarSesion() == true) {
+            $sesion = $_SESSION["Usuario"];
+            $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+
+            if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
+
+                echo $this->render->render("view/vehiculos.mustache", $datas);
+            } else {
+                $this->cerrarSesion();
+                header("location:/login");
+            }
+
+        } else {
+            header("location:/login");
+        }
+
     }
 
     public function irModificarVehiculo()
