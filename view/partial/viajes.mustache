@@ -6,52 +6,54 @@
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#acordeonTodosLosViajes" aria-expanded="true"
-                        aria-controls="panelsStayOpen-collapseOne">
-                    Todos mis Viajes
-                </button>
+                        aria-controls="panelsStayOpen-collapseOne">Viajes</button>
             </h2>
-            <div id="acordeonTodosLosViajes" class="accordion-collapse collapse"
+            <div id="acordeonTodosLosViajes" class="accordion-collapse collapse show"
                  aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
 
                     <!--Container Vehiculos-->
 
-                    <div class="justify-content-center d-flex flex-column flex-md-row flex-wrap mb-5">
+
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Ciudad origen</th>
+                            <th scope="col">Ciudad destino</th>
+                            <th scope="col">Fecha de inicio estimada</th>
+                            <th scope="col">Fecha de fin estimada</th>
+                            <th scope="col">Tipo de carga</th>
+                            <th scope="col">Precio total estimado</th>
+                            <th scope="col">Informe</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {{#todosLosViajes}}
-                            <div class="card ms-3 mt-3 border-0 shadow" style="width: 18rem; border-radius: 0.5em">
-                                <div class="card-body">
-
-
-                                    <h5 class="card-title">Viaje: {{id}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Ciudad Origen: {{ciudad_origen}}</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">Ciudad Destino: {{ciudad_destino}}</h6>
-                                    <p class="card-text">
-
-                                    </p>
-
-                                    <form action="/gerente/irModificarViaje" method="post"
-                                          class="card-link text-decoration-none d-inline-block">
-                                        <input type="hidden" name="idViaje" value="{{id}}"/>
-                                        <button type="submit" class="btn btn-primary">Modificar</button>
-                                    </form>
-
-
-                                    <form action="/gerente/BorrarViaje"
-                                          class="card-link text-decoration-none d-inline-block" method="post">
-                                        <input type="hidden" name="idViaje" value="{{id}}"/>
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                    </form>
-
-                                </div>
-
-                            </div>
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{ciudad_origen}}</td>
+                                <td>{{ciudad_destino}}</td>
+                                <td>{{fecha_inicio}}</td>
+                                <td>{{fecha_fin}}</td>
+                                <td>{{descripcion_carga}}</td>
+                                <td>{{precioTotal_estimado}}</td>
+                                <td>{{pdf}}</td>
+                            </tr>
                         {{/todosLosViajes}}
-                        <!--Fin Container Vehiculos-->
-                    </div>
+                        </tbody>
+                    </table>
+
+
+                    {{#urlRegistrarViaje}}
+                        <a class="btn btn-primary mt-3" href="{{urlRegistrarViaje}}" role="button">Registrar un viaje</a>
+                    {{/urlRegistrarViaje}}
+                    <!--Fin Container Vehiculos-->
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 <!--Fin Vehiculos-->
