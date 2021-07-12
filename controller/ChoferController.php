@@ -29,7 +29,10 @@ class ChoferController
             $idChofer = $this->usuarioModel->getIdUsuario($sesion);
 
             $IdViaje=$this->ChoferModel->getViajeDelChofer($idChofer);
-            $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer),"historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
+
+            $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer),
+                            "historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
+                            "viajeEmpezado" => $this->ChoferModel->getViajeEmpezado($idChofer),
                             "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje));
 
             if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esChofer($tipoUsuario) ){
@@ -80,6 +83,7 @@ class ChoferController
         $horita=new DateTime();
         $horaInicioReal= $horita->format('H:i:s');
         $id_viaje=$_POST["id_viaje"];
+
 
         $this->ChoferModel->getEmpezarViaje($id_viaje,$latitud_inicio, $longitud_inicio,$fechaInicioReal,$horaInicioReal);
         $this->ChoferModel->cargaProforma($id_viaje);
