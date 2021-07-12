@@ -19,8 +19,7 @@ class ChoferController
     public function execute()
 
     {   
-        
-        
+
        
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -33,7 +32,9 @@ class ChoferController
             $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer),
                             "historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
                             "viajeEmpezado" => $this->ChoferModel->getViajeEmpezado($idChofer),
-                            "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje));
+                            "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje),
+                            "totalDeTotales" => $this->ChoferModel->getSumaTotalTotalesProforma($IdViaje));
+                            
 
             if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esChofer($tipoUsuario) ){
                 echo $this->render->render("view/choferView.mustache",$datas);

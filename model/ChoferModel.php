@@ -87,7 +87,9 @@ class ChoferModel
                 avg(precioCombustible_actual) as 'promedioPrecioCombustible'
                 from ProformaChofer
                 where id_viaje='$idViaje'";
-                 return $this->database->query($sql);
+
+  
+                return $this->database->query($sql);
     }
 
     public function finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,$totalViaticos,$totalExtras,$totalCombustible,$id_viaje){
@@ -103,4 +105,30 @@ class ChoferModel
          $this->database->execute($sql);
     }
 
+
+
+
+
+    public function getSumaTotalTotalesProforma($idViaje){
+        $array["totales"]=$this->getSumaTotalProforma($idViaje);
+
+        
+        $totalCombustible = floatval($array["totales"]["0"]["totalCombustible"]);
+        $totalPeaje = floatval($array["totales"]["0"]["TotalPeaje"]);
+        $totalViaticos = floatval($array["totales"]["0"]["TotalViaticos"]);
+        $totalExtras = floatval($array["totales"]["0"]["TotalExtras"]);
+        $cantidadDeCombustible = floatval($array["totales"]["0"]["cantidadDeCombustible"]);
+        $promedioPrecioCombustible = floatval($array["totales"]["0"]["promedioPrecioCombustible"]);
+
+        $totalDeTotales=$totalCombustible+$totalPeaje+$totalViaticos+$totalExtras+$cantidadDeCombustible+$promedioPrecioCombustible;
+    
+        return $totalDeTotales;
+    }
+
+    /*array(1) { [0]=> array(6) { ["totalCombustible"]=> string(5) "10000"
+         ["TotalPeaje"]=> string(3) "600"
+        ["TotalViaticos"]=> string(3) "100" 
+         ["TotalExtras"]=> string(3) "500" 
+         ["cantidadDeCombustible"]=> string(3) "100" 
+         ["promedioPrecioCombustible"]=> string(3) "100" } }*/
 }
