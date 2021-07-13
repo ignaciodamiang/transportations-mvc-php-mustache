@@ -19,8 +19,9 @@ class ChoferController
     public function execute()
 
     {   
+       $var= $this->ChoferModel->obtenerIdVehiculoPorViaje('1');
+        var_dump($var);
 
-       
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
@@ -159,6 +160,9 @@ class ChoferController
         $id_viaje= $_POST["id_viaje"];
 
         $this->ChoferModel->finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,$totalViaticos,$totalExtras,$totalCombustible,$id_viaje);
+        $this->ChoferModel->liberarChofer($id_viaje);
+        $this->ChoferModel->liberarVehiculo($id_viaje);
+        
         header("location: /chofer");
     }
 

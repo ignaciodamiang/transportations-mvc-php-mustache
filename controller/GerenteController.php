@@ -23,7 +23,7 @@ class GerenteController
     public function data()
     {
         $urlRegistrarViaje = "gerente/registrarViaje";
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje, "url" => "../gerente");
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(),"vehiculosSinUso" => $this->GerenteModel->getVehiculosSinUso(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje, "url" => "../gerente");
         $datas["rol"] = "Gerente";
         $datas["iconoPrimerBoton"] = 'M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z';
         $datas["iconoPrimerBoton2"] = 'M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z';
@@ -135,6 +135,7 @@ class GerenteController
             $id_vehiculo = $_POST["id_vehiculo"];
             $id_usuario = $_POST["id_usuario"];
 
+
             /*$costoTotalCombustibleEstimado = $km_previsto / ($combustible_estimado * $precioCombustibleEstimado);*/
             $costoTotalCombustibleEstimado = $combustible_estimado * $precioCombustibleEstimado;
             $CostoTotalEstimado = $costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
@@ -170,6 +171,8 @@ class GerenteController
                 $id_vehiculo,
                 $id_usuario
             );
+            $this->GerenteModel->asignarViajeChofer($id_usuario);
+            $this->GerenteModel->asignarViajeVehiculo($id_vehiculo);
 
             $this->GerenteModel->registrarCliente($nombre, $apellido);
             $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);

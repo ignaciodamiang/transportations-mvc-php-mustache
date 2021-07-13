@@ -41,8 +41,8 @@
                                     <td>${{precioExtras_actual}}</td>
                                     <td>${{combustible_actual}}</td>
                                     <td>${{precioCombustible_actual}}</td>
-                                    <td>${{latitud_actual}}</td>
-                                    <td>${{longitud_actual}}</td>
+                                    <td>{{latitud_actual}}</td>
+                                    <td>{{longitud_actual}}</td>
                                     <td>{{direccion_actual}}</td>
                                 </tr>
                                 {{/historialPuntoDeControl}}
@@ -75,7 +75,7 @@
 
                                 <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>
                                 <input type="hidden" name="promedioPrecioCombustible" value="{{promedioPrecioCombustible}}"/>
-                                <input type="hidden" name="id_viaje" value="{{id_viaje}}"/>
+                                <input type="" name="id_viaje" value="{{id_viaje}}"/>
                                 <input type="hidden" name="totalPeaje" value="{{TotalPeaje}}"/>
                                 <input type="hidden" name="totalViaticos" value="{{TotalViaticos}}"/>
                                 <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>
@@ -84,7 +84,7 @@
 
                                 
                             
-                            {{/sumaTotalPuntoDeControl}}
+                            
                             </tbody>
                         </table>
 
@@ -92,6 +92,7 @@
                             <button type="submit" class="btn btn-primary">finalizar Viaje</button>
                         </div>
                     </form>
+                    {{/sumaTotalPuntoDeControl}}
                     </div>
                 </div>
             </div>

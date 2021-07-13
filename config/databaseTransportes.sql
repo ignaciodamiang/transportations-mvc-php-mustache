@@ -19,6 +19,7 @@ id_tipoUsuario int,
 email varchar(50),
 contraseña varchar(50),
 cuenta_activada boolean,
+viaje_asignado boolean default false,
 primary key (id),
 foreign key(id_tipoUsuario) references TipoUsuario(id)
 );
@@ -52,6 +53,7 @@ año_Fabricacion date,
 kilometraje int,
 estado varchar(50),
 alarma varchar(50),
+viaje_asignado boolean default false,
 id_tipoVehiculo int,
 primary key (id),
 foreign key (id_tipoVehiculo) references TipoVehiculo(id)
@@ -118,7 +120,7 @@ combustible_real double,
 precioCombustible_real double,
 costoTotalCombustible_real double,
 precioTotal_real double,
-viaje_enCurso boolean,
+viaje_enCurso boolean default false,
 id_vehiculo int,
 id_usuario int,
 primary key(id),
@@ -142,6 +144,7 @@ create table Factura(
 create table ProformaChofer(
 id_notificacion int not null auto_increment,
 fecha_Inicio date,
+direccion_actual varchar(100),
 latitud_actual varchar(50),
 longitud_actual varchar(50),
 combustible_actual double,
@@ -192,8 +195,7 @@ values(1,"Camioneta"),
 	(2,"Camion"),
     (3,"Moto"),
     (4,"Auto");
-
-insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilometraje ,estado,alarma,id_tipoVehiculo)
+/*insert into Vehiculo(id,patente,numero_chasis ,numero_motor ,marca,modelo,kilometraje ,estado,alarma,id_tipoVehiculo)
 			  values(1,"ABC123",111,44444,"Ford","KA",90000,"usado","ring ring",4),
 					(2,"ABC22",22,22,"Ford","dos",2222,"usado","ring ring",3);
 

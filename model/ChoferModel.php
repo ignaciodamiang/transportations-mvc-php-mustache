@@ -78,7 +78,8 @@ class ChoferModel
     }
 
     public function getSumaTotalProforma($idViaje){
-        $sql = "SELECT 
+        $sql = "SELECT
+                id_viaje,
                 sum((combustible_actual*precioCombustible_actual)) as totalCombustible,
                 sum(precioPeajes_actual )as 'TotalPeaje',
                 sum(precioViaticos_actual)as 'TotalViaticos',
@@ -87,8 +88,6 @@ class ChoferModel
                 avg(precioCombustible_actual) as 'promedioPrecioCombustible'
                 from ProformaChofer
                 where id_viaje='$idViaje'";
-
-  
                 return $this->database->query($sql);
     }
 
@@ -100,14 +99,10 @@ class ChoferModel
                     `combustible_real` = '$cantidadDeCombustible', 
                     `precioCombustible_real` = '$promedioPrecioCombustible', 
                     `costoTotalCombustible_real` = '$totalCombustible' 
-                WHERE (`id` = '1')";
+                WHERE (`id` = $id_viaje)";
 
          $this->database->execute($sql);
     }
-
-
-
-
 
     public function getSumaTotalTotalesProforma($idViaje){
         $array["totales"]=$this->getSumaTotalProforma($idViaje);
@@ -124,5 +119,43 @@ class ChoferModel
     
         return $totalDeTotales;
     }
+
+    public function obtenerIdUsuarioPorViaje($idViaje){
+        $sql="SELECT id_usuario
+            from Viaje
+            where  id = '$idViaje'";
+
+        $viaje["idUsuario"] = $this->database->query($sql);
+        return $viaje["idUsuario"]["0"]["id_usuario"];
+    }
+    
+    public function obtenerIdVehiculoPorViaje($idViaje){
+        $sql="SELECT id_vehiculo
+        from Viaje
+        where  id = '$idViaje'";
+
+        $vehiculo["idVehiculo"] = $this->database->query($sql);
+        return $vehiculo["idVehiculo"]["0"]["id_vehiculo"];
+    }
+
+    public function liberarChofer($idViaje){
+       $idChofer=$this->obtenerIdUsuarioPorViaje($idViaje);
+
+        $sql="UPDATE `transporteslamatanza`.`usuario` 
+                SET `viaje_asignado` = '0' 
+                WHERE (`id` = '$idChofer')"; 
+        $this->database->execute($sql);
+    }
+
+
+    public function liberarVehiculo($idViaje){
+        $idVehiculo=$this->obtenerIdVehiculoPorViaje($idViaje);
+
+        $sql="UPDATE `transporteslamatanza`.`Vehiculo`
+        SET `viaje_asignado` = 0, 
+        WHERE (`id` = '1')"; 
+        $this->database->execute($sql);
+    }
+
 
 }

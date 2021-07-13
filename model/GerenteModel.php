@@ -132,7 +132,7 @@ VALUES(
 
     public function getVehiculos()
     {
-        $sql = "SELECT * FROM Vehiculo";
+        $sql = "SELECT * FROM Vehiculo ";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -148,6 +148,14 @@ VALUES(
             return $consulta;
         }
 
+    }
+
+    public function getVehiculosSinUso()
+    {
+        $sql = "SELECT * FROM Vehiculo
+                WHERE viaje_asignado = '0'";
+        $consulta = $this->database->query($sql);
+        return $consulta;
     }
 
     public function modificarVehiculo($id, $patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo)
@@ -179,7 +187,8 @@ VALUES(
 
     public function getListaDeChoferes()
     {
-        $sql = "SELECT * FROM Usuario WHERE id_tipoUsuario = '3'";
+        $sql = "SELECT * FROM Usuario 
+                WHERE id_tipoUsuario = '3' and viaje_asignado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -242,4 +251,23 @@ VALUES('$nombre',
         return $this->database->query($sql);
     }
 
+
+    public function asignarViajeChofer($id_usuario){
+
+        $sql = "UPDATE `transporteslamatanza`.`Usuario` 
+                SET `viaje_asignado` = '1'
+                WHERE (`id` = '$id_usuario')";
+        
+        $this->database->execute($sql);
+
+    }
+
+    public function asignarViajeVehiculo($id_vehiculo){
+
+        $sql = "UPDATE `transporteslamatanza`.`Vehiculo` 
+                SET `viaje_asignado` = '1'
+                WHERE (`id` = '$id_vehiculo')";
+        
+        $this->database->execute($sql);
+    }
 }
