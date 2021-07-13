@@ -30,14 +30,19 @@ function loadMap() {
     
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                       document.getElementById("lugarActualCombustible").value=results[1].formatted_address;
-                       document.getElementById("lugarActualGastos").value=results[1].formatted_address;
-                       document.getElementById("lugarActual").value=results[1].formatted_address;
+                    if (results[1]) {                        
+                       document.getElementById("lugarActualCombustible").value=results[0].formatted_address;
+                       document.getElementById("lugarActualGastos").value=results[5].formatted_address;
+                       document.getElementById("lugarActual").value=results[0].formatted_address;
                     }
                 }
             })
-
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                animation:google.maps.Animation.BOUNCE,
+                draggable: true  
+            });
 
             document.getElementById("latitudCombustible").value =lat;
             document.getElementById("longitudCombustible").value =lng;

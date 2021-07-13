@@ -35,14 +35,14 @@
                             <tbody>
                                 {{#historialPuntoDeControl}}
                                 <tr>
-                                    <td>{{fechaHoraPuntoControl}}</td>
-                                    <td>{{precioPeajes_actual}}</td>
-                                    <td>{{precioViaticos_actual}}</td>
-                                    <td>{{precioExtras_actual}}</td>
-                                    <td>{{combustible_actual}}</td>
-                                    <td>{{precioCombustible_actual}}</td>
-                                    <td>{{latitud_actual}}</td>
-                                    <td>{{longitud_actual}}</td>
+                                    <td>${{fechaHoraPuntoControl}}</td>
+                                    <td>${{precioPeajes_actual}}</td>
+                                    <td>${{precioViaticos_actual}}</td>
+                                    <td>${{precioExtras_actual}}</td>
+                                    <td>${{combustible_actual}}</td>
+                                    <td>${{precioCombustible_actual}}</td>
+                                    <td>${{latitud_actual}}</td>
+                                    <td>${{longitud_actual}}</td>
                                     <td>{{direccion_actual}}</td>
                                 </tr>
                                 {{/historialPuntoDeControl}}
@@ -66,11 +66,11 @@
                                         
                                 <tr>
                                     <td>NAN</td>
-                                    <td>{{TotalPeaje}}</td>
-                                    <td>{{TotalViaticos}}</td>
-                                    <td>{{TotalExtras}}</td>
-                                    <td>{{totalCombustible}}</td>
-                                    <td>{{#totalDeTotales}} {{totalDeTotales}} {{/totalDeTotales}}</td>    
+                                    <td>${{TotalPeaje}}</td>
+                                    <td>${{TotalViaticos}}</td>
+                                    <td>${{TotalExtras}}</td>
+                                    <td>${{totalCombustible}}</td>
+                                    <td>{{#totalDeTotales}} ${{totalDeTotales}} {{/totalDeTotales}}</td>    
                                 </tr>
 
                                 <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>

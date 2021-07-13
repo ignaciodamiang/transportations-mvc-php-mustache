@@ -12,7 +12,8 @@
       </h2>
       <div id="puntoDeControl" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
         <div class="accordion-body">
-
+          <div  id="lugar"></div>
+          <div id="mapa" style="width:80%; height:400px;" class="m-auto"></div>
           <div class="row">
             <div class="col-sm-4">
               <div class="card">
@@ -36,25 +37,23 @@
                     </div>
                     <br>
 
-                    <div class="card-text">
-                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitudCombustible" class="form-control" value=""
+
+                      <input type="hidden" required name="latitudCombustible" class="form-control" value=""
                       step="any" placeholder="Latitud" id="latitudCombustible" />
-                    </div>
+
                     <br>
 
-                    <div class="card-text">
-                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
-                      <input type="number" step="any" name="longitudCombustible" class="form-control" placeholder="Longitud"
+
+                      <input type="hidden" step="any" name="longitudCombustible" class="form-control" placeholder="Longitud"
                         id="longitudCombustible" value=""/>
-                    </div>
+
                     <br>
 
-                    <div class="card-text">
-                      <label class="font-weight-bold mb-1">Direccion<span class="text-danger">*</span></label>
-                      <input type="text" name="direccionActual" class="form-control" placeholder="Direccion"
+                
+                
+                      <input type="hidden" name="direccionActual" class="form-control" placeholder="Direccion"
                         id="lugarActualCombustible" value=""/>
-                    </div>
+                 
                     <br>
 
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
@@ -167,8 +166,7 @@
               </div>
             </div>
           </div>
-          <div  id="lugar"></div>
-          <div id="mapa" style="width:80%; height:400px;" class="m-auto"></div>
+
 
           
         </div>
