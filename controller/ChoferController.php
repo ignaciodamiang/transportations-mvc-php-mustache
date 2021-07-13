@@ -19,8 +19,6 @@ class ChoferController
     public function execute()
 
     {   
-       $var= $this->ChoferModel->obtenerIdVehiculoPorViaje('1');
-        var_dump($var);
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];

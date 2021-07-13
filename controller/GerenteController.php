@@ -206,11 +206,7 @@ class GerenteController
     {
         $id_viaje = $_GET["id_viaje"];
         $id_usuario = $_GET["id_usuario"];
-        $viaje = $this->GerenteModel->getViajePorId($id_viaje);
-
-       /* for ($i = 0; $i < sizeof($viaje); $i++) {
-            $elemento = $i . " - " . $viaje[$i] . "<br>";
-        }*/
+        $viaje["viaje"] = $this->GerenteModel->getViajePorId($id_viaje);
 
         $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
