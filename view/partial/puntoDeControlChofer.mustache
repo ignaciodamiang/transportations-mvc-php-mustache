@@ -12,7 +12,8 @@
       </h2>
       <div id="puntoDeControl" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
         <div class="accordion-body">
-
+          <div  id="lugar"></div>
+          <div id="mapa" style="width:80%; height:400px;" class="m-auto"></div>
           <div class="row">
             <div class="col-sm-4">
               <div class="card">
@@ -20,6 +21,7 @@
 
                   <form action="chofer/recargaCombustible" method="post">
                     <h5 class="card-title">Nueva recarga de Combustible</h5>
+
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Cantidad de Combustible<span
                           class="text-danger">*</span></label>
@@ -27,25 +29,33 @@
                         placeholder="Cantidad de Combustible" />
                     </div>
                     <br>
+
                     <div class="card-text"><label class="font-weight-bold mb-1">Precio de Combustible<span
                           class="text-danger">*</span></label>
                       <input type="number"  name="precioCombustible_real" class="form-control"
                         placeholder="Precio de Combustible" />
                     </div>
                     <br>
-                    <div class="card-text">
-                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitud_actual" class="form-control" value=""
+
+
+                      <input type="hidden" required name="latitudCombustible" class="form-control" value=""
                       step="any" placeholder="Latitud" id="latitudCombustible" />
-                    </div>
 
                     <br>
 
-                    <div class="card-text">
-                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
-                      <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
+
+                      <input type="hidden" step="any" name="longitudCombustible" class="form-control" placeholder="Longitud"
                         id="longitudCombustible" value=""/>
-                    </div>
+
+                    <br>
+
+                
+                
+                      <input type="hidden" name="direccionActual" class="form-control" placeholder="Direccion"
+                        id="lugarActualCombustible" value=""/>
+                 
+                    <br>
+
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
 
                     <div class="d-flex justify-content-center mt-2">
@@ -56,6 +66,8 @@
                 </div>
               </div>
             </div>
+
+
 
             <div class="col-sm-4">
               <div class="card">
@@ -83,7 +95,7 @@
 
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitud_actual" class="form-control" value=""
+                      <input type="number" required name="latitudGastos" class="form-control" value=""
                       step="any" placeholder="Latitud" id="latitudGastos" />
                     </div>
 
@@ -91,11 +103,18 @@
 
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
-                      <input type="number" step="any" name="longitud_actual" class="form-control" placeholder="Longitud"
+                      <input type="number" step="any" name="longitudGastos" class="form-control" placeholder="Longitud"
                         id="longitudGastos" value=""/>
                     </div>
-
                     <br>
+
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Direccion<span class="text-danger">*</span></label>
+                      <input type="text" name="direccionActual" class="form-control" placeholder="Direccion"
+                        id="lugarActualGastos" value=""/>
+                    </div>
+                    <br>
+
                     <input type="hidden" required name="id_viaje" value="{{id}}" class="form-control" />
                     <div class="d-flex justify-content-center mt-2">
                       <button type="submit" class="btn btn-primary ">Registrar Gastos</button>
@@ -106,11 +125,14 @@
               </div>
             </div>
 
+
+
+
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
                   <form action="chofer/informarPosicion" method="post">
-                    <h5 class="card-title">Informar Posicion</h5>
+                    <h5 class="card-title">Informar Posicion Actual</h5>
 
                     <div class="card-text">
                       <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
@@ -126,7 +148,12 @@
                         id="longitudPocicionActual" value=""/>
                     </div>
 
-                    <div id="mapa" style="width:350px; height:200px;"></div>
+                    
+                    <div class="card-text">
+                      <label class="font-weight-bold mb-1">Direccion<span class="text-danger">*</span></label>
+                      <input type="text" name="direccionActual" class="form-control" placeholder="Direccion"
+                        id="lugarActual" value=""/>
+                    </div>
 
                     <br>
 
@@ -140,6 +167,8 @@
             </div>
           </div>
 
+
+          
         </div>
       </div>
     </div>

@@ -19,8 +19,9 @@ class ChoferController
     public function execute()
 
     {   
+       $var= $this->ChoferModel->obtenerIdVehiculoPorViaje('1');
+        var_dump($var);
 
-       
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
@@ -99,10 +100,12 @@ class ChoferController
         $combustible_real = $_POST["combustible_real"];
         $precioCombustible_real = $_POST["precioCombustible_real"];
         $id_viaje = $_POST["id_viaje"];
-
+        $latitudCombustible=$_POST["latitudCombustible"];
+        $longitudCombustible=$_POST["longitudCombustible"];
+        $direccionActual= $_POST["direccionActual"];
         $horita=date('Y-m-d H:i:s');
 
-        $this->ChoferModel->recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$horita);
+        $this->ChoferModel->recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$horita,$latitudCombustible,$longitudCombustible,$direccionActual);
         header("location: /chofer?funciona");
     }
 
@@ -112,7 +115,9 @@ class ChoferController
         $precioExtras_actual =$_POST["precioExtras_actual"];
         $precioViaticos_actual =$_POST["precioViaticos_actual"];
         $id_viaje = $_POST["id_viaje"];
-
+        $latitudGastos=$_POST["latitudGastos"];
+        $longitudGastos=$_POST["longitudGastos"];
+        $direccionActual= $_POST["direccionActual"];
         if ($precioPeajes_actual==null) {
             $precioPeajes_actual=0;
         }
@@ -128,7 +133,7 @@ class ChoferController
         $horita=date('Y-m-d H:i:s');
        
 
-        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$horita);
+        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$horita, $latitudGastos,$longitudGastos,$direccionActual);
         header("location: /chofer?funciona");
     }
 
@@ -137,10 +142,10 @@ class ChoferController
         $latitud_actual=$_POST["latitud_actual"];
         $longitud_actual=$_POST["longitud_actual"];
         $id_viaje = $_POST["id_viaje"];
-
+        $direccionActual=$_POST["direccionActual"];
         $horita=date('Y-m-d H:i:s');
      
-        $this->ChoferModel->informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$horita);
+        $this->ChoferModel->informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$horita,$direccionActual);
         header("location: /chofer");
 
     }
@@ -155,6 +160,9 @@ class ChoferController
         $id_viaje= $_POST["id_viaje"];
 
         $this->ChoferModel->finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,$totalViaticos,$totalExtras,$totalCombustible,$id_viaje);
+        $this->ChoferModel->liberarChofer($id_viaje);
+        $this->ChoferModel->liberarVehiculo($id_viaje);
+        
         header("location: /chofer");
     }
 

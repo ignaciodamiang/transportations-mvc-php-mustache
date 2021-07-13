@@ -1,46 +1,8 @@
 function loadMap() {
 
-    /*var mapOptions = {
-        center:new google.maps.LatLng(-34.6686986,-58.5614947),
-        zoom:12,
-        panControl: false,
-        zoomControl: false,
-        scaleControl: false,
-        mapTypeControl:false,
-        streetViewControl:true,
-        overviewMapControl:true,
-        rotateControl:true,
-        mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(-34.6686986,-58.5614947),
-        map: map,
-        animation:google.maps.Animation.BOUNCE,
-        draggable: true
-    });
-
-    google.maps.event.addListener(map, "click", function(event) {
-        var lat = event.latLng.lat();
-        var lng = event.latLng.lng();
-        
-        document.getElementById("latitudCombustible").value =lat;
-        document.getElementById("longitudCombustible").value =lng;
-
-        document.getElementById("latitudGastos").value =lat;
-        document.getElementById("longitudGastos").value =lng;
-
-        document.getElementById("latitudPocicionActual").value =lat;
-        document.getElementById("longitudPocicionActual").value =lng;
-
-
-    }); */
-
     var map;
     var mapOptions = {
-        zoom:12,
+        zoom:15,
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
 
@@ -57,10 +19,31 @@ function loadMap() {
             draggable: true  
         });
 
+
+
         google.maps.event.addListener(map, "click", function(event) {
             var lat = event.latLng.lat();
             var lng = event.latLng.lng();
             
+            var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+            var geocoder = geocoder = new google.maps.Geocoder();
+    
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {                        
+                       document.getElementById("lugarActualCombustible").value=results[0].formatted_address;
+                       document.getElementById("lugarActualGastos").value=results[5].formatted_address;
+                       document.getElementById("lugarActual").value=results[0].formatted_address;
+                    }
+                }
+            })
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                animation:google.maps.Animation.BOUNCE,
+                draggable: true  
+            });
+
             document.getElementById("latitudCombustible").value =lat;
             document.getElementById("longitudCombustible").value =lng;
     
@@ -69,10 +52,37 @@ function loadMap() {
     
             document.getElementById("latitudPocicionActual").value =lat;
             document.getElementById("longitudPocicionActual").value =lng;
-    
-    
+         
         });
-        
+
+
+
         map.setCenter(geolocate);
     } )
+
 }
+
+/*window.onload = function () {
+    var mapOptions = {
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var infoWindow = new google.maps.InfoWindow();
+    var latlngbounds = new google.maps.LatLngBounds();
+
+    var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+    google.maps.event.addListener(map, 'click', function (e) {
+
+        var latlng = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng());
+        var geocoder = geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+                    alert("Location: " + results[1].formatted_address + "\r\nLatitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+                }
+            }
+        });
+    });
+}*/
