@@ -102,7 +102,6 @@ class GerenteController
 
             if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
 
-                echo $this->render->render("view/proformaCarga.mustache", $datas);
             } else {
                 $this->cerrarSesion();
                 header("location:/login");
@@ -177,12 +176,16 @@ class GerenteController
             $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
             $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
 
-            /* , $filename, $level, $tamaño, $framesize*/
+            $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
+            $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
 
-            header("location:/gerente/crearPdf?id_usuario=$id_usuario");
+            header("location:/gerente/crearPdf?id_usuario=$id_usuario&id_viaje=$id_viaje");
             /* } else {
                  header("location:/gerente?viajeNoRegistrado");
              }*/
+        } else {
+            echo $this->render->render("view/proformaCarga.mustache", $datas);
+
         }
     }
 
@@ -198,10 +201,18 @@ class GerenteController
 
     public function crearPdf()
     {
+        $id_viaje = $_GET["id_viaje"];
         $id_usuario = $_GET["id_usuario"];
+        $viaje = $this->GerenteModel->getViajePorId($id_viaje);
+
+       /* for ($i = 0; $i < sizeof($viaje); $i++) {
+            $elemento = $i . " - " . $viaje[$i] . "<br>";
+        }*/
+
         $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
         $pdf->Image("http://localhost/gerente/generarQr?id_usuario=$id_usuario", 10, 10, 30, 30, "png");
+        $pdf->SetFont('Arial', 'B', 15);
         $pdf->Output();
 
     }
