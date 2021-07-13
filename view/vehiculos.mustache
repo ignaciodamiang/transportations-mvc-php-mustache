@@ -36,7 +36,7 @@
                             <th scope="col">Marca</th>
                             <th scope="col">Modelo</th>
                             <th scope="col">Kilometraje</th>
-                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,16 +49,45 @@
                                 <td>{{marca}}</td>
                                 <td>{{modelo}}</td>
                                 <td>{{kilometraje}}</td>
-                                <td>{{estado}}</td>
+                                <td><form
+                                        action="/gerente/irModificarVehiculo"
+                                        method="post"
+                                        class="card-link text-decoration-none d-inline-block"
+                                >
+                                    <input
+                                            type="hidden"
+                                            name="idUsuario"
+                                            value="{{ id }}"
+                                    />
+                                    <button type="submit" class="btn btn-primary ms-1">
+                                        Modificar
+                                    </button>
+                                </form>
+                                    <form
+                                            action="/gerente/BorrarVehiculo"
+                                            method="post"
+                                            class="card-link text-decoration-none d-inline-block"
+                                    >
+                                        <input
+                                                type="hidden"
+                                                name="idUsuario"
+                                                value="{{ id }}"
+                                        />
+                                        <button type="submit" class="btn btn-danger ms-1">
+                                            Borrar
+                                        </button>
+                                    </form></td>
                             </tr>
                         {{/todosLosVehiculos}}
                         </tbody>
                     </table>
 
 
-                    {{#urlRegistrarVehiculo}}
-                        <a class="btn btn-primary mt-3" href="{{urlRegistrarVehiculo}}" role="button">Registrar un vehiculo</a>
-                    {{/urlRegistrarVehiculo}}
+                    {{#rutaCuartoBoton}}
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-primary mt-3" href="{{rutaCuartoBoton}}" role="button">Registrar un vehiculo</a>
+                    </div>
+                    {{/rutaCuartoBoton}}
                     <!--Fin Container Vehiculos-->
 
 

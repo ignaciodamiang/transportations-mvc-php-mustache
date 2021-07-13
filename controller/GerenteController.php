@@ -9,19 +9,52 @@ class GerenteController
     private $usuarioModel;
     private $verificarRolModel;
 
+
     public function __construct($GerenteModel, $render, $verificarRolModel, $usuarioModel)
     {
         $this->usuarioModel = $usuarioModel;
         $this->verificarRolModel = $verificarRolModel;
         $this->GerenteModel = $GerenteModel;
         $this->render = $render;
+
     }
 
 
-    public function execute()
+    public function data()
     {
         $urlRegistrarViaje = "gerente/registrarViaje";
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje);
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje, "url" => "../gerente");
+        $datas["rol"] = "Gerente";
+        $datas["iconoPrimerBoton"] = 'M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z';
+        $datas["iconoPrimerBoton2"] = 'M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z';
+        $datas["primerBoton"] = "Viajes";
+        $datas["rutaPrimerBoton"] = "../gerente";
+        $datas["iconoSegundoBoton"] = 'M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z';
+        $datas["iconoSegundoBoton2"] = 'M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z';
+        $datas["segundoBoton"] = "Registrar Viaje";
+        $datas["rutaSegundoBoton"] = "../gerente/registrarViaje";
+        $datas["iconoTercerBoton"] = 'M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z';
+        $datas["tercerBoton"] = "Vehiculos";
+        $datas["rutaTercerBoton"] = "../gerente/vehiculos";
+        $datas["iconoCuartoBoton"] = 'M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z';
+        $datas["iconoCuartoBoton2"] = 'M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z';
+        $datas["cuartoBoton"] = "Registrar Vehiculo";
+        $datas["rutaCuartoBoton"] = "../gerente/registrarVehiculo";
+
+        $sesion = $_SESSION["Usuario"];
+        $id = $this->usuarioModel->getIdUsuario($sesion);
+        $this->usuarioModel->getNombreUsuario($id);
+        $datas["nombre"] = $this->usuarioModel->getNombreUsuario($id);
+        $datas["apellido"] = $this->usuarioModel->getApellidoUsuario($id);
+
+        return $datas;
+
+    }
+
+    public function execute()
+    {
+
+        $datas = $this->data();
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -30,6 +63,7 @@ class GerenteController
             if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
 
                 echo $this->render->render("view/gerenteView.mustache", $datas);
+
             } else {
                 $this->cerrarSesion();
                 header("location:/login");
@@ -60,9 +94,7 @@ class GerenteController
     public function registrarViaje()
     {
 
-        $href = "/gerente";
-
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href);
+        $datas = $this->data();
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -70,7 +102,6 @@ class GerenteController
 
             if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
 
-                echo $this->render->render("view/proformaCarga.mustache", $datas);
             } else {
                 $this->cerrarSesion();
                 header("location:/login");
@@ -145,12 +176,16 @@ class GerenteController
             $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
             $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
 
-            /* , $filename, $level, $tamaño, $framesize*/
+            $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
+            $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
 
-            header("location:/gerente/crearPdf?id_usuario=$id_usuario");
+            header("location:/gerente/crearPdf?id_usuario=$id_usuario&id_viaje=$id_viaje");
             /* } else {
                  header("location:/gerente?viajeNoRegistrado");
              }*/
+        } else {
+            echo $this->render->render("view/proformaCarga.mustache", $datas);
+
         }
     }
 
@@ -166,10 +201,18 @@ class GerenteController
 
     public function crearPdf()
     {
+        $id_viaje = $_GET["id_viaje"];
         $id_usuario = $_GET["id_usuario"];
+        $viaje = $this->GerenteModel->getViajePorId($id_viaje);
+
+       /* for ($i = 0; $i < sizeof($viaje); $i++) {
+            $elemento = $i . " - " . $viaje[$i] . "<br>";
+        }*/
+
         $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
         $pdf->Image("http://localhost/gerente/generarQr?id_usuario=$id_usuario", 10, 10, 30, 30, "png");
+        $pdf->SetFont('Arial', 'B', 15);
         $pdf->Output();
 
     }
@@ -250,9 +293,7 @@ class GerenteController
     public function registrarVehiculo()
     {
 
-        $href = "/gerente";
-
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href);
+        $datas = $this->data();
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
@@ -271,34 +312,33 @@ class GerenteController
         }
 
 
-        if(isset($_POST["patente"], $_POST["NumeroChasis"], $_POST["NumeroMotor"], $_POST["marca"], $_POST["modelo"], $_POST["año_fabricacion"], $_POST["kilometraje"], $_POST["estado"], $_POST["alarma"], $_POST["tipoVehiculo"])){
+        if (isset($_POST["patente"], $_POST["NumeroChasis"], $_POST["NumeroMotor"], $_POST["marca"], $_POST["modelo"], $_POST["año_fabricacion"], $_POST["kilometraje"], $_POST["estado"], $_POST["alarma"], $_POST["tipoVehiculo"])) {
 
-        $patente = $_POST["patente"];
-        $NumeroChasis = $_POST["NumeroChasis"];
-        $NumeroMotor = $_POST["NumeroMotor"];
-        $marca = $_POST["marca"];
-        $modelo = $_POST["modelo"];
-        $año_fabricacion = $_POST["año_fabricacion"];
-        $kilometraje = $_POST["kilometraje"];
-        $estado = $_POST["estado"];
-        $alarma = $_POST["alarma"];
-        $tipoVehiculo = $_POST["tipoVehiculo"];
+            $patente = $_POST["patente"];
+            $NumeroChasis = $_POST["NumeroChasis"];
+            $NumeroMotor = $_POST["NumeroMotor"];
+            $marca = $_POST["marca"];
+            $modelo = $_POST["modelo"];
+            $año_fabricacion = $_POST["año_fabricacion"];
+            $kilometraje = $_POST["kilometraje"];
+            $estado = $_POST["estado"];
+            $alarma = $_POST["alarma"];
+            $tipoVehiculo = $_POST["tipoVehiculo"];
 
 
-        if (!$this->GerenteModel->getValidarVehiculo($patente)) {
-            $this->GerenteModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
-            header("location: ../gerente?vehiculoRegistrado");
-        } else {
+            if (!$this->GerenteModel->getValidarVehiculo($patente)) {
+                $this->GerenteModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
+                header("location: ../gerente?vehiculoRegistrado");
+            } else {
 
-            header("location: ../gerente?vehiculoNoRegistrado");
-        }
+                header("location: ../gerente?vehiculoNoRegistrado");
+            }
         }
     }
 
-    public function vehiculos(){
-        $href = "/gerente";
-        $urlRegistrarVehiculo = "../gerente/registrarVehiculo";
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "url" => $href, "urlRegistrarVehiculo" => $urlRegistrarVehiculo);
+    public function vehiculos()
+    {
+        $datas = $this->data();
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];

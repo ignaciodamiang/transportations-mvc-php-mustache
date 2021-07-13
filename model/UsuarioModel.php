@@ -35,6 +35,20 @@ class UsuarioModel
         return $resultado["emailUsuario"]["0"]["email"];
     }
 
+    public function getNombreUsuario($id){
+        $sql = "SELECT nombre FROM Usuario WHERE id like '$id'";
+
+        $resultado["nombreUsuario"] = $this->database->query($sql);
+        return $resultado["nombreUsuario"]["0"]["nombre"];
+    }
+
+    public function getApellidoUsuario($id){
+        $sql = "SELECT apellido FROM Usuario WHERE id like '$id'";
+
+        $resultado["apellidoUsuario"] = $this->database->query($sql);
+        return $resultado["apellidoUsuario"]["0"]["apellido"];
+    }
+
     public function getPasswordUsuario($id){
         $sql = "SELECT contraseña FROM Usuario WHERE id like '$id'";
 
