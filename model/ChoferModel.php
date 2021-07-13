@@ -34,24 +34,24 @@ class ChoferModel
 
     }
 
-    public function recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$ahora){
+    public function recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$ahora,$latitudCombustible,$longitudCombustible,$direccionActual){
 
-        $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`, `id_viaje`,`fechaHoraPuntoControl`)   
-        VALUES ( '$combustible_real', '$precioCombustible_real', '$id_viaje','$ahora')";
+        $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`, `id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
+        VALUES ( '$combustible_real', '$precioCombustible_real', '$id_viaje','$ahora','$latitudCombustible','$longitudCombustible','$direccionActual')";
         $this->database->execute($sql);
     }
 
-    public function gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$ahora){
+    public function gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$ahora,$latitudGastos,$longitudGastos,$direccionActual){
 
-            $sql= "INSERT INTO `ProformaChofer` (`precioPeajes_actual`, `precioExtras_actual`,`precioViaticos_actual`, `id_viaje`,`fechaHoraPuntoControl`)   
-            VALUES ( '$precioPeajes_actual', '$precioExtras_actual','$precioViaticos_actual', '$id_viaje','$ahora')";
+            $sql= "INSERT INTO `ProformaChofer` (`precioPeajes_actual`, `precioExtras_actual`,`precioViaticos_actual`, `id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
+            VALUES ( '$precioPeajes_actual', '$precioExtras_actual','$precioViaticos_actual', '$id_viaje','$ahora','$latitudGastos','$longitudGastos','$direccionActual')";
             $this->database->execute($sql);
 
     }
 
-    public function informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$ahora){
-        $sql= "INSERT INTO `ProformaChofer` (`latitud_actual`, `longitud_actual`, `id_viaje`,`fechaHoraPuntoControl`)   
-        VALUES ( '$latitud_actual', '$longitud_actual', '$id_viaje','$ahora')";
+    public function informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$ahora,$direccionActual){
+        $sql= "INSERT INTO `ProformaChofer` (`latitud_actual`, `longitud_actual`, `id_viaje`,`fechaHoraPuntoControl`,`direccion_actual`)   
+        VALUES ( '$latitud_actual', '$longitud_actual', '$id_viaje','$ahora','$direccionActual')";
         $this->database->execute($sql);
     }
 
@@ -125,10 +125,4 @@ class ChoferModel
         return $totalDeTotales;
     }
 
-    /*array(1) { [0]=> array(6) { ["totalCombustible"]=> string(5) "10000"
-         ["TotalPeaje"]=> string(3) "600"
-        ["TotalViaticos"]=> string(3) "100" 
-         ["TotalExtras"]=> string(3) "500" 
-         ["cantidadDeCombustible"]=> string(3) "100" 
-         ["promedioPrecioCombustible"]=> string(3) "100" } }*/
 }
