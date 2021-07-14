@@ -49,6 +49,13 @@ class UsuarioModel
         return $resultado["apellidoUsuario"]["0"]["apellido"];
     }
 
+    public function getDniUsuario($id){
+        $sql = "SELECT dni FROM Usuario WHERE id like '$id'";
+
+        $resultado["dniUsuario"] = $this->database->query($sql);
+        return $resultado["dniUsuario"]["0"]["dni"];
+    }
+
     public function getPasswordUsuario($id){
         $sql = "SELECT contraseña FROM Usuario WHERE id like '$id'";
 

@@ -23,7 +23,7 @@ class GerenteController
     public function data()
     {
         $urlRegistrarViaje = "gerente/registrarViaje";
-        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(),"vehiculosSinUso" => $this->GerenteModel->getVehiculosSinUso(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje, "url" => "../gerente");
+        $datas = array("todosLosVehiculos" => $this->GerenteModel->getVehiculos(), "vehiculosSinUso" => $this->GerenteModel->getVehiculosSinUso(), "todosLosChoferes" => $this->GerenteModel->getListaDeChoferes(), "todosLosViajes" => $this->GerenteModel->getViajes(), "urlRegistrarViaje" => $urlRegistrarViaje, "url" => "../gerente");
         $datas["rol"] = "Gerente";
         $datas["iconoPrimerBoton"] = 'M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z';
         $datas["iconoPrimerBoton2"] = 'M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z';
@@ -207,11 +207,169 @@ class GerenteController
         $id_viaje = $_GET["id_viaje"];
         $id_usuario = $_GET["id_usuario"];
         $viaje["viaje"] = $this->GerenteModel->getViajePorId($id_viaje);
+        $ciudad_origen = $viaje["viaje"]["0"]["ciudad_origen"];
+        $ciudad_destino = $viaje["viaje"]["0"]["ciudad_destino"];
 
         $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
-        $pdf->Image("http://localhost/gerente/generarQr?id_usuario=$id_usuario", 10, 10, 30, 30, "png");
+        /**/
         $pdf->SetFont('Arial', 'B', 15);
+        /*$pdf->Cell(100, 10, $ciudad_destino, 1, 1, 1);*/
+        //set font to arial, bold, 14pt
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(130, 5, utf8_decode('Viaje:'), 0, 0);
+
+
+//Cell(width , height , text , border , end line , [align] )
+
+
+        $pdf->Cell(59, 5, 'Chofer:', 0, 1);//end of line
+
+//set font to arial, regular, 12pt
+        $pdf->SetFont('Arial', '', 12);
+
+        $pdf->Cell(130, 5, '', 0, 0);
+        $pdf->Cell(59, 5, '', 0, 1);//end of line
+
+
+        $pdf->Cell(130, 5, 'Ciudad origen:   ' . utf8_decode($viaje["viaje"]["0"]["ciudad_origen"]), 0, 0);
+
+        $nombre_chofer = $this->usuarioModel->getNombreUsuario($id_usuario);
+        $apellido_chofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
+        $dni_cliente = $this->usuarioModel->getDniUsuario($id_usuario);
+
+        $pdf->Cell(25, 5, 'Nombre:', 0, 0);
+        $pdf->Cell(34, 5, utf8_decode($nombre_chofer), 0, 1);//end of line
+
+        $pdf->Cell(130, 5, 'Ciudad destino:   ' . utf8_decode($viaje["viaje"]["0"]["ciudad_destino"]), 0, 0);
+        $pdf->Cell(25, 5, 'Apellido:', 0, 0);
+        $pdf->Cell(34, 5, utf8_decode($apellido_chofer), 0, 1);//end of line
+
+        $pdf->Cell(130, 5, 'Fecha inicio estimada:   ' . utf8_decode($viaje["viaje"]["0"]["fecha_inicio"]), 0, 0);
+        $pdf->Cell(25, 5, 'Dni:', 0, 0);
+        $pdf->Cell(34, 5, $dni_cliente, 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Fecha fin estimada:   ' . utf8_decode($viaje["viaje"]["0"]["fecha_fin"]), 0, 0);
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+
+        $pdf->Cell(130, 5, 'Tipo de carga:   ' . utf8_decode($viaje["viaje"]["0"]["descripcion_carga"]), 0, 0);
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+
+        $pdf->Cell(130, 5, 'Peso de carga:   ' . utf8_decode($viaje["viaje"]["0"]["peso_Neto"]), 0, 0);
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Temperatura:   ' . utf8_decode($viaje["viaje"]["0"]["temperatura"]), 0, 0);
+
+        if ($viaje["viaje"]["0"]["hazard"] == 1){
+
+            $hazard = "Si";
+        }else{
+
+            $hazard = "No";
+        }
+
+            $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Hazard:   ' . utf8_decode($hazard), 0, 0);
+
+        if ($viaje["viaje"]["0"]["reefer"] == 1){
+
+            $reefer = "Si";
+        }else{
+
+            $reefer = "No";
+        }
+
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Reefer:   ' . utf8_decode($reefer), 0, 0);
+
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Km previstos:   ' . utf8_decode($viaje["viaje"]["0"]["km_previsto"]), 0, 0);
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Combustible estimado:   ' . utf8_decode($viaje["viaje"]["0"]["combustible_estimado"]), 0, 0);
+
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Precio del combustible estimado:   ' . utf8_decode($viaje["viaje"]["0"]["precioCombustible_estimado"]), 0, 0);
+
+        $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(34, 5, '', 0, 1);//end of line
+        $pdf->Cell(130, 5, 'Fee:   %' . utf8_decode($viaje["viaje"]["0"]["fee_estimado"]), 0, 0);
+
+//make a dummy empty cell as a vertical spacer
+        $pdf->Cell(189, 10, '', 0, 1);//end of line
+
+//billing address
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(100, 10, 'Cliente:', 0, 1);//end of line
+
+        $pdf->SetFont('Arial', '', 12);
+        $id_viaje = $viaje["viaje"]["0"]["id"];
+        $id_cliente = $this->GerenteModel->getClienteFactura($id_viaje);
+        $nombre_cliente = $this->GerenteModel->getNombreClientePorId($id_cliente);
+        $apellido_cliente = $this->GerenteModel->getApellidoClientePorId($id_cliente);
+
+//add dummy cell at beginning of each line for indentation
+        $pdf->Cell(28, 5, 'Id de cliente:', 0, 0);
+        $pdf->Cell(90, 5, $id_cliente, 0, 1);
+
+        $pdf->Cell(20, 5, 'Nombre:', 0, 0);
+        $pdf->Cell(90, 5, $nombre_cliente, 0, 1);
+
+        $pdf->Cell(20, 5, 'Apellido:', 0, 0);
+        $pdf->Cell(90, 5, $apellido_cliente, 0, 1);
+
+
+//make a dummy empty cell as a vertical spacer
+        $pdf->Cell(189, 10, '', 0, 1);//end of line
+
+//invoice contents
+        $pdf->SetFont('Arial', 'B', 12);
+
+        $pdf->Cell(155, 5, 'Descripcion', 1, 0);
+        $pdf->Cell(34, 5, 'Costo', 1, 1);//end of line
+
+        $pdf->SetFont('Arial', '', 12);
+
+//Numbers are right-aligned so we give 'R' after new line parameter
+
+        $pdf->Cell(155, 5, 'Costo total combustible estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["costoTotalCombustible_estimado"], 1, 1, 'R');//end of line
+
+        $pdf->Cell(155, 5, 'Precio de viaticos estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["precioViaticos_estimado"], 1, 1, 'R');//end of line
+
+        $pdf->Cell(155, 5, 'Precio de peajes estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["precioPeajes_estimado"], 1, 1, 'R');//end of line
+        $pdf->Cell(155, 5, 'Precio de extras estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["precioExtras_estimado"], 1, 1, 'R');//end of line
+
+        $pdf->Cell(155, 5, 'Precio de hazard estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["precioHazard_estimado"], 1, 1, 'R');//end of line
+
+        $pdf->Cell(155, 5, 'Precio de reefer estimado', 1, 0);
+
+        $pdf->Cell(34, 5, $viaje["viaje"]["0"]["precioReefer_estimado"], 1, 1, 'R');//end of line
+
+//summary
+
+
+
+        $pdf->Cell(130, 5, '', 0, 0);
+        $pdf->Cell(25, 5, 'Total', 0, 0);
+        $pdf->Cell(4, 5, '$', 1, 0);
+        $pdf->Cell(30, 5, $viaje["viaje"]["0"]["precioTotal_estimado"], 1, 1, 'R');//end of line
+
+        $pdf->Image("http://localhost/gerente/generarQr?id_usuario=$id_usuario", 138, 40, 50, 50, "png");
         $pdf->Output();
 
     }

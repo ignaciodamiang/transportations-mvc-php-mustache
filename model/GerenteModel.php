@@ -270,4 +270,29 @@ VALUES('$nombre',
         
         $this->database->execute($sql);
     }
+
+    public function getNombreClientePorId($id){
+        $sql = "SELECT * FROM Cliente where (id='$id')";
+        $this->database->execute($sql);
+        $resultado["nombreCliente"] = $this->database->query($sql);
+        return $resultado["nombreCliente"]["0"]["nombre"];
+
+    }
+
+    public function getApellidoClientePorId($id){
+        $sql = "SELECT * FROM Cliente where (id='$id')";
+        $this->database->execute($sql);
+        $resultado["apellidoCliente"] = $this->database->query($sql);
+        return $resultado["apellidoCliente"]["0"]["apellido"];
+
+    }
+
+    public function getClienteFactura($id_viaje){
+        $sql = "SELECT * FROM Factura where (id_viaje='$id_viaje')";
+        $this->database->execute($sql);
+        $resultado["idCliente"] = $this->database->query($sql);
+        return $resultado["idCliente"]["0"]["id_cliente"];
+
+    }
+
 }
