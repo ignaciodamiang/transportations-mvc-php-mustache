@@ -63,7 +63,7 @@ VALUES( '$ciudad_origen',
         $this->database->execute($sql1);
     }
 
-        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustible_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $CostoTotalEstimado, $id_vehiculo, $id_usuario)
+        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustible_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $precioTotal_estimado, $id_vehiculo, $id_usuario)
     {
         $sql = "UPDATE Viaje 
                 SET
@@ -71,23 +71,23 @@ VALUES( '$ciudad_origen',
                 ciudad_destino = '$ciudad_destino',
                 fecha_inicio = '$fecha_inicio',
                 fecha_fin = '$fecha_fin',
-                tiempo_estimado = '$tiempo_estimado',
-                descripcion_carga = '$descripcion_carga',
-                km_previsto = '$km_previsto',
-                combustible_estimado = '$combustible_estimado',
-                precioViaticos_estimado = '$precioViaticos_estimado',
-                precioPeajes_estimado = '$precioPeajes_estimado',
-                precioCombustible_estimado = '$precioCombustible_estimado',
-                costoTotalCombustible_estimado = '$costoTotalCombustible_estimado',
                 peso_Neto = '$peso_Neto',
                 hazard = '$hazard',
-                precioExtras_estimado = '$precioExtras_estimado',
-                precioHazard_estimado = '$precioHazard_estimado',
                 reefer = '$reefer',
-                precioReefer_estimado = '$precioReefer_estimado',
-                fee_estimado = '$fee_estimado';
                 temperatura = '$temperatura',
-                precioTotal_estimado = '$CostoTotalEstimado',
+                tiempo_estimado = '$tiempo_estimado',
+                km_previsto = '$km_previsto',
+                descripcion_carga = '$descripcion_carga',
+                combustible_estimado = '$combustible_estimado',
+                precioCombustible_estimado = '$precioCombustible_estimado',
+                costoTotalCombustible_estimado = '$costoTotalCombustible_estimado',
+                precioViaticos_estimado = '$precioViaticos_estimado',
+                precioPeajes_estimado = '$precioPeajes_estimado',
+                precioExtras_estimado = '$precioExtras_estimado',
+                fee_estimado = '$fee_estimado',
+                precioHazard_estimado = '$precioHazard_estimado',
+                precioReefer_estimado = '$precioReefer_estimado',
+                precioTotal_estimado = '$precioTotal_estimado',
                 id_vehiculo = '$id_vehiculo',
                 id_usuario = '$id_usuario'
                 WHERE id = '$id'";
