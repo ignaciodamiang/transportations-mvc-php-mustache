@@ -9,9 +9,11 @@ class MecanicoModel
         $this->database = $database;
     }
 
-    public function getListaDeVehiculosEnReparacion(){
-        $sql = "SELECT * FROM Vehiculo
-                WHERE en_reparacion = '0'";
+    public function getListaDeVehiculosEnReparacion($idMecanico){
+        $sql = "select * 
+                from services 
+                inner join vehiculo on services.id_vehiculo = vehiculo.id
+                where vehiculo.en_reparacion = 1 and services.id_usuario='$idMecanico'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }

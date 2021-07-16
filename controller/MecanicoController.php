@@ -19,12 +19,14 @@ class MecanicoController
     public function execute()
 
     {
-        var_dump($this->MecanicoModel->getListaDeVehiculosEnReparacion());
-        $datas = array("vehiculosEnReparacion" => $this->MecanicoModel->getListaDeVehiculosEnReparacion());
+
+
 
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
+            $idMecanico= $this->usuarioModel->getIdUsuario($sesion);
+            $datas = array("vehiculosEnReparacion" => $this->MecanicoModel->getListaDeVehiculosEnReparacion($idMecanico));
 
 
 
