@@ -95,9 +95,12 @@ VALUES( '$ciudad_origen',
         $this->database->execute($sql);
     }
 
-            public function BorrarViaje($id)
+        public function borrarViaje($id)
     {
-        $sql = "DELETE FROM Viaje WHERE id = '$id'";
+        $sql = "UPDATE Viaje 
+                SET
+                viaje_eliminado = '1'
+                WHERE id = '$id'";
         $this->database->execute($sql);
     }
 
@@ -240,7 +243,8 @@ VALUES('$nombre',
     }
 
     public function getViajes(){
-        $sql = "SELECT * FROM Viaje";
+        $sql = "SELECT * FROM Viaje
+                WHERE viaje_eliminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
