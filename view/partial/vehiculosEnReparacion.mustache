@@ -17,58 +17,43 @@
                     <table class="table table-dark table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Origen</th>
-                            <th scope="col">Destino</th>
-                            <th scope="col">Fecha inicio estimada</th>
-                            <th scope="col">Fecha fin estimada</th>
-                            <th scope="col">Costo total estimado</th>
-                            <th scope="col">Informe</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col">patente</th>
+                            <th scope="col">marca</th>
+                            <th scope="col">modelo</th>
+                            <th scope="col">numero_motor</th>
+                            <th scope="col">año_Fabricacion</th>
+                            <th scope="col"></th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        {{#todosLosViajes}}
+                        {{#vehiculosEnReparacion}}
                             <tr>
-                                <td>{{id}}</td>
-                                <td>{{ciudad_origen}}</td>
-                                <td>{{ciudad_destino}}</td>
-                                <td>{{fecha_inicio}}</td>
-                                <td>{{fecha_fin}}</td>
-                                <td>{{precioTotal_estimado}}</td>
-                                <td>{{pdf}}</td>
+                                <td>{{patente}}</td>
+                                <td>{{marca}}</td>
+                                <td>{{modelo}}</td>
+                                <td>{{numero_motor}}</td>
+                                <td>{{año_Fabricacion}}</td>
+
                                 <td>
                                     <form
-                                            action="/gerente/irModificarViaje"
+                                            action="/mecanico/profromaService"
                                             method="post"
                                             class="card-link text-decoration-none d-inline-block"
                                     >
                                         <input
                                                 type="hidden"
-                                                name="idUsuario"
+                                                name="idService"
                                                 value="{{ id }}"
                                         />
                                         <button type="submit" class="btn btn-primary ms-1">
-                                            Modificar
+                                            Reparar
                                         </button>
                                     </form>
-                                    <form
-                                            action="/gerente/BorrarViaje"
-                                            method="post"
-                                            class="card-link text-decoration-none d-inline-block"
-                                    >
-                                        <input
-                                                type="hidden"
-                                                name="idUsuario"
-                                                value="{{ id }}"
-                                        />
-                                        <button type="submit" class="btn btn-danger ms-1">
-                                            Borrar
-                                        </button>
-                                    </form>
+
                                 </td>
                             </tr>
-                        {{/todosLosViajes}}
+                        {{/vehiculosEnReparacion}}
                         </tbody>
                     </table>
 
