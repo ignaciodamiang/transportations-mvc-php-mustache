@@ -18,13 +18,18 @@ class MecanicoController
 
     public function execute()
 
-    {   
+    {
+        var_dump($this->MecanicoModel->getListaDeVehiculosEnReparacion());
+        $datas = array("vehiculosEnReparacion" => $this->MecanicoModel->getListaDeVehiculosEnReparacion());
+
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
 
-            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esMecanico($tipoUsuario) ){               
-                echo $this->render->render("view/mecanicoView.mustache");
+
+
+            if($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esMecanico($tipoUsuario) ){
+                  echo $this->render->render("view/mecanicoView.mustache",$datas);
             }
 
             else {

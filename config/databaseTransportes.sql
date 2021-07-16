@@ -53,6 +53,7 @@ año_Fabricacion date,
 kilometraje int,
 estado varchar(50),
 alarma varchar(50),
+en_reparacion boolean default false,
 viaje_asignado boolean default false,
 id_tipoVehiculo int,
 primary key (id),
@@ -208,7 +209,7 @@ fee_estimado,precioHazard_estimado,precioReefer_estimado,
 precioTotal_estimado,viaje_enCurso,id_vehiculo,id_usuario)
 values(1, "cordoba", "tucuman",'21/05/03','21/06/03',10,2000,"pescado", 30 ,8000,100, true, true, 24, 5000,4000,2000,1,1,1,11111,false,1,3),
 	(2, "lima", "chile",'21/05/03','21/06/03',10,2000,"pescado", 30, 8000,100,true, true, 24, 5000,4000,2000,1,1,1,11111,false,2,5);
-    
+
 
 
 /*select * from Viaje;
@@ -252,12 +253,12 @@ from ProformaChofer
 where id_viaje='1';
 
 UPDATE `transporteslamatanza`.`Viaje`
-                SET `precioExtras_real` = '10', 
-                    `precioViaticos_Real` = '5', 
-                    `precioPeajes_Real` = ' 4', 
-                    `combustible_real` = '6', 
-                    `precioCombustible_real` = '2', 
-                    `costoTotalCombustible_real` = '4' 
+                SET `precioExtras_real` = '10',
+                    `precioViaticos_Real` = '5',
+                    `precioPeajes_Real` = ' 4',
+                    `combustible_real` = '6',
+                    `precioCombustible_real` = '2',
+                    `costoTotalCombustible_real` = '4'
                 WHERE (`id` = '1');*/
  /*            select * from arrastre;
              select * from Viaje;
