@@ -5,7 +5,6 @@ include_once("helper/UrlHelper.php");
 include_once("helper/VerificacionDeRolModel.php");
 
 include_once("model/GerenteModel.php");
-include_once("controller/GerenteController.php");
 include_once("model/registroModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/loginModel.php");
@@ -14,7 +13,7 @@ include_once("model/ChoferModel.php");
 include_once("model/MecanicoModel.php");
 
 
-
+include_once("controller/GerenteController.php");
 include_once("controller/registroController.php");
 include_once("controller/loginController.php");
 include_once("controller/AdminController.php");
@@ -154,7 +153,7 @@ class Configuration
         $MecanicoModel = $this->getMecanicoModel();
         $usuarioModel = $this->getUsuarioModel();
         $verificacionRolModel = $this->getVerificacionDeRolModel();
-        return new MecanicoModel($MecanicoModel,$this->getRender(),$usuarioModel,$verificacionRolModel);
+        return new MecanicoController($MecanicoModel,$this->getRender(),$usuarioModel,$verificacionRolModel);
     }
 
 }

@@ -153,7 +153,7 @@ VALUES(
     public function getVehiculosSinUso()
     {
         $sql = "SELECT * FROM Vehiculo
-                WHERE viaje_asignado = '0'";
+                WHERE viaje_asignado = '0'  and en_reparacion = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
