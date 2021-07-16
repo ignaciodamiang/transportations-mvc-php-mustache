@@ -433,16 +433,13 @@ class GerenteController
         }
     }
 
-    public function BorrarViaje()
-    {
-        $idViaje = $_POST["idViaje"];
 
-
-        if ($this->GerenteModel->getViajePorId($idViaje)) {
-            $this->GerenteModel->borrarViaje($idViaje);
+    public function borrarViaje(){
+        $id=$_POST["idViaje"];
+        if($this->GerenteModel->getViajePorId($id)){
+            $this->GerenteModel->borrarViaje($id);
             header("location: ../gerente?viajeBorrado");
         } else {
-
             header("location: ../gerente?viajeNoBorrado");
         }
     }
