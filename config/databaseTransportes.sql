@@ -55,6 +55,7 @@ estado varchar(50),
 alarma varchar(50),
 en_reparacion boolean default false,
 viaje_asignado boolean default false,
+vehiculo_eliminado boolean default false,
 id_tipoVehiculo int,
 primary key (id),
 foreign key (id_tipoVehiculo) references TipoVehiculo(id)

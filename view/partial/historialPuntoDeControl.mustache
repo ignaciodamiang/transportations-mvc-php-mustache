@@ -35,7 +35,7 @@
                             <tbody>
                                 {{#historialPuntoDeControl}}
                                 <tr>
-                                    <td>${{fechaHoraPuntoControl}}</td>
+                                    <td>{{fechaHoraPuntoControl}}</td>
                                     <td>${{precioPeajes_actual}}</td>
                                     <td>${{precioViaticos_actual}}</td>
                                     <td>${{precioExtras_actual}}</td>
@@ -75,7 +75,7 @@
 
                                 <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>
                                 <input type="hidden" name="promedioPrecioCombustible" value="{{promedioPrecioCombustible}}"/>
-                                <input type="" name="id_viaje" value="{{id_viaje}}"/>
+                                <input type="hidden" name="id_viaje" value="{{id_viaje}}"/>
                                 <input type="hidden" name="totalPeaje" value="{{TotalPeaje}}"/>
                                 <input type="hidden" name="totalViaticos" value="{{TotalViaticos}}"/>
                                 <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>

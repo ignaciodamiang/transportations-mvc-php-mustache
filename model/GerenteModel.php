@@ -135,7 +135,8 @@ VALUES(
 
     public function getVehiculos()
     {
-        $sql = "SELECT * FROM Vehiculo ";
+        $sql = "SELECT * FROM Vehiculo
+                WHERE vehiculo_eliminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -156,7 +157,7 @@ VALUES(
     public function getVehiculosSinUso()
     {
         $sql = "SELECT * FROM Vehiculo
-                WHERE viaje_asignado = '0'  and en_reparacion = '0'";
+                WHERE viaje_asignado = '0'  and en_reparacion = '0' and vehiculo_eliminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -183,7 +184,10 @@ VALUES(
 
     public function borrarVehiculo($id)
     {
-        $sql = "DELETE FROM Vehiculo WHERE id = '$id'";
+        $sql = "UPDATE Vehiculo 
+                SET
+                vehiculo_eliminado = '1'
+                WHERE id = '$id'";
         $this->database->execute($sql);
     }
 
