@@ -62,7 +62,7 @@ foreign key (id_tipoVehiculo) references TipoVehiculo(id)
 
 create table services(
 id int auto_increment,
-fecha varchar(50),
+fecha date,
 kilometros_unidad int,
 costo double,
 repuestos varchar(50),

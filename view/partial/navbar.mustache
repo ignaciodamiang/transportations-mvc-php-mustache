@@ -63,7 +63,9 @@
 
 <style>
 
-    #botones:hover { background: #0c63e4; }
+    #botones:hover {
+        background: #0c63e4;
+    }
 
 
 </style>
@@ -89,98 +91,162 @@
         </div>
         <hr/>
         <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="{{rutaPrimerBoton}}" id="botones" class="nav-link text-white" aria-current="page">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-house-door me-2 mb-1"
-                            viewBox="0 0 16 16"
-                    >
-                        <path
-                                d="{{iconoPrimerBoton}}"
 
-                        />
+            {{#rutaUsuariosSinRol}}
+                <li class="nav-item">
+                    <a href="{{rutaUsuariosSinRol}}" id="botones" class="nav-link text-white" aria-current="page">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoUsuariosSinRol}}"
 
-                        <path
-                                d="{{iconoPrimerBoton2}}"
+                            />
 
-                        />
-                    </svg>
-                    {{primerBoton}}
-                </a>
-            </li>
-            <li>
-                <a id="botones" href="{{rutaSegundoBoton}}" class="nav-link text-white">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-house-door me-2 mb-1"
-                            viewBox="0 0 16 16"
-                    >
-                        <path
-                                d="{{iconoSegundoBoton}}"
+                            <path
+                                    d="{{iconoUsuariosSinRol2}}"
 
-                        />
+                            />
+                        </svg>
+                        {{usuariosSinRolBoton}}
+                    </a>
+                </li>
 
-                        <path
-                                d="{{iconoSegundoBoton2}}"
+            {{/rutaUsuariosSinRol}}
+            {{#rutaPrimerBoton}}
+                <li class="nav-item">
+                    <a href="{{rutaPrimerBoton}}" id="botones" class="nav-link text-white" aria-current="page">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoPrimerBoton}}"
 
-                        />
-                    </svg>
-                    {{segundoBoton}}
-                </a>
-            </li>
-            <li>
-                <a id="botones" href="{{rutaTercerBoton}}" class="nav-link text-white">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-house-door me-2 mb-1"
-                            viewBox="0 0 16 16"
-                    >
-                        <path
-                                d="{{iconoTercerBoton}}"
+                            />
 
-                        />
+                            <path
+                                    d="{{iconoPrimerBoton2}}"
 
-                        <path
-                                d=""
+                            />
+                        </svg>
+                        {{primerBoton}}
+                    </a>
+                </li>
 
-                        />
-                    </svg>
-                    {{tercerBoton}}
-                </a>
-            </li>
-            <li>
-                <a id="botones" href="{{rutaCuartoBoton}}" class="nav-link text-white">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-house-door me-2 mb-1"
-                            viewBox="0 0 16 16"
-                    >
-                        <path
-                                d="{{iconoCuartoBoton}}"
+            {{/rutaPrimerBoton}}
+            {{#rutaSegundoBoton}}
+                <li>
+                    <a id="botones" href="{{rutaSegundoBoton}}" class="nav-link text-white">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoSegundoBoton}}"
 
-                        />
+                            />
 
-                        <path
-                                d="{{iconoCuartoBoton2}}"
+                            <path
+                                    d="{{iconoSegundoBoton2}}"
 
-                        />
-                    </svg>
-                    {{cuartoBoton}}
-                </a>
-            </li>
+                            />
+                        </svg>
+                        {{segundoBoton}}
+                    </a>
+                </li>
+            {{/rutaSegundoBoton}}
+            {{#rutaTercerBoton}}
+                <li>
+                    <a id="botones" href="{{rutaTercerBoton}}" class="nav-link text-white">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoTercerBoton}}"
+
+                            />
+
+                            <path
+                                    d=""
+
+                            />
+                        </svg>
+                        {{tercerBoton}}
+                    </a>
+                </li>
+            {{/rutaTercerBoton}}
+            {{#rutaCuartoBoton}}
+
+                <li>
+                    <a id="botones" href="{{rutaCuartoBoton}}" class="nav-link text-white">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoCuartoBoton}}"
+
+                            />
+
+                            <path
+                                    d="{{iconoCuartoBoton2}}"
+
+                            />
+                        </svg>
+                        {{cuartoBoton}}
+                    </a>
+                </li>
+
+            {{/rutaCuartoBoton}}
+
+            {{#rutaQuintoBoton}}
+                <li>
+                    <a id="botones" href="{{rutaQuintoBoton}}" class="nav-link text-white">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-house-door me-2 mb-1"
+                                viewBox="0 0 16 16"
+                        >
+                            <path
+                                    d="{{iconoQuintoBoton}}"
+
+                            />
+
+                            <path
+                                    d=""
+
+                            />
+                        </svg>
+                        {{quintoBoton}}
+                    </a>
+                </li>
+            {{/rutaQuintoBoton}}
 
         </ul>
         <hr/>
@@ -197,9 +263,11 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                     class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    <path fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
                 <strong class="me-2">{{nombre}}</strong>
                 <strong>{{apellido}}</strong>

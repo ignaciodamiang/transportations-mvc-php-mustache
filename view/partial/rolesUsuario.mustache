@@ -1,119 +1,121 @@
 <!--Container Usuarios-->
 <div class="container mb-5 col-12 justify-content-center rounded">
-  <div class="accordion" id="accordionPanelsStayOpenExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-        <button
-          class="accordion-button"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#panelsStayOpen-collapseOne"
-          aria-expanded="true"
-          aria-controls="panelsStayOpen-collapseOne"
-        >
-          Usuarios sin Rol
-        </button>
-      </h2>
-      <div
-        id="panelsStayOpen-collapseOne"
-        class="accordion-collapse collapse show"
-        aria-labelledby="panelsStayOpen-headingOne"
-      >
-        <div class="accordion-body">
-          <table class="table table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Legajo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">DNI</th>
-
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#usuariosSinRol}}
-              <tr>
-                <th scope="row">{{ legajo }}</th>
-                <td>{{ nombre }}</td>
-                <td>{{ apellido }}</td>
-                <td>{{ dni }}</td>
-
-                <td class="col-4">
-                  <form
-                    action="/admin/darRol"
-                    class="justify-content-between"
-                    method="post"
-                  >
-                    <input type="hidden" name="id" value="{{ id }}" />
-
-                    <div class="d-flex">
-                      <select
-                        class="form-select w-25"
-                        aria-label="Default select example"
-                        name="Rol"
-                      >
-                        <option selected>Seleccione un Rol</option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Gerente</option>
-                        <option value="3">Chofer</option>
-                        <option value="4">Mecanico</option>
-                      </select>
-
-                      <button type="submit" class="btn btn-primary">
-                        Dar Rol
-                      </button>
-                      </form>
-                      <form
-                        action="/admin/irModificarUsuario"
-                        method="post"
-                        class="card-link text-decoration-none d-inline-block"
-                      >
-                        <input
-                          type="hidden"
-                          name="idUsuario"
-                          value="{{ id }}"
-                        />
-                        <button type="submit" class="btn btn-primary ms-1">
-                          Modificar
-                        </button>
-                    </form>
-                    <form
-                        action="/admin/borrarUsuario"
-                        method="post"
-                        class="card-link text-decoration-none d-inline-block"
-                      >
-                        <input
-                          type="hidden"
-                          name="idUsuario"
-                          value="{{ id }}"
-                        />
-                        <button type="submit" class="btn btn-danger ms-1">
-                          Borrar
-                        </button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-              {{/usuariosSinRol}}
-            </tbody>
-          </table>
-            <form
-                action="/admin/verTodosLosUsuarios"
-                method="post"
-                class="card-link text-decoration-none d-inline-block"
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne"
                 >
-                <input
-                    type="hidden"
-                    name="idUsuario"
-                    value="{{ id }}"
-                />
-                <button type="submit" class="btn btn-warning">
-                    Ver todos los usuarios
+                    Usuarios sin Rol
                 </button>
-            </form>
+            </h2>
+            <div
+                    id="panelsStayOpen-collapseOne"
+                    class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne"
+            >
+                <div class="accordion-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="col-1">Legajo</th>
+                            <th scope="col" class="col-2">Nombre</th>
+                            <th scope="col" class="col-2">Apellido</th>
+                            <th scope="col" class="col-2">DNI</th>
+                            <th scope="col" class="col-4">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#usuariosSinRol}}
+                            <tr>
+                                <th scope="row">{{ legajo }}</th>
+                                <td>{{ nombre }}</td>
+                                <td>{{ apellido }}</td>
+                                <td>{{ dni }}</td>
+
+                                <td>
+                                    <div class="d-flex">
+
+                                        <form
+                                                action="/admin/darRol"
+                                                class="d-flex me-2 w-50"
+                                                method="post"
+                                        >
+                                            <input type="hidden" name="id" value="{{ id }}"/>
+                                            <select class="form-select form-select-sm w-25 me-1"
+                                                    aria-label=".form-select-sm example" name="Rol">
+                                                <option selected>Seleccione un Rol</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Gerente</option>
+                                                <option value="3">Chofer</option>
+                                                <option value="4">Mecanico</option>
+                                            </select>
+                                            <button class="btn btn-primary w-15" type="submit">
+                                                Dar Rol
+                                            </button>
+                                        </form>
+                                        <div class="d-flex">
+                                            <form
+                                                    action="/admin/irModificarUsuario"
+                                                    method="post"
+                                                    class="card-link text-decoration-none"
+                                            >
+                                                <input
+                                                        type="hidden"
+                                                        name="idUsuario"
+                                                        value="{{ id }}"
+                                                />
+                                                <button type="submit" class="btn btn-primary">
+                                                    Modificar
+                                                </button>
+                                            </form>
+                                            <form
+                                                    action="/admin/borrarUsuario"
+                                                    method="post"
+                                                    class="card-link text-decoration-none d-inline-block"
+                                            >
+                                                <input
+                                                        type="hidden"
+                                                        name="idUsuario"
+                                                        value="{{ id }}"
+                                                />
+                                                <button type="submit" class="btn btn-danger">
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+                        {{/usuariosSinRol}}
+                        </tbody>
+
+                    </table>
+                    <form
+                            action="/admin/verTodosLosUsuarios"
+                            method="post"
+                            class="card-link text-decoration-none d-inline-block"
+                    >
+                        <input
+                                type="hidden"
+                                name="idUsuario"
+                                value="{{ id }}"
+                        />
+                        <button type="submit" class="btn btn-warning">
+                            Ver todos los usuarios
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
