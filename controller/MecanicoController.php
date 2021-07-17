@@ -61,5 +61,25 @@ class MecanicoController
         header("location:/login");
     }
 
+    public  function irProformaService(){
+        $idService= $_POST["idService"];
+        $sesion = $_SESSION["Usuario"];
+        $data = array( "service"=> $idService, "usuario"=>$sesion);
+        echo $this->render->render("/partial/proformaService.mustache", $data);
+
+
+
+    }
+
+
+    public function proformaService(){
+        $fecha = $_POST["fecha"];
+        $costo = $_POST["costo"];
+        $repuesto = $_POST["repuesto"];
+        $idService = $_POST["idService"];
+
+
+
+    }
 
 }
