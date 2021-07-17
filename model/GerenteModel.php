@@ -195,6 +195,14 @@ VALUES(
     public function getListaDeChoferes()
     {
         $sql = "SELECT * FROM Usuario 
+                WHERE id_tipoUsuario = '3'";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
+        public function getListaDeChoferesSinViajes()
+    {
+        $sql = "SELECT * FROM Usuario 
                 WHERE id_tipoUsuario = '3' and viaje_asignado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
