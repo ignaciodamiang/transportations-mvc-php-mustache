@@ -56,5 +56,24 @@ class MecanicoModel
         $this->database->execute($sql);
     }
 
+    public function getListaDeVehiculosEnViaje(){
+
+        $sql= "SELECT * FROM Vehiculo
+                WHERE viaje_asignado= '1' ";
+        return $this->database->query($sql);
+    }
+
+    public function InformarPosicion($idVehiculo){
+        $sql=" SELECT proformaChofer.latitud_actual as 'latitud', proformaChofer.longitud_actual as 'longitud',proformaChofer.direccion_actual as 'direccion'
+                from vehiculo
+                inner join Viaje on vehiculo.id=viaje.id_vehiculo
+                inner join proformaChofer on Viaje.id= proformaChofer.id_viaje
+                where vehiculo.id= '$idVehiculo'
+                order by (fechaHoraPuntoControl)desc
+                limit 1";
+
+        return $this->database->query($sql);
+    }
+
     
 }

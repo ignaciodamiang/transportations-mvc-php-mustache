@@ -21,12 +21,14 @@ class MecanicoController
     {
 
 
-
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
             $idMecanico= $this->usuarioModel->getIdUsuario($sesion);
-            $datas = array("vehiculosEnReparacion" => $this->MecanicoModel->getListaDeVehiculosEnReparacion($idMecanico));
+
+            $datas = array("vehiculosEnReparacion" => $this->MecanicoModel->getListaDeVehiculosEnReparacion($idMecanico),
+                            "vehiculosEnViaje" => $this->MecanicoModel->getListaDeVehiculosEnViaje(),                        
+                           );
 
 
 
@@ -86,8 +88,19 @@ class MecanicoController
         $this->MecanicoModel->cargarService($fecha, $costo, $repuesto, $idService);      
         $this->MecanicoModel->vehiculoArreglado($idService);
 
-        header("location:/mecanico?fecha=$fecha&&costo=$costo&&repuesto=$repuesto&&idService=$idService");
+        header("location:/mecanico?mensaje=VehiculoReparado");
 
     }
 
+    public function irAInformarPosicion(){
+        $idVehiculo = $_POST["idVehiculo"];
+        $data["posicion"]= $this->MecanicoModel->InformarPosicion($idVehiculo);
+
+        if ($data != null) {
+            echo $this->render->render("view/partial/mapaVehiculoEnViaje.mustache", $data);
+
+        }else{
+            header("location:/mecanico?noRedirecciono");
+        }
+    }
 }
