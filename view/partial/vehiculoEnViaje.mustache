@@ -1,15 +1,14 @@
-
 <div class="container col-12 justify-content-center rounded">
 
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#acordeonTodosLosViajes" aria-expanded="true"
-                        aria-controls="panelsStayOpen-collapseOne">Viajes
+                        data-bs-target="#acordeonTodosLosVehiculosViajes" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">Vehiculos en Viaje
                 </button>
             </h2>
-            <div id="acordeonTodosLosViajes" class="accordion-collapse collapse show"
+            <div id="acordeonTodosLosVehiculosViajes" class="accordion-collapse collapse show"
                  aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
 
@@ -28,7 +27,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{#vehiculosEnReparacion}}
+
+                        {{#vehiculosEnViaje}}
                             <tr>
                                 <td>{{patente}}</td>
                                 <td>{{marca}}</td>
@@ -38,23 +38,24 @@
 
                                 <td>
                                     <form
-                                            action="/mecanico/irProformaService"
+                                            action="/mecanico/irAInformarPosicion"
                                             method="post"
                                             class="card-link text-decoration-none d-inline-block"
                                     >
                                         <input
                                                 type="hidden"
-                                                name="idService"
+                                                name="idVehiculo"
                                                 value="{{ id }}"
                                         />
                                         <button type="submit" class="btn btn-primary ms-1">
-                                            Reparar
+                                            ver posicion
                                         </button>
                                     </form>
 
                                 </td>
-                            </tr>
-                        {{/vehiculosEnReparacion}}
+                            </tr>              
+                        {{/vehiculosEnViaje}}
+
                         </tbody>
                     </table>
 
@@ -64,12 +65,3 @@
         </div>
     </div>
 </div>
-
-<br>
-<br>
-
-{{>vehiculoEnViaje}}
-{{#posicion}}
-<h3>{{latitud}}</h3>
-{{/posicion}}
-
