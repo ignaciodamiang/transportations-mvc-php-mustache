@@ -516,8 +516,6 @@ class GerenteController
     public function irModificarVehiculo()
     {
         $id = $_POST["idVehiculo"];
-        $patente = $_POST["patente"];
-        $tipoVehiculo = $_POST["tipoVehiculo"];
 
         $data["vehiculo"] = $this->GerenteModel->getVehiculosPorId($id);
         if ($data != null) {
