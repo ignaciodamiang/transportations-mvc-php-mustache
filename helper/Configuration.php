@@ -96,8 +96,9 @@ class Configuration
         $adminModel = $this->getAdminModel();
         $usuarioModel = $this->getUsuarioModel();
         $verificacionRolModel = $this->getVerificacionDeRolModel();
+        $GerenteModel = $this->getGerenteModel();
 
-        return new AdminController($adminModel, $this->getRender(),$verificacionRolModel,$usuarioModel);
+        return new AdminController($adminModel, $this->getRender(),$verificacionRolModel,$usuarioModel, $GerenteModel);
     }
 
     public function getGerenteModel()

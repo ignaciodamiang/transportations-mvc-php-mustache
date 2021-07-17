@@ -16,7 +16,7 @@ class AdminModel
 
     public function getUsuariosSinRol()
     {
-        $sql = "SELECT * FROM usuario WHERE id_tipoUsuario IS NULL";
+        $sql = "SELECT * FROM usuario WHERE id_tipoUsuario IS NULL and cuenta_activada = 1";
         $consulta = $this->database->query($sql);
         if (sizeof($consulta) != 0) {
             return $consulta;
@@ -46,8 +46,9 @@ class AdminModel
 
     }
 
-    public function modificarUsuario($id, $nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia, $id_tipoUsuario, $email, $contrasenia){
-            $sql = "UPDATE Usuario 
+    public function modificarUsuario($id, $nombre, $apellido, $legajo, $dni, $fecha_nacimiento, $tipo_licencia, $id_tipoUsuario, $email, $contrasenia)
+    {
+        $sql = "UPDATE Usuario 
                     SET
                     nombre = '$nombre',
                     apellido = '$apellido',
@@ -60,11 +61,12 @@ class AdminModel
                     contraseña = '$contrasenia'
                     WHERE id = '$id'";
 
-            $this->database->execute($sql);
+        $this->database->execute($sql);
 
-        }
+    }
 
-        public function borrarUsuario($id){
+    public function borrarUsuario($id)
+    {
         $sql = "DELETE FROM Usuario WHERE id = '$id'";
         $this->database->execute($sql);
     }
