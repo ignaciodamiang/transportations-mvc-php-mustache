@@ -1,7 +1,14 @@
 function loadMap() {
 
     var map;
+
+
     var mapOptions = {
+        zoom:15,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+    var mapOptions2 = {
         zoom:15,
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
@@ -17,8 +24,7 @@ function loadMap() {
             map: map,
             animation:google.maps.Animation.BOUNCE,
             draggable: true  
-        });
-
+        })
 
 
         google.maps.event.addListener(map, "click", function(event) {
@@ -32,7 +38,7 @@ function loadMap() {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {                        
                        document.getElementById("lugarActualCombustible").value=results[0].formatted_address;
-                       document.getElementById("lugarActualGastos").value=results[5].formatted_address;
+                       document.getElementById("lugarActualGastos").value=results[0].formatted_address;
                        document.getElementById("lugarActual").value=results[0].formatted_address;
                     }
                 }
@@ -56,33 +62,12 @@ function loadMap() {
         });
 
 
-
         map.setCenter(geolocate);
     } )
 
-}
 
-/*window.onload = function () {
-    var mapOptions = {
-        zoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var infoWindow = new google.maps.InfoWindow();
-    var latlngbounds = new google.maps.LatLngBounds();
 
-    var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+} 
 
-    google.maps.event.addListener(map, 'click', function (e) {
 
-        var latlng = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng());
-        var geocoder = geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    alert("Location: " + results[1].formatted_address + "\r\nLatitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
-                }
-            }
-        });
-    });
-}*/

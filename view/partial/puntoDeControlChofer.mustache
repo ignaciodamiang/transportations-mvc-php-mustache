@@ -1,5 +1,5 @@
 {{#viajeEmpezado}}
-<div class="container mb-5 col-12 justify-content-center rounded">
+<div class="container mb-5 col-12 justify-content-center rounded" >
   <h3 class="text-center mb-3">Punto de Control</h3>
 
   <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -12,8 +12,10 @@
       </h2>
       <div id="puntoDeControl" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
         <div class="accordion-body">
+
           <div  id="lugar"></div>
           <div id="mapa" style="width:80%; height:400px;" class="m-auto"></div>
+          
           <div class="row">
             <div class="col-sm-4">
               <div class="card">
@@ -41,18 +43,22 @@
                       <input type="hidden" required name="latitudCombustible" class="form-control" value=""
                       step="any" placeholder="Latitud" id="latitudCombustible" />
 
-                    <br>
+                   
 
 
                       <input type="hidden" step="any" name="longitudCombustible" class="form-control" placeholder="Longitud"
                         id="longitudCombustible" value=""/>
 
-                    <br>
+                   
 
                 
                 
-                      <input type="hidden" name="direccionActual" class="form-control" placeholder="Direccion"
-                        id="lugarActualCombustible" value=""/>
+                        <div class="card-text">
+                          <label class="font-weight-bold mb-1">Direccion<span class="text-danger">*</span></label>
+                          <input type="text" name="direccionActual" class="form-control" placeholder="Direccion"
+                          id="lugarActualCombustible" value=""/>
+                        </div>
+
                  
                     <br>
 
@@ -94,16 +100,16 @@
                     </div>
 
                     <div class="card-text">
-                      <label class="font-weight-bold mb-1">Latitud<span class="text-danger">*</span></label>
-                      <input type="number" required name="latitudGastos" class="form-control" value=""
+                      
+                      <input type="hidden" required name="latitudGastos" class="form-control" value=""
                       step="any" placeholder="Latitud" id="latitudGastos" />
                     </div>
 
-                    <br>
+                   
 
                     <div class="card-text">
-                      <label class="font-weight-bold mb-1">Longitud<span class="text-danger">*</span></label>
-                      <input type="number" step="any" name="longitudGastos" class="form-control" placeholder="Longitud"
+                      
+                      <input type="hidden" step="any" name="longitudGastos" class="form-control" placeholder="Longitud"
                         id="longitudGastos" value=""/>
                     </div>
                     <br>

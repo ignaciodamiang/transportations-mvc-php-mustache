@@ -63,10 +63,15 @@ class MecanicoController
 
     public  function irProformaService(){
         $idService= $_POST["idService"];
-        $sesion = $_SESSION["Usuario"];
-        $data = array( "service"=> $idService, "usuario"=>$sesion);
-        echo $this->render->render("/partial/proformaService.mustache", $data);
 
+        $data["service"]= $this->MecanicoModel->getservicePorId($idService);
+
+        if ($data != null) {
+            echo $this->render->render("view/partial/proformaService.mustache", $data);
+
+        }else{
+            header("location:/mecanico?noRedirecciono");
+        }
 
 
     }
@@ -78,7 +83,10 @@ class MecanicoController
         $repuesto = $_POST["repuesto"];
         $idService = $_POST["idService"];
 
+        $this->MecanicoModel->cargarService($fecha, $costo, $repuesto, $idService);      
+        $this->MecanicoModel->vehiculoArreglado($idService);
 
+        header("location:/mecanico?fecha=$fecha&&costo=$costo&&repuesto=$repuesto&&idService=$idService");
 
     }
 
