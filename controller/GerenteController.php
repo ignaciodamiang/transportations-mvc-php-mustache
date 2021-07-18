@@ -498,7 +498,7 @@ class GerenteController
     public function vehiculos()
     {
         $datas = $this->data();
-
+        $datas["mecanicos"] = $this->GerenteModel->getMecanicos();
         if ($this->validarSesion() == true) {
             $sesion = $_SESSION["Usuario"];
             $tipoUsuario = $this->usuarioModel->getRolUsuario($sesion);
@@ -571,6 +571,26 @@ class GerenteController
 
             header("location: ../gerente?vehiculoNoBorrado");
         }
+    }
+
+    public function mandarAServices()
+    {
+
+
+        if (isset($_POST["idVehiculo"], $_POST["idMecanico"])) {
+            $idVehiculo = $_POST["idVehiculo"];
+            $idMecanico = $_POST["idMecanico"];
+
+            $this->GerenteModel->mandarAServices($idVehiculo, $idMecanico);
+            $this->GerenteModel->cambiarEstadoVehiculoAEnReparacion($idVehiculo);
+
+            header("location:../gerente/vehiculos?SeEnvioAServices");
+        } else {
+
+            header("location:../gerente/vehiculosElijaVehiculoYMecanico");
+
+        }
+
     }
 
 }

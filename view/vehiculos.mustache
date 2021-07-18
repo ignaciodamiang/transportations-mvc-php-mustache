@@ -5,22 +5,26 @@
 <div class="container mt-4 col-12 justify-content-center rounded">
 
     {{#url}}
-        <a class="btn btn-primary mb-3" href="{{url}}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-        </svg></a>
+        <a class="btn btn-primary mb-3" href="{{url}}" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+        </a>
     {{/url}}
 
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseOne">
+                        data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
                     Todos mis Vehiculos
                 </button>
             </h2>
             <div id="acordeonTodosLosVehiculos" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingOne">
+                 aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
 
                     <!--Container Vehiculos-->
@@ -29,14 +33,13 @@
                     <table class="table table-dark table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Patente</th>
-                            <th scope="col">Número de chasis</th>
-                            <th scope="col">Número de motor</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Kilometraje</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col-1">Id</th>
+                            <th scope="col-2">Patente</th>
+                            <th scope="col-1">Número de chasis</th>
+                            <th scope="col-1">Número de motor</th>
+                            <th scope="col-2">Modelo</th>
+                            <th scope="col-1">En reparación</th>
+                            <th scope="col-4">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -46,37 +49,70 @@
                                 <td>{{patente}}</td>
                                 <td>{{numero_chasis}}</td>
                                 <td>{{numero_motor}}</td>
-                                <td>{{marca}}</td>
                                 <td>{{modelo}}</td>
-                                <td>{{kilometraje}}</td>
-                                <td><form
-                                        action="/gerente/irModificarVehiculo"
-                                        method="post"
-                                        class="card-link text-decoration-none d-inline-block"
-                                >
-                                    <input
-                                            type="hidden"
-                                            name="idVehiculo"
-                                            value="{{ id }}"
-                                    />
-                                    <button type="submit" class="btn btn-primary ms-1">
-                                        Modificar
-                                    </button>
-                                </form>
-                                    <form
-                                            action="/gerente/BorrarVehiculo"
-                                            method="post"
-                                            class="card-link text-decoration-none d-inline-block"
-                                    >
-                                        <input
-                                                type="hidden"
-                                                name="idVehiculo"
-                                                value="{{ id }}"
-                                        />
-                                        <button type="submit" class="btn btn-danger ms-1">
-                                            Borrar
-                                        </button>
-                                    </form></td>
+                                <td>{{en_reparacion}}</td>
+                                <td>
+                                    <div class="d-flex">
+
+
+
+                                        <form
+                                                action="/gerente/mandarAServices"
+                                                class="d-flex me-2 w-50"
+                                                method="post"
+                                        >
+                                            <input
+                                                    type="hidden"
+                                                    name="idVehiculo"
+                                                    value="{{ id }}"
+                                            />
+                                        <select class="form-select form-select-sm w-25 me-1"
+                                                aria-label=".form-select-sm example" name="idMecanico">
+                                            <option selected>Elegí un mecánico</option>
+                                            {{#mecanicos}}
+                                                <option value="{{ id }}">{{nombre}} {{apellido}}</option>
+                                            </select>
+
+
+
+
+                                                <button class="btn btn-primary w-15" type="submit">
+                                                    Reparar
+                                                </button>
+                                            {{/mecanicos}}
+                                        </form>
+                                        <div class="d-flex">
+                                            <form
+                                                    action="/gerente/irModificarVehiculo"
+                                                    method="post"
+                                                    class="card-link text-decoration-none"
+                                            >
+                                                <input
+                                                        type="hidden"
+                                                        name="idVehiculo"
+                                                        value="{{ id }}"
+                                                />
+                                                <button type="submit" class="btn btn-primary">
+                                                    Modificar
+                                                </button>
+                                            </form>
+                                            <form
+                                                    action="/gerente/BorrarVehiculo"
+                                                    method="post"
+                                                    class="card-link text-decoration-none d-inline-block"
+                                            >
+                                                <input
+                                                        type="hidden"
+                                                        name="idVehiculo"
+                                                        value="{{ id }}"
+                                                />
+                                                <button type="submit" class="btn btn-danger">
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         {{/todosLosVehiculos}}
                         </tbody>
@@ -84,18 +120,19 @@
 
 
                     {{#rutaCuartoBoton}}
-                    <div class="d-flex justify-content-end">
-                        <a class="btn btn-primary mt-3" href="{{rutaCuartoBoton}}" role="button">Registrar un vehiculo</a>
-                    </div>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-primary mt-3" href="{{rutaCuartoBoton}}" role="button">Registrar un
+                                vehiculo</a>
+                        </div>
                     {{/rutaCuartoBoton}}
                     <!--Fin Container Vehiculos-->
 
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 <!--Fin Vehiculos-->

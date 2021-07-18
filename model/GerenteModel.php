@@ -314,4 +314,33 @@ VALUES('$nombre',
 
     }
 
+    public function getMecanicos()
+    {
+        $sql = "SELECT * FROM Usuario
+                WHERE id_tipoUsuario = '4'";
+        $consulta = $this->database->query($sql);
+        return $consulta;
+    }
+
+    public function mandarAServices($idVehiculo, $idMecanico)
+    {
+
+        $sql = "INSERT INTO Services (id_vehiculo, id_usuario)
+VALUES('$idVehiculo',
+        '$idMecanico')";
+        $this->database->execute($sql);
+
+    }
+
+    public function cambiarEstadoVehiculoAEnReparacion($idVehiculo)
+    {
+
+        $sql = "UPDATE `transporteslamatanza`.`Vehiculo` 
+                SET `en_reparacion` = '1'
+                WHERE (`id` = '$idVehiculo')";
+
+        $this->database->execute($sql);
+
+    }
+
 }
