@@ -19,7 +19,7 @@ function loadMap() {
 
     var map = new google.maps.Map(document.getElementById("mapa2"),mapOptions);
 
-map
+
 
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(latitud,longitud),
