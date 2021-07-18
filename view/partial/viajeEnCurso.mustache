@@ -1,7 +1,9 @@
 {{#viajeEnCurso}}
-<div class="container mb-5 col-12 justify-content-center rounded">
+<div class="container mb-5 col-12 justify-content-center rounded" >
     <h3 class="text-center mb-3">Empezar Viaje</h3>
   
+    
+
     <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -23,7 +25,6 @@
         >
           <div class="accordion-body">
             <form action="/chofer/empezarViaje" method="post">
-                
               <div class="form-row mb-2">
                 <div class="d-flex flex-wrap justify-content-center form-group">
                   <div class="me-3 mt-3 col-lg-2">
@@ -31,7 +32,7 @@
                       >Ciudad origen<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{ciudad_origen}}
                     </p>
                     
@@ -41,7 +42,7 @@
                       >Ciudad destino<span class="text-danger">*</span></label
                     >
                     <p
-                    class="form-control"
+                    class="form-control bg-light"
                   > {{ciudad_destino}}
                   </p>
                   </div>
@@ -50,7 +51,7 @@
                       >Fecha inicio estipulada<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{fecha_inicio}}
                     </p>
                   </div>
@@ -60,7 +61,7 @@
                       >Fecha fin estipulada<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{fecha_fin}}
                     </p>
                   </div>
@@ -70,7 +71,7 @@
                       >Tiempo estimado<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{tiempo_estimado}}
                     </p>
                   </div>
@@ -81,7 +82,7 @@
                       >Tipo carga<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{descripcion_carga}}
                     </p>
                   </div>
@@ -94,7 +95,7 @@
                       ></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{km_previsto}}
                     </p>
                   </div>
@@ -102,13 +103,13 @@
 
 
                   <div class="me-3 mt-3 col-lg-2">
-                    <label class="font-weight-bold mb-1"
+                    <label class="font-weight-bold mb-1 bg-light"
                       >Combustible estimado<span class="text-danger"
                         >*</span
                       ></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{combustible_estimado}}
                     </p>
                   </div>
@@ -118,7 +119,7 @@
                       >Vehiculo<span class="text-danger">*</span></label
                     >
                     <p
-                      class="form-control"
+                      class="form-control bg-light"
                     > {{tipo_vehiculo}}
                     </p>
                   </div>
@@ -169,7 +170,7 @@
                 </div>
               </div>
 
-            
+              
 
               <div class="d-flex justify-content-center mt-5">
                 <button type="submit" class="btn btn-primary ">Empezar viaje</button>

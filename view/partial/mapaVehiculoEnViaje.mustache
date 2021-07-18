@@ -1,14 +1,36 @@
 {{> header}}
 {{>navbar}}
-{{#posicion}}
-<h3>{{latitud}}</h3>
 
-<h3>{{longitud}}</h3>
+<body class="bg-light" onload="loadMap()">
+    <div class="container mt-5 mb-5 col-12 justify-content-center rounded m-auto">
+        <br />
+        <br />
+        {{#posicion}}
+        <form class="row gy-2 gx-3 align-items-center ">
 
-<h3>{{direccion}}</h3>
-
-{{/posicion}}
-
-
-
-    
+            <div class="col-auto">
+                <label class="" for="autoSizingInput">Longitud</label>
+                <input type="text" class="form-control" id="latitudBuscada" value="{{latitud}}">
+            </div>
+            <div class="col-auto">
+                <label class=" text-capitalize" for="autoSizingInput">Latitud</label>
+                <input type="text" class="form-control" id="longitudBuscada" value="{{longitud}}">
+            </div>
+            <div class="col-auto">
+                <label class="" for="autoSizingInput">Direccion</label>
+                <input type="text" class="form-control" id="latitudBuscada" value="{{direccion}}" style="WIDTH:530px;">
+            </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              
+            <div id="mapa2" style="width:90%; height:400px;" class=""></div>      
+        </form>
+        <br />
+        {{/posicion}}
+        <div class="col-auto">
+            <a href="/mecanico" class="btn btn-primary">Atras</a>
+        </div>
+    </div>
+</body>

@@ -1,11 +1,12 @@
 {{> header}}
 {{>navbar}}
-<body class="bg-light">
+<body class="bg-light" onload="loadMap()">
 <!--Div container-->
 <div class="container-fluid mt-5 d-flex flex-column mb-5">
 
     {{>vehiculos}}
     {{>vehiculosEnReparacion}}
+    {{>vehiculoEnViaje}}
     <!--Fin Div container-->
 </div>
 
@@ -16,4 +17,5 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"
 ></script>
+
 </body>
