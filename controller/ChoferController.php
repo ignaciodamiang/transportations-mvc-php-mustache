@@ -109,21 +109,14 @@ class ChoferController
         $longitudCombustible = $_POST["longitudCombustible"];
         $direccionActual = $_POST["direccionActual"];
         $horita = date('Y-m-d H:i:s');
-        $precioViaticos_actual=0;
-        $precioPeajes_actual=0;
-        $precioExtras_actual=0;
 
-        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real,$precioViaticos_actual,
-                                                $precioPeajes_actual,$precioExtras_actual, $id_viaje, $horita, 
-                                                $latitudCombustible, $longitudCombustible, $direccionActual,
-                                                );
+        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real, $id_viaje, $horita, $latitudCombustible, $longitudCombustible, $direccionActual);
         header("location: /chofer?funciona");
     }
 
     public function gastoPeajeYExtra()
     {
-        $combustible_real = 0;
-        $precioCombustible_real = 0;
+
         $precioPeajes_actual = $_POST["precioPeajes_actual"];
         $precioExtras_actual = $_POST["precioExtras_actual"];
         $precioViaticos_actual = $_POST["precioViaticos_actual"];
@@ -131,7 +124,6 @@ class ChoferController
         $latitudGastos = $_POST["latitudGastos"];
         $longitudGastos = $_POST["longitudGastos"];
         $direccionActual = $_POST["direccionActual"];
-
         if ($precioPeajes_actual == null) {
             $precioPeajes_actual = 0;
         }
@@ -147,31 +139,20 @@ class ChoferController
         $horita = date('Y-m-d H:i:s');
 
 
-        $this->ChoferModel->gastoPeajeYExtra($combustible_real, $precioCombustible_real,$precioViaticos_actual,
-                                                $precioPeajes_actual,$precioExtras_actual, $id_viaje, $horita, 
-                                                $latitudGastos, $longitudGastos, $direccionActual,
-                                            );
+        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual, $precioExtras_actual, $precioViaticos_actual, $id_viaje, $horita, $latitudGastos, $longitudGastos, $direccionActual);
         header("location: /chofer?funciona");
     }
 
     public function informarPosicion()
     {
         /* agreegar isset*/
-        $combustible_real = 0;
-        $precioCombustible_real = 0;
-        $precioPeajes_actual = 0;
-        $precioExtras_actual = 0;
-        $precioViaticos_actual = 0;
         $latitud_actual = $_POST["latitud_actual"];
         $longitud_actual = $_POST["longitud_actual"];
         $id_viaje = $_POST["id_viaje"];
         $direccionActual = $_POST["direccionActual"];
         $horita = date('Y-m-d H:i:s');
 
-        $this->ChoferModel->informarPosicion($combustible_real, $precioCombustible_real,$precioViaticos_actual,
-                                                $precioPeajes_actual,$precioExtras_actual, $id_viaje, $horita, 
-                                                $latitud_actual, $longitud_actual, $direccionActual,
-                                             );
+        $this->ChoferModel->informarPosicion($id_viaje, $latitud_actual, $longitud_actual, $horita, $direccionActual);
         header("location: /chofer");
 
     }
@@ -185,18 +166,10 @@ class ChoferController
         $totalExtras = $_POST["totalExtras"];
         $totalCombustible = $_POST["totalCombustible"];
         $id_viaje = $_POST["id_viaje"];
-        $totalDeTotales= $_POST["totalDeTotales"];
-        $viaje_enCurso=0;
-        $viaje_eliminado=1;
-        $viaje_asignado=0;
 
-        $this->ChoferModel->finalizarViaje($cantidadDeCombustible, $promedioPrecioCombustible, $totalPeaje,
-                                            $totalViaticos, $totalExtras, $totalCombustible,
-                                            $id_viaje,$totalDeTotales,$viaje_enCurso,$viaje_eliminado);
-        
-        $this->ChoferModel->finalizarProforma($id_viaje);
-        $this->ChoferModel->liberarVehiculo($id_viaje,$viaje_asignado);
-        $this->ChoferModel->liberarChofer($id_viaje,$viaje_asignado);
+        $this->ChoferModel->finalizarViaje($cantidadDeCombustible, $promedioPrecioCombustible, $totalPeaje, $totalViaticos, $totalExtras, $totalCombustible, $id_viaje);
+        $this->ChoferModel->liberarChofer($id_viaje);
+        $this->ChoferModel->liberarVehiculo($id_viaje);
 
         header("location: /chofer");
     }
