@@ -81,7 +81,8 @@ class AdminController
 
     public function verTodosLosUsuarios()
     {
-        $datas = array("todosLosUsuarios" => $this->AdminModel->getUsuarios());
+        $datas = $this->data();
+        $datas["todosLosUsuarios"] = $this->AdminModel->getUsuarios();
 
         if ($this->validarSesion() == true) {
 
@@ -132,6 +133,7 @@ class AdminController
 
     public function irModificarUsuario()
     {
+        $data = $this->data();
         $id = $_POST["idUsuario"];
         $data["usuario"] = $this->AdminModel->getUsuarioPorId($id);
 
@@ -139,12 +141,13 @@ class AdminController
             echo $this->render->render("view/admin/modificarUsuarioView.mustache", $data);
 
         } else {
-            header("location:/admin?noRedirecciono");
+            header("location:../admin");
         }
     }
 
     public function modificarUsuario()
     {
+        $datas = $this->data();
         $id = $_POST["idUsuario"];
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];

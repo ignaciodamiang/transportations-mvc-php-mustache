@@ -102,6 +102,87 @@ class GerenteController
 
             if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
 
+                if (isset($_POST["ciudad_origen"], $_POST["ciudad_destino"], $_POST["fecha_inicio"], $_POST["fecha_fin"], $_POST["tiempo_estimado"], $_POST["tiempo_estimado"], $_POST["descripcion_carga"], $_POST["km_previsto"], $_POST["combustible_estimado"], $_POST["peso_neto"], $_POST["precioCombustible_estimado"], $_POST["precioViaticos_estimado"], $_POST["precioPeajes_estimado"], $_POST["precioExtras_estimado"], $_POST["hazard"], $_POST["precioHazard_estimado"], $_POST["reefer"], $_POST["precioReefer_estimado"], $_POST["temperatura"], $_POST["id_vehiculo"], $_POST["id_usuario"], $_POST["nombre"], $_POST["apellido"])) {
+
+                    $ciudad_origen = $_POST["ciudad_origen"];
+                    $ciudad_destino = $_POST["ciudad_destino"];
+                    $fecha_inicio = $_POST["fecha_inicio"];
+                    $fecha_fin = $_POST["fecha_fin"];
+                    $tiempo_estimado = $_POST["tiempo_estimado"];
+                    $tipo_carga = $_POST["descripcion_carga"];
+                    $km_previsto = $_POST["km_previsto"];
+                    $combustible_estimado = $_POST["combustible_estimado"];
+                    $peso_Neto = $_POST["peso_neto"];
+                    $precioCombustibleEstimado = $_POST["precioCombustible_estimado"];
+                    $CostoViaticos_estimado = $_POST["precioViaticos_estimado"];
+                    $CostoPeajesEstimado = $_POST["precioPeajes_estimado"];
+                    $CostoExtrasEstimado = $_POST["precioExtras_estimado"];
+                    $hazard = $_POST["hazard"];
+                    $CostoHazardEstimado = $_POST["precioHazard_estimado"];
+                    $reefer = $_POST["reefer"];
+                    $CostoReeferEstimado = $_POST["precioReefer_estimado"];
+                    $temperatura = $_POST["temperatura"];
+                    $id_vehiculo = $_POST["id_vehiculo"];
+                    $id_usuario = $_POST["id_usuario"];
+
+
+                    /*$costoTotalCombustibleEstimado = $km_previsto / ($combustible_estimado * $precioCombustibleEstimado);*/
+                    $costoTotalCombustibleEstimado = $combustible_estimado * $precioCombustibleEstimado;
+                    $CostoTotalEstimado = $costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
+                    $AumentoHazardYReefer = $CostoTotalEstimado - ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
+                    $feeCalculo = $AumentoHazardYReefer / ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
+                    $feeEstimado = $feeCalculo * 100;
+
+                    $nombre = $_POST["nombre"];
+                    $apellido = $_POST["apellido"];
+
+                    if (!$this->GerenteModel->registrarViaje($ciudad_origen,
+                        $ciudad_destino,
+                        $fecha_inicio,
+                        $fecha_fin,
+                        $tiempo_estimado,
+                        $tipo_carga,
+                        $km_previsto,
+                        $combustible_estimado,
+                        $precioCombustibleEstimado,
+                        $costoTotalCombustibleEstimado,
+                        $CostoViaticos_estimado,
+                        $CostoPeajesEstimado,
+                        $CostoExtrasEstimado,
+                        $feeEstimado,
+                        $peso_Neto,
+                        $hazard,
+                        $CostoHazardEstimado,
+                        $reefer,
+                        $CostoReeferEstimado,
+                        $temperatura,
+                        $CostoTotalEstimado,
+                        $id_vehiculo,
+                        $id_usuario)) {
+
+                        $this->GerenteModel->asignarViajeChofer($id_usuario);
+                        $this->GerenteModel->asignarViajeVehiculo($id_vehiculo);
+
+                        $this->GerenteModel->registrarCliente($nombre, $apellido);
+                        $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);
+                        $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
+                        $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
+
+                        $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
+                        $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
+
+                        header("location:/gerente/pdfViaje?id_usuario=$id_usuario&id_viaje=$id_viaje");
+
+                        $this->GerenteModel->guardarInforme("../gerente/pdfViaje?id_usuario=$id_usuario&id_viaje=$id_viaje", $id_viaje);
+                    } else {
+                        header("location:/gerente?viajeNoRegistrado");
+                    }
+                } else {
+                    echo $this->render->render("view/proformaCarga.mustache", $datas);
+
+                }
+
+
             } else {
                 $this->cerrarSesion();
                 header("location:/login");
@@ -111,85 +192,6 @@ class GerenteController
             header("location:/login");
         }
 
-
-        if (isset($_POST["ciudad_origen"], $_POST["ciudad_destino"], $_POST["fecha_inicio"], $_POST["fecha_fin"], $_POST["tiempo_estimado"], $_POST["tiempo_estimado"], $_POST["descripcion_carga"], $_POST["km_previsto"], $_POST["combustible_estimado"], $_POST["peso_neto"], $_POST["precioCombustible_estimado"], $_POST["precioViaticos_estimado"], $_POST["precioPeajes_estimado"], $_POST["precioExtras_estimado"], $_POST["hazard"], $_POST["precioHazard_estimado"], $_POST["reefer"], $_POST["precioReefer_estimado"], $_POST["temperatura"], $_POST["id_vehiculo"], $_POST["id_usuario"], $_POST["nombre"], $_POST["apellido"])) {
-
-            $ciudad_origen = $_POST["ciudad_origen"];
-            $ciudad_destino = $_POST["ciudad_destino"];
-            $fecha_inicio = $_POST["fecha_inicio"];
-            $fecha_fin = $_POST["fecha_fin"];
-            $tiempo_estimado = $_POST["tiempo_estimado"];
-            $tipo_carga = $_POST["descripcion_carga"];
-            $km_previsto = $_POST["km_previsto"];
-            $combustible_estimado = $_POST["combustible_estimado"];
-            $peso_Neto = $_POST["peso_neto"];
-            $precioCombustibleEstimado = $_POST["precioCombustible_estimado"];
-            $CostoViaticos_estimado = $_POST["precioViaticos_estimado"];
-            $CostoPeajesEstimado = $_POST["precioPeajes_estimado"];
-            $CostoExtrasEstimado = $_POST["precioExtras_estimado"];
-            $hazard = $_POST["hazard"];
-            $CostoHazardEstimado = $_POST["precioHazard_estimado"];
-            $reefer = $_POST["reefer"];
-            $CostoReeferEstimado = $_POST["precioReefer_estimado"];
-            $temperatura = $_POST["temperatura"];
-            $id_vehiculo = $_POST["id_vehiculo"];
-            $id_usuario = $_POST["id_usuario"];
-
-
-            /*$costoTotalCombustibleEstimado = $km_previsto / ($combustible_estimado * $precioCombustibleEstimado);*/
-            $costoTotalCombustibleEstimado = $combustible_estimado * $precioCombustibleEstimado;
-            $CostoTotalEstimado = $costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado + $CostoHazardEstimado + $CostoReeferEstimado;
-            $AumentoHazardYReefer = $CostoTotalEstimado - ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
-            $feeCalculo = $AumentoHazardYReefer / ($costoTotalCombustibleEstimado + $CostoViaticos_estimado + $CostoPeajesEstimado + $CostoExtrasEstimado);
-            $feeEstimado = $feeCalculo * 100;
-
-            $nombre = $_POST["nombre"];
-            $apellido = $_POST["apellido"];
-
-            /*if (!getValidarViaje($fecha_inicio, $fecha_fin, $id_usuario)) {*/
-            $this->GerenteModel->registrarViaje($ciudad_origen,
-                $ciudad_destino,
-                $fecha_inicio,
-                $fecha_fin,
-                $tiempo_estimado,
-                $tipo_carga,
-                $km_previsto,
-                $combustible_estimado,
-                $precioCombustibleEstimado,
-                $costoTotalCombustibleEstimado,
-                $CostoViaticos_estimado,
-                $CostoPeajesEstimado,
-                $CostoExtrasEstimado,
-                $feeEstimado,
-                $peso_Neto,
-                $hazard,
-                $CostoHazardEstimado,
-                $reefer,
-                $CostoReeferEstimado,
-                $temperatura,
-                $CostoTotalEstimado,
-                $id_vehiculo,
-                $id_usuario
-            );
-            $this->GerenteModel->asignarViajeChofer($id_usuario);
-            $this->GerenteModel->asignarViajeVehiculo($id_vehiculo);
-
-            $this->GerenteModel->registrarCliente($nombre, $apellido);
-            $id_cliente = $this->GerenteModel->getIdCliente($nombre, $apellido);
-            $id_viaje = $this->GerenteModel->getIdViaje($ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $id_usuario);
-            $this->GerenteModel->generarFactura($CostoTotalEstimado, $id_viaje, $id_cliente);
-
-            $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
-            $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
-
-            header("location:/gerente/crearPdf?id_usuario=$id_usuario&id_viaje=$id_viaje");
-            /* } else {
-                 header("location:/gerente?viajeNoRegistrado");
-             }*/
-        } else {
-            echo $this->render->render("view/proformaCarga.mustache", $datas);
-
-        }
     }
 
     public function generarQr()
@@ -202,7 +204,7 @@ class GerenteController
         $imagen = QRcode::png($contenido);
     }
 
-    public function crearPdf()
+    public function pdfViaje()
     {
         $id_viaje = $_GET["id_viaje"];
         $id_usuario = $_GET["id_usuario"];
@@ -261,22 +263,22 @@ class GerenteController
         $pdf->Cell(34, 5, '', 0, 1);//end of line
         $pdf->Cell(130, 5, 'Temperatura:   ' . utf8_decode($viaje["viaje"]["0"]["temperatura"]), 0, 0);
 
-        if ($viaje["viaje"]["0"]["hazard"] == 1){
+        if ($viaje["viaje"]["0"]["hazard"] == 1) {
 
             $hazard = "Si";
-        }else{
+        } else {
 
             $hazard = "No";
         }
 
-            $pdf->Cell(25, 5, '', 0, 0);
+        $pdf->Cell(25, 5, '', 0, 0);
         $pdf->Cell(34, 5, '', 0, 1);//end of line
         $pdf->Cell(130, 5, 'Hazard:   ' . utf8_decode($hazard), 0, 0);
 
-        if ($viaje["viaje"]["0"]["reefer"] == 1){
+        if ($viaje["viaje"]["0"]["reefer"] == 1) {
 
             $reefer = "Si";
-        }else{
+        } else {
 
             $reefer = "No";
         }
@@ -363,7 +365,6 @@ class GerenteController
 //summary
 
 
-
         $pdf->Cell(130, 5, '', 0, 0);
         $pdf->Cell(25, 5, 'Total', 0, 0);
         $pdf->Cell(4, 5, '$', 1, 0);
@@ -412,7 +413,7 @@ class GerenteController
         $id_vehiculo = $_POST["id_vehiculo"];
         $id_usuario = $_POST["id_usuario"];
 
-        
+
         $costoTotalCombustible_estimado = $combustible_estimado * $precioCombustible_estimado;
         $precioTotal_estimado = $costoTotalCombustible_estimado + $precioViaticos_estimado + $precioPeajes_estimado + $precioExtras_estimado + $precioHazard_estimado + $precioReefer_estimado;
         $AumentoHazardYReefer = $precioTotal_estimado - ($costoTotalCombustible_estimado + $precioViaticos_estimado + $precioPeajes_estimado + $precioExtras_estimado);
@@ -434,9 +435,10 @@ class GerenteController
     }
 
 
-    public function borrarViaje(){
-        $id=$_POST["idViaje"];
-        if($this->GerenteModel->getViajePorId($id)){
+    public function borrarViaje()
+    {
+        $id = $_POST["idViaje"];
+        if ($this->GerenteModel->getViajePorId($id)) {
             $this->GerenteModel->borrarViaje($id);
             header("location: ../gerente?viajeBorrado");
         } else {
@@ -456,7 +458,32 @@ class GerenteController
 
             if ($this->verificarRolModel->esAdmin($tipoUsuario) || $this->verificarRolModel->esGerente($tipoUsuario)) {
 
-                echo $this->render->render("view/agregarVehiculos.mustache", $datas);
+
+                if (isset($_POST["patente"], $_POST["NumeroChasis"], $_POST["NumeroMotor"], $_POST["marca"], $_POST["modelo"], $_POST["año_fabricacion"], $_POST["kilometraje"], $_POST["estado"], $_POST["alarma"], $_POST["tipoVehiculo"])) {
+
+                    $patente = $_POST["patente"];
+                    $NumeroChasis = $_POST["NumeroChasis"];
+                    $NumeroMotor = $_POST["NumeroMotor"];
+                    $marca = $_POST["marca"];
+                    $modelo = $_POST["modelo"];
+                    $año_fabricacion = $_POST["año_fabricacion"];
+                    $kilometraje = $_POST["kilometraje"];
+                    $estado = $_POST["estado"];
+                    $alarma = $_POST["alarma"];
+                    $tipoVehiculo = $_POST["tipoVehiculo"];
+
+
+                    if (!$this->GerenteModel->getValidarVehiculo($patente)) {
+                        $this->GerenteModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
+                        header("location: ../gerente/vehiculos?vehiculoRegistrado");
+                    } else {
+
+                        header("location: ../gerente/registrarVehiculo?vehiculoNoRegistrado");
+                    }
+                } else {
+                    echo $this->render->render("view/agregarVehiculos.mustache", $datas);
+
+                }
             } else {
                 $this->cerrarSesion();
                 header("location:/login");
@@ -466,29 +493,6 @@ class GerenteController
             header("location:/login");
         }
 
-
-        if (isset($_POST["patente"], $_POST["NumeroChasis"], $_POST["NumeroMotor"], $_POST["marca"], $_POST["modelo"], $_POST["año_fabricacion"], $_POST["kilometraje"], $_POST["estado"], $_POST["alarma"], $_POST["tipoVehiculo"])) {
-
-            $patente = $_POST["patente"];
-            $NumeroChasis = $_POST["NumeroChasis"];
-            $NumeroMotor = $_POST["NumeroMotor"];
-            $marca = $_POST["marca"];
-            $modelo = $_POST["modelo"];
-            $año_fabricacion = $_POST["año_fabricacion"];
-            $kilometraje = $_POST["kilometraje"];
-            $estado = $_POST["estado"];
-            $alarma = $_POST["alarma"];
-            $tipoVehiculo = $_POST["tipoVehiculo"];
-
-
-            if (!$this->GerenteModel->getValidarVehiculo($patente)) {
-                $this->GerenteModel->registrarVehiculo($patente, $NumeroChasis, $NumeroMotor, $marca, $modelo, $año_fabricacion, $kilometraje, $estado, $alarma, $tipoVehiculo);
-                header("location: ../gerente?vehiculoRegistrado");
-            } else {
-
-                header("location: ../gerente?vehiculoNoRegistrado");
-            }
-        }
     }
 
     public function vehiculos()
@@ -562,7 +566,7 @@ class GerenteController
 
         if ($this->GerenteModel->getVehiculosPorId($idVehiculo)) {
             $this->GerenteModel->borrarVehiculo($idVehiculo);
-            header("location: ../gerente?vehiculoBorrado");
+            header("location: ../gerente/vehiculos?vehiculoBorrado");
         } else {
 
             header("location: ../gerente?vehiculoNoBorrado");

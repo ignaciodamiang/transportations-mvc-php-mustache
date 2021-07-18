@@ -23,7 +23,7 @@
                             <th scope="col">Destino</th>
                             <th scope="col">Fecha inicio estimada</th>
                             <th scope="col">Fecha fin estimada</th>
-                            <th scope="col">Costo total estimado</th>
+                            <th scope="col">Viaje en curso</th>
                             <th scope="col">Informe</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -36,8 +36,8 @@
                                 <td>{{ciudad_destino}}</td>
                                 <td>{{fecha_inicio}}</td>
                                 <td>{{fecha_fin}}</td>
-                                <td>{{precioTotal_estimado}}</td>
-                                <td>{{pdf}}</td>
+                                <td>{{viaje_enCurso}}</td>
+                                <td><a href="{{informe}}">Abrir Informe</a></td>
                                 <td>
                                     <form
                                             action="/gerente/irModificarViaje"
@@ -75,8 +75,8 @@
 
                     {{#urlRegistrarViaje}}
                         <div class="d-flex justify-content-end">
-                        <a class="btn btn-primary mt-3" href="{{urlRegistrarViaje}}" role="button">Registrar un
-                            viaje</a>
+                            <a class="btn btn-primary mt-3" href="{{urlRegistrarViaje}}" role="button">Registrar un
+                                viaje</a>
                         </div>
                     {{/urlRegistrarViaje}}
                     <!--Fin Container Vehiculos-->
