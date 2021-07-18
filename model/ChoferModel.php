@@ -12,7 +12,7 @@ class ChoferModel
 
     public function getViajeEnCurso($idChofer){
         $sql = "SELECT * FROM Viaje INNER JOIN TipoVehiculo ON Viaje.id_vehiculo = TipoVehiculo.id
-                WHERE id_usuario = '$idChofer' and viaje_enCurso = '0' ";
+                WHERE id_usuario = '$idChofer' and viaje_enCurso = '0' and viaje_eliminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -34,30 +34,30 @@ class ChoferModel
 
     }
 
-    public function recargaCombustible($combustible_real,$precioCombustible_real,$id_viaje,$ahora,$latitudCombustible,$longitudCombustible,$direccionActual){
+    public function recargaCombustible($combustible_real,$precioCombustible_real,$precioViaticos_actual,$precioPeajes_actual,$precioExtras_actual,$id_viaje,$ahora,$latitudCombustible,$longitudCombustible,$direccionActual){
 
-        $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`, `id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
-        VALUES ( '$combustible_real', '$precioCombustible_real', '$id_viaje','$ahora','$latitudCombustible','$longitudCombustible','$direccionActual')";
+        $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`,`precioViaticos_actual`,`precioPeajes_actual`,`precioExtras_actual`,`id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
+        VALUES ( '$combustible_real', '$precioCombustible_real','$precioViaticos_actual','$precioPeajes_actual','$precioExtras_actual', '$id_viaje','$ahora','$latitudCombustible','$longitudCombustible','$direccionActual')";
         $this->database->execute($sql);
     }
 
-    public function gastoPeajeYExtra($precioPeajes_actual,$precioExtras_actual,$precioViaticos_actual,$id_viaje,$ahora,$latitudGastos,$longitudGastos,$direccionActual){
+    public function gastoPeajeYExtra($combustible_real,$precioCombustible_real,$precioViaticos_actual,$precioPeajes_actual,$precioExtras_actual,$id_viaje,$ahora,$latitudCombustible,$longitudCombustible,$direccionActual){
 
-            $sql= "INSERT INTO `ProformaChofer` (`precioPeajes_actual`, `precioExtras_actual`,`precioViaticos_actual`, `id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
-            VALUES ( '$precioPeajes_actual', '$precioExtras_actual','$precioViaticos_actual', '$id_viaje','$ahora','$latitudGastos','$longitudGastos','$direccionActual')";
+            $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`,`precioViaticos_actual`,`precioPeajes_actual`,`precioExtras_actual`,`id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
+            VALUES (  '$combustible_real', '$precioCombustible_real','$precioViaticos_actual','$precioPeajes_actual','$precioExtras_actual', '$id_viaje','$ahora','$latitudCombustible','$longitudCombustible','$direccionActual')";
             $this->database->execute($sql);
 
     }
 
-    public function informarPosicion($id_viaje,$latitud_actual, $longitud_actual,$ahora,$direccionActual){
-        $sql= "INSERT INTO `ProformaChofer` (`latitud_actual`, `longitud_actual`, `id_viaje`,`fechaHoraPuntoControl`,`direccion_actual`)   
-        VALUES ( '$latitud_actual', '$longitud_actual', '$id_viaje','$ahora','$direccionActual')";
+    public function informarPosicion($combustible_real,$precioCombustible_real,$precioViaticos_actual,$precioPeajes_actual,$precioExtras_actual,$id_viaje,$ahora,$latitudCombustible,$longitudCombustible,$direccionActual){
+        $sql= "INSERT INTO `ProformaChofer` (`combustible_actual`, `precioCombustible_actual`,`precioViaticos_actual`,`precioPeajes_actual`,`precioExtras_actual`,`id_viaje`,`fechaHoraPuntoControl`,`latitud_actual`, `longitud_actual`,`direccion_actual`)   
+        VALUES ( '$combustible_real', '$precioCombustible_real','$precioViaticos_actual','$precioPeajes_actual','$precioExtras_actual', '$id_viaje','$ahora','$latitudCombustible','$longitudCombustible','$direccionActual')";
         $this->database->execute($sql);
     }
 
     public function getProforma($id_viaje){
         $sql="SELECT * from ProformaChofer
-                where id_viaje = '$id_viaje' and fechaHoraPuntoControl is not null 
+                where id_viaje = '$id_viaje' and  fechaHoraPuntoControl is not null 
                 order by fechaHoraPuntoControl desc";
          return $this->database->query($sql);
        
@@ -91,14 +91,20 @@ class ChoferModel
                 return $this->database->query($sql);
     }
 
-    public function finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,$totalViaticos,$totalExtras,$totalCombustible,$id_viaje){
+    public function finalizarViaje($cantidadDeCombustible,$promedioPrecioCombustible, $totalPeaje,
+                                    $totalViaticos,$totalExtras,$totalCombustible,
+                                    $id_viaje,$totalDeTotales,$viaje_enCurso,$viaje_eliminado){
+
         $sql="UPDATE `transporteslamatanza`.`Viaje`
                 SET `precioExtras_real` = '$totalExtras', 
                     `precioViaticos_Real` = '$totalViaticos', 
                     `precioPeajes_Real` = ' $totalPeaje', 
                     `combustible_real` = '$cantidadDeCombustible', 
                     `precioCombustible_real` = '$promedioPrecioCombustible', 
-                    `costoTotalCombustible_real` = '$totalCombustible' 
+                    `costoTotalCombustible_real` = '$totalCombustible' ,
+                    `precioTotal_real`='$totalDeTotales',
+                    `viaje_enCurso`= '$viaje_enCurso',
+                    `viaje_eliminado`='$viaje_eliminado'
                 WHERE (`id` = $id_viaje)";
 
          $this->database->execute($sql);
@@ -138,24 +144,30 @@ class ChoferModel
         return $vehiculo["idVehiculo"]["0"]["id_vehiculo"];
     }
 
-    public function liberarChofer($idViaje){
+    public function liberarChofer($idViaje,$viaje_asignado){
        $idChofer=$this->obtenerIdUsuarioPorViaje($idViaje);
 
         $sql="UPDATE `transporteslamatanza`.`usuario` 
-                SET `viaje_asignado` = '0' 
+                SET `viaje_asignado` = '$viaje_asignado' 
                 WHERE (`id` = '$idChofer')"; 
         $this->database->execute($sql);
     }
 
 
-    public function liberarVehiculo($idViaje){
+    public function liberarVehiculo($idViaje,$viaje_asignado){
         $idVehiculo=$this->obtenerIdVehiculoPorViaje($idViaje);
 
         $sql="UPDATE `transporteslamatanza`.`Vehiculo`
-        SET `viaje_asignado` = 0, 
-        WHERE (`id` = '1')"; 
+        SET `viaje_asignado` = '$viaje_asignado', 
+        WHERE (`id` = '$idVehiculo')"; 
         $this->database->execute($sql);
     }
 
+    public function finalizarProforma($idViaje){
+        $sql="UPDATE `transporteslamatanza`.`ProformaChofer` 
+                SET   `proformar_eliminada` == '1',
+                WHERE (`id_viaje` = '$idViaje')";
 
+                return $this->database->execute($sql);
+    }
 }
