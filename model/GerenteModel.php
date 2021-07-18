@@ -60,10 +60,10 @@ VALUES( '$ciudad_origen',
         '$id_vehiculo',
         '$id_usuario'
         )";
-        $this->database->execute($sql1);
+        return $this->database->execute($sql1);
     }
 
-        public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustible_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $precioTotal_estimado, $id_vehiculo, $id_usuario)
+    public function modificarViaje($id, $ciudad_origen, $ciudad_destino, $fecha_inicio, $fecha_fin, $tiempo_estimado, $descripcion_carga, $km_previsto, $combustible_estimado, $precioViaticos_estimado, $precioPeajes_estimado, $precioExtras_estimado, $precioCombustible_estimado, $costoTotalCombustible_estimado, $peso_Neto, $hazard, $precioHazard_estimado, $reefer, $precioReefer_estimado, $fee_estimado, $temperatura, $precioTotal_estimado, $id_vehiculo, $id_usuario)
     {
         $sql = "UPDATE Viaje 
                 SET
@@ -95,7 +95,7 @@ VALUES( '$ciudad_origen',
         $this->database->execute($sql);
     }
 
-        public function borrarViaje($id)
+    public function borrarViaje($id)
     {
         $sql = "UPDATE Viaje 
                 SET
@@ -184,13 +184,9 @@ VALUES(
 
     public function borrarVehiculo($id)
     {
-        $sql = "UPDATE Vehiculo 
-                SET
-                vehiculo_eliminado = '1'
-                WHERE id = '$id'";
+        $sql = "DELETE FROM Vehiculo WHERE id = '$id'";
         $this->database->execute($sql);
     }
-
 
     public function getListaDeChoferes()
     {
@@ -200,7 +196,7 @@ VALUES(
         return $consulta;
     }
 
-        public function getListaDeChoferesSinViajes()
+    public function getListaDeChoferesSinViajes()
     {
         $sql = "SELECT * FROM Usuario 
                 WHERE id_tipoUsuario = '3' and viaje_asignado = '0'";
@@ -236,17 +232,8 @@ VALUES('$nombre',
 
     }
 
-    public function getValidarViaje($fechaPartidaEstimada, $fechaLlegadaEstimada, $idChofer){
-        $sql = "SELECT * FROM Viaje where fecha_inicio='$fechaPartidaEstimada' and fecha_fin='$fechaLlegadaEstimada'and id_usuario='$idChofer'";
-        $validarViaje = $this->database->query($sql);
-        if ($validarViaje == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public function getIdViaje($ciudadOrigen, $ciudadDestino, $fechaPartidaEstimada, $fechaLlegadaEstimada, $idChofer){
+    public function getIdViaje($ciudadOrigen, $ciudadDestino, $fechaPartidaEstimada, $fechaLlegadaEstimada, $idChofer)
+    {
         $sql = "SELECT * FROM Viaje where (ciudad_origen='$ciudadOrigen') AND (ciudad_destino='$ciudadDestino') AND (fecha_inicio='$fechaPartidaEstimada') AND (fecha_fin='$fechaLlegadaEstimada') AND (id_usuario='$idChofer')";
         $this->database->execute($sql);
         $resultado["id_viaje"] = $this->database->query($sql);
@@ -254,7 +241,8 @@ VALUES('$nombre',
 
     }
 
-    public function getViajes(){
+    public function getViajes()
+    {
         $sql = "SELECT * FROM Viaje
                 WHERE viaje_eliminado = '0'";
         $consulta = $this->database->query($sql);
@@ -268,26 +256,29 @@ VALUES('$nombre',
     }
 
 
-    public function asignarViajeChofer($id_usuario){
+    public function asignarViajeChofer($id_usuario)
+    {
 
         $sql = "UPDATE `transporteslamatanza`.`Usuario` 
                 SET `viaje_asignado` = '1'
                 WHERE (`id` = '$id_usuario')";
-        
+
         $this->database->execute($sql);
 
     }
 
-    public function asignarViajeVehiculo($id_vehiculo){
+    public function asignarViajeVehiculo($id_vehiculo)
+    {
 
         $sql = "UPDATE `transporteslamatanza`.`Vehiculo` 
                 SET `viaje_asignado` = '1'
                 WHERE (`id` = '$id_vehiculo')";
-        
+
         $this->database->execute($sql);
     }
 
-    public function getNombreClientePorId($id){
+    public function getNombreClientePorId($id)
+    {
         $sql = "SELECT * FROM Cliente where (id='$id')";
         $this->database->execute($sql);
         $resultado["nombreCliente"] = $this->database->query($sql);
@@ -295,7 +286,8 @@ VALUES('$nombre',
 
     }
 
-    public function getApellidoClientePorId($id){
+    public function getApellidoClientePorId($id)
+    {
         $sql = "SELECT * FROM Cliente where (id='$id')";
         $this->database->execute($sql);
         $resultado["apellidoCliente"] = $this->database->query($sql);
@@ -303,11 +295,22 @@ VALUES('$nombre',
 
     }
 
-    public function getClienteFactura($id_viaje){
+    public function getClienteFactura($id_viaje)
+    {
         $sql = "SELECT * FROM Factura where (id_viaje='$id_viaje')";
         $this->database->execute($sql);
         $resultado["idCliente"] = $this->database->query($sql);
         return $resultado["idCliente"]["0"]["id_cliente"];
+
+    }
+
+    public function guardarInforme($informe, $id_viaje)
+    {
+        $sql = "UPDATE `transporteslamatanza`.`Viaje` 
+                SET `informe` = '$informe'
+                WHERE (`id` = '$id_viaje')";
+
+        $this->database->execute($sql);
 
     }
 

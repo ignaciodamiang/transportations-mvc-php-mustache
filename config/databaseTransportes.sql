@@ -30,18 +30,6 @@ tipo_vehiculo varchar(50),
 primary key(id)
 );
 
-create table Arrastre(
-id int auto_increment,
-patente varchar(40),
-numeroDeChasis int,
-tipo varchar(50),
-peso_Neto float not null,
-hazard boolean not null,
-reefer boolean not null,
-temperatura DECIMAL(5,2),
-primary key(id)
-);
-
 create table Vehiculo(
 id int auto_increment,
 patente varchar(20),
@@ -124,6 +112,7 @@ costoTotalCombustible_real double,
 precioTotal_real double,
 viaje_enCurso boolean default false,
 viaje_eliminado boolean default false,
+informe varchar(200),
 id_vehiculo int,
 id_usuario int,
 primary key(id),
