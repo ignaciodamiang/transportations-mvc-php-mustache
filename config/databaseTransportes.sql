@@ -1,3 +1,4 @@
+drop database transporteslamatanza;
 create database transporteslamatanza;
 use transporteslamatanza;
 
@@ -44,6 +45,7 @@ alarma varchar(50),
 en_reparacion boolean default false,
 viaje_asignado boolean default false,
 vehiculo_eliminado boolean default false,
+vehiculo_EnViaje boolean default false,
 id_tipoVehiculo int,
 primary key (id),
 foreign key (id_tipoVehiculo) references TipoVehiculo(id)
@@ -111,6 +113,7 @@ precioCombustible_real double,
 costoTotalCombustible_real double,
 precioTotal_real double,
 viaje_enCurso boolean default false,
+viaje_terminado boolean default false,
 viaje_eliminado boolean default false,
 informe varchar(200),
 id_vehiculo int,

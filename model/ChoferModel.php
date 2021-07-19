@@ -104,9 +104,20 @@ class ChoferModel
         return $this->database->query($sql);
     }
 
+    public function getFechaInicioReal($idViaje)
+    {
+
+        $sql = "SELECT fecha_inicioReal
+            from Viaje
+            where  id = '$idViaje'";
+
+        $viaje["fecha_inicioReal"] = $this->database->query($sql);
+        return $viaje["fecha_inicioReal"]["0"]["fecha_inicioReal"];
+    }
+
     public function finalizarViaje($cantidadDeCombustible, $promedioPrecioCombustible, $totalPeaje,
                                    $totalViaticos, $totalExtras, $totalCombustible,
-                                   $id_viaje, $totalDeTotales, $viaje_enCurso, $viaje_eliminado, $totalKilometrosRecorridos, $totalDesviaciones)
+                                   $id_viaje, $totalDeTotales, $viaje_enCurso, $viaje_eliminado, $totalKilometrosRecorridos, $totalDesviaciones, $fechaFinReal, $horaFinReal, $diasDiferencia)
     {
 
         $sql = "UPDATE `transporteslamatanza`.`Viaje`
@@ -120,7 +131,12 @@ class ChoferModel
                     `viaje_enCurso`= '$viaje_enCurso',
                     `viaje_eliminado`='$viaje_eliminado',
                     `km_reales`= '$totalKilometrosRecorridos',
-                    `desviacion` = '$totalDesviaciones'
+                    `desviacion` = '$totalDesviaciones',
+                    `viaje_terminado` = '1',
+                    `fecha_finReal` = '$fechaFinReal',
+                    `hora_fin` = '$horaFinReal',
+                    `tiempo_real` = '$diasDiferencia'
+                    
                 WHERE (`id` = $id_viaje)";
 
         $this->database->execute($sql);
