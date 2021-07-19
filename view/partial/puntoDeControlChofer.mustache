@@ -16,7 +16,7 @@
           <div  id="lugar"></div>
           <div id="mapa" style="width:80%; height:400px;" class="m-auto"></div>
           
-          <div class="row">
+          <div class="row mt-5">
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
@@ -49,10 +49,21 @@
                       <input type="hidden" step="any" required name="longitudCombustible" class="form-control" placeholder="Longitud"
                         id="longitudCombustible" value=""/>
 
-                   
 
-                
-                
+                      <div class="card-text"><label class="font-weight-bold mb-1">Kilometros recorridos<span
+                              class="text-danger">*</span></label>
+                          <input type="number"  name="km_actuales" class="form-control"
+                                 placeholder="Kilometros recorridos" />
+                      </div>
+                      <br>
+
+                      <div class="card-text"><label class="font-weight-bold mb-1">Desviación<span
+                              class="text-danger">*</span></label>
+                          <input type="number"  name="desviacion_actual" class="form-control"
+                                 placeholder="Desviación" />
+                      </div>
+                      <br>
+
                         <div class="card-text">
                           <label class="font-weight-bold mb-1">Direccion<span class="text-danger">*</span></label>
                           <input type="text" name="direccionActual" required class="form-control" placeholder="Direccion"
