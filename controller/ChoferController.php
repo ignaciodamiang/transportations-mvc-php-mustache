@@ -109,51 +109,73 @@ class ChoferController
         $longitudCombustible = $_POST["longitudCombustible"];
         $direccionActual = $_POST["direccionActual"];
         $horita = date('Y-m-d H:i:s');
+        $precioViaticos_actual = 0;
+        $precioPeajes_actual = 0;
+        $precioExtras_actual = 0;
 
-        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real, $id_viaje, $horita, $latitudCombustible, $longitudCombustible, $direccionActual);
+
+        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real, $precioViaticos_actual,
+            $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
+            $latitudCombustible, $longitudCombustible, $direccionActual,
+);
+
+
         header("location: /chofer?funciona");
     }
 
     public function gastoPeajeYExtra()
     {
-
         $precioPeajes_actual = $_POST["precioPeajes_actual"];
         $precioExtras_actual = $_POST["precioExtras_actual"];
         $precioViaticos_actual = $_POST["precioViaticos_actual"];
+        $combustible_real = 0;
+        $precioCombustible_real = 0;
         $id_viaje = $_POST["id_viaje"];
         $latitudGastos = $_POST["latitudGastos"];
         $longitudGastos = $_POST["longitudGastos"];
         $direccionActual = $_POST["direccionActual"];
+
+
         if ($precioPeajes_actual == null) {
             $precioPeajes_actual = 0;
         }
 
-        if ($precioExtras_actual == null) {
-            $precioExtras_actual = 0;
-        }
-
-        if ($precioViaticos_actual == null) {
-            $precioViaticos_actual = 0;
-        }
 
         $horita = date('Y-m-d H:i:s');
 
 
-        $this->ChoferModel->gastoPeajeYExtra($precioPeajes_actual, $precioExtras_actual, $precioViaticos_actual, $id_viaje, $horita, $latitudGastos, $longitudGastos, $direccionActual);
+        $this->ChoferModel->gastoPeajeYExtra($combustible_real, $precioCombustible_real, $precioViaticos_actual,
+            $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
+            $latitudGastos, $longitudGastos, $direccionActual,
+);
+
+
         header("location: /chofer?funciona");
     }
 
     public function informarPosicion()
     {
-        /* agreegar isset*/
+        
+        $combustible_real = 0;
+        $precioCombustible_real = 0;
+        $precioPeajes_actual = 0;
+        $precioExtras_actual = 0;
+        $precioViaticos_actual = 0;
         $latitud_actual = $_POST["latitud_actual"];
         $longitud_actual = $_POST["longitud_actual"];
         $id_viaje = $_POST["id_viaje"];
         $direccionActual = $_POST["direccionActual"];
         $horita = date('Y-m-d H:i:s');
 
-        $this->ChoferModel->informarPosicion($id_viaje, $latitud_actual, $longitud_actual, $horita, $direccionActual);
+
+        $this->ChoferModel->informarPosicion($combustible_real, $precioCombustible_real, $precioViaticos_actual,
+            $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
+            $latitud_actual, $longitud_actual, $direccionActual,
+);
+
+
         header("location: /chofer");
+
 
     }
 
