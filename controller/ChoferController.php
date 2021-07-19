@@ -94,6 +94,7 @@ class ChoferController
 
 
         $this->ChoferModel->getEmpezarViaje($id_viaje, $latitud_inicio, $longitud_inicio, $fechaInicioReal, $horaInicioReal);
+        $this->ChoferModel->vehiculoEnViaje($id_viaje);
         $this->ChoferModel->cargaProforma($id_viaje);
         header("location: /chofer");
 
