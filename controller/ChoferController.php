@@ -29,10 +29,10 @@ class ChoferController
             $IdViaje = $this->ChoferModel->getViajeDelChofer($idChofer);
 
             $datas = array("viajeEnCurso" => $this->ChoferModel->getViajeEnCurso($idChofer),
-                "historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
-                "viajeEmpezado" => $this->ChoferModel->getViajeEmpezado($idChofer),
-                "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje),
-                "totalDeTotales" => $this->ChoferModel->getSumaTotalTotalesProforma($IdViaje), "url" => "../chofer");
+                            "historialPuntoDeControl" => $this->ChoferModel->getProforma($IdViaje),
+                            "viajeEmpezado" => $this->ChoferModel->getViajeEmpezado($idChofer),
+                            "sumaTotalPuntoDeControl" => $this->ChoferModel->getSumaTotalProforma($IdViaje),
+                            "totalDeTotales" => $this->ChoferModel->getSumaTotalTotalesProforma($IdViaje), "url" => "../chofer");
 
             $datas["rol"] = "Chofer";
             $datas["iconoPrimerBoton"] = 'M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z';
@@ -135,14 +135,20 @@ class ChoferController
         $latitudGastos = $_POST["latitudGastos"];
         $longitudGastos = $_POST["longitudGastos"];
         $direccionActual = $_POST["direccionActual"];
-
+        $horita = date('Y-m-d H:i:s');
 
         if ($precioPeajes_actual == null) {
             $precioPeajes_actual = 0;
         }
 
+        if ($precioExtras_actual == null) {
+            $precioExtras_actual = 0;
+        }
 
-        $horita = date('Y-m-d H:i:s');
+        if ($precioViaticos_actual == null) {
+            $precioViaticos_actual= 0;
+        }
+
 
 
         $this->ChoferModel->gastoPeajeYExtra($combustible_real, $precioCombustible_real, $precioViaticos_actual,
