@@ -63,8 +63,9 @@ class ChoferModel
 
     public function getProforma($id_viaje)
     {
-        $sql = "SELECT * from ProformaChofer
-                where id_viaje = '$id_viaje' and  fechaHoraPuntoControl is not null 
+        $sql = "SELECT * 
+                from ProformaChofer inner join Viaje
+                where ProformaChofer.id_viaje = '$id_viaje' and  Viaje.viaje_enCurso = '1' and fechaHoraPuntoControl is not null 
                 order by fechaHoraPuntoControl desc";
         return $this->database->query($sql);
 
@@ -81,15 +82,15 @@ class ChoferModel
     public function getViajeDelChofer($idChofer)
     {
         $sql = "SELECT id FROM Viaje
-                WHERE id_usuario = '$idChofer'";
+                WHERE id_usuario = '$idChofer'
+                order by id desc";
         $consulta["id_viaje"] = $this->database->query($sql);
         return $consulta["id_viaje"]["0"]["id"];
     }
 
     public function getSumaTotalProforma($idViaje)
     {
-        $sql = "SELECT
-                id_viaje,
+        $sql = "SELECT id_viaje,viaje_enCurso,
                 sum((combustible_actual*precioCombustible_actual)) as totalCombustible,
                 sum(precioPeajes_actual )as 'TotalPeaje',
                 sum(precioViaticos_actual)as 'TotalViaticos',
@@ -98,8 +99,8 @@ class ChoferModel
                 sum(km_actuales) as 'KilometrosRecorridos',
                 sum(desviacion_actual) as 'Desviaciones',
                 avg(precioCombustible_actual) as 'promedioPrecioCombustible'
-                from ProformaChofer
-                where id_viaje='$idViaje'";
+                from ProformaChofer inner join Viaje
+                where id_viaje='$idViaje' and viaje_enCurso = '1'";
         return $this->database->query($sql);
     }
 

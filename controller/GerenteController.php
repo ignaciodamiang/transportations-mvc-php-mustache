@@ -171,6 +171,8 @@ class GerenteController
                         $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
                         $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
 
+                        
+
                         header("location:/gerente/pdfViaje?id_usuario=$id_usuario&id_viaje=$id_viaje");
 
                         $this->GerenteModel->guardarInforme("../gerente/pdfViaje?id_usuario=$id_usuario&id_viaje=$id_viaje", $id_viaje);
