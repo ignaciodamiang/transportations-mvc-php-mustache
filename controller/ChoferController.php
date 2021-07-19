@@ -112,12 +112,13 @@ class ChoferController
         $precioViaticos_actual = 0;
         $precioPeajes_actual = 0;
         $precioExtras_actual = 0;
+        $km_actuales = $_POST["km_actuales"];
+        $desviacion_actual = isset($_POST["desviacion_actual"]) ? $_POST["desviacion_actual"] : 0;
 
 
-        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real, $precioViaticos_actual,
-            $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
-            $latitudCombustible, $longitudCombustible, $direccionActual,
-);
+        $this->ChoferModel->recargaCombustible($combustible_real, $precioCombustible_real, $precioViaticos_actual, $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
+            $latitudCombustible, $longitudCombustible, $direccionActual, $km_actuales, $desviacion_actual
+        );
 
 
         header("location: /chofer?funciona");
@@ -146,8 +147,8 @@ class ChoferController
 
         $this->ChoferModel->gastoPeajeYExtra($combustible_real, $precioCombustible_real, $precioViaticos_actual,
             $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
-            $latitudGastos, $longitudGastos, $direccionActual,
-);
+            $latitudGastos, $longitudGastos, $direccionActual
+        );
 
 
         header("location: /chofer?funciona");
@@ -170,8 +171,8 @@ class ChoferController
 
         $this->ChoferModel->informarPosicion($combustible_real, $precioCombustible_real, $precioViaticos_actual,
             $precioPeajes_actual, $precioExtras_actual, $id_viaje, $horita,
-            $latitud_actual, $longitud_actual, $direccionActual,
-);
+            $latitud_actual, $longitud_actual, $direccionActual
+        );
 
 
         header("location: /chofer");
@@ -182,6 +183,10 @@ class ChoferController
     public function finalizarViaje()
 
     {
+
+        $totalKilometrosRecorridos = $_POST["totalKmRecorridos"];
+
+        $totalDesviaciones = $_POST["totalDesviaciones"];
 
         $cantidadDeCombustible = $_POST["cantidadDeCombustible"];
 
@@ -210,7 +215,7 @@ class ChoferController
 
             $totalViaticos, $totalExtras, $totalCombustible,
 
-            $id_viaje, $totalDeTotales, $viaje_enCurso, $viaje_eliminado);
+            $id_viaje, $totalDeTotales, $viaje_enCurso, $viaje_eliminado, $totalKilometrosRecorridos, $totalDesviaciones);
 
 
         $this->ChoferModel->finalizarProforma($id_viaje);

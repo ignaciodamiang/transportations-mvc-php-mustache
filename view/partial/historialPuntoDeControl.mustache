@@ -1,17 +1,16 @@
-
 <div class="container mb-5 col-12 justify-content-center rounded">
 
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseOne">
+                        data-bs-target="#acordeonTodosLosVehiculos" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
                     Historial de Puntos De Control
                 </button>
             </h2>
             <div id="acordeonTodosLosVehiculos" class="accordion-collapse collapse"
-                aria-labelledby="panelsStayOpen-headingOne">
+                 aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
 
                     <!--Container Vehiculos-->
@@ -20,21 +19,25 @@
 
                         <table class="table table-dark table-striped">
                             <thead>
-                                <tr>
-                                    <th scope="col">Fecha y Hora</th>
-                                    <th scope="col">Precio Peaje</th>
-                                    <th scope="col">Viaticos</th>
-                                    <th scope="col">Extras</th>
-                                    <th scope="col">Combustible</th>
-                                    <th scope="col">Precio Combustible</th>
-                                    <th scope="col">Latitud</th>
-                                    <th scope="col">Longitud</th>
-                                    <th scope="col">Direccion</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">Km recorridos</th>
+                                <th scope="col">Desviación</th>
+                                <th scope="col">Fecha y Hora</th>
+                                <th scope="col">Precio Peaje</th>
+                                <th scope="col">Viaticos</th>
+                                <th scope="col">Extras</th>
+                                <th scope="col">Combustible</th>
+                                <th scope="col">Precio Combustible</th>
+                                <th scope="col">Latitud</th>
+                                <th scope="col">Longitud</th>
+                                <th scope="col">Direccion</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {{#historialPuntoDeControl}}
+                            {{#historialPuntoDeControl}}
                                 <tr>
+                                    <td>{{km_actuales}}</td>
+                                    <td>{{desviacion_actual}}</td>
                                     <td>{{fechaHoraPuntoControl}}</td>
                                     <td>${{precioPeajes_actual}}</td>
                                     <td>${{precioViaticos_actual}}</td>
@@ -45,55 +48,59 @@
                                     <td>{{longitud_actual}}</td>
                                     <td>{{direccion_actual}}</td>
                                 </tr>
-                                {{/historialPuntoDeControl}}
+                            {{/historialPuntoDeControl}}
                             </tbody>
                         </table>
 
-                        <table class="table table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">KM total recorridos</th>
-                                    <th scope="col">Costo Total Peajes</th>
-                                    <th scope="col">Costo Total Viaticos</th>
-                                    <th scope="col">Costo Total Extras</th>
-                                    <th scope="col">Costo total Combustible</th>
-                                    <th scope="col">Monto total del viaje</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#sumaTotalPuntoDeControl}}
-                                <form action="chofer/finalizarViaje" method="post">
-                                        
-                                <tr>
-                                    <td>NAN</td>
-                                    <td>${{TotalPeaje}}</td>
-                                    <td>${{TotalViaticos}}</td>
-                                    <td>${{TotalExtras}}</td>
-                                    <td>${{totalCombustible}}</td>
-                                    <td>{{#totalDeTotales}} ${{totalDeTotales}} {{/totalDeTotales}}</td>    
-                                </tr>
-
-                                <input type="hidden" name="cantidadDeCombustible" value="{{cantidadDeCombustible}}"/>
-                                <input type="hidden" name="promedioPrecioCombustible" value="{{promedioPrecioCombustible}}"/>
-                                <input type="hidden" name="id_viaje" value="{{id_viaje}}"/>
-                                <input type="hidden" name="totalPeaje" value="{{TotalPeaje}}"/>
-                                <input type="hidden" name="totalViaticos" value="{{TotalViaticos}}"/>
-                                <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>
-                                <input type="hidden" name="totalCombustible" value="{{totalCombustible}}"/>
-            {{#totalDeTotales}} <input type="hidden" name="totalDeTotales" value="{{totalDeTotales}}"/>{{/totalDeTotales}}
+                        {{#sumaTotalPuntoDeControl}}
+                            <form action="chofer/finalizarViaje" method="post">
+                                <table class="table table-dark table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Km totales</th>
+                                        <th scope="col">Desviación total (km)</th>
+                                        <th scope="col">Costo Total Peajes</th>
+                                        <th scope="col">Costo Total Viaticos</th>
+                                        <th scope="col">Costo Total Extras</th>
+                                        <th scope="col">Costo total Combustible</th>
+                                        <th scope="col">Monto total del viaje</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
 
-                                
-                            
-                            
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        <td>{{KilometrosRecorridos}}</td>
+                                        <td>{{Desviaciones}}</td>
+                                        <td>${{TotalPeaje}}</td>
+                                        <td>${{TotalViaticos}}</td>
+                                        <td>${{TotalExtras}}</td>
+                                        <td>${{totalCombustible}}</td>
+                                        <td>{{#totalDeTotales}} ${{totalDeTotales}} {{/totalDeTotales}}</td>
+                                    </tr>
 
-                        <div class="d-flex justify-content-end mt-2 ">
-                            <button type="submit" class="btn btn-primary">Finalizar Viaje</button>
-                        </div>
-                    </form>
-                    {{/sumaTotalPuntoDeControl}}
+                                    <input type="hidden" name="totalKmRecorridos" value="{{KilometrosRecorridos}}"/>
+                                    <input type="hidden" name="totalDesviaciones" value="{{Desviaciones}}"/>
+                                    <input type="hidden" name="cantidadDeCombustible"
+                                           value="{{cantidadDeCombustible}}"/>
+                                    <input type="hidden" name="promedioPrecioCombustible"
+                                           value="{{promedioPrecioCombustible}}"/>
+                                    <input type="hidden" name="id_viaje" value="{{id_viaje}}"/>
+                                    <input type="hidden" name="totalPeaje" value="{{TotalPeaje}}"/>
+                                    <input type="hidden" name="totalViaticos" value="{{TotalViaticos}}"/>
+                                    <input type="hidden" name="totalExtras" value="{{TotalExtras}}"/>
+                                    <input type="hidden" name="totalCombustible" value="{{totalCombustible}}"/>
+                                    {{#totalDeTotales}}<input type="hidden" name="totalDeTotales"
+                                                              value="{{totalDeTotales}}"/>{{/totalDeTotales}}
+
+
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-end mt-2 ">
+                                    <button type="submit" class="btn btn-primary">Finalizar Viaje</button>
+                                </div>
+                            </form>
+                        {{/sumaTotalPuntoDeControl}}
                     </div>
                 </div>
             </div>
