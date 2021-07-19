@@ -179,7 +179,7 @@ class ChoferModel
         $idVehiculo = $this->obtenerIdVehiculoPorViaje($idViaje);
 
         $sql = "UPDATE `transporteslamatanza`.`Vehiculo`
-        SET `viaje_asignado` = '$viaje_asignado', 
+        SET `viaje_asignado` = '$viaje_asignado'
         WHERE (`id` = '$idVehiculo')";
         $this->database->execute($sql);
     }
@@ -187,7 +187,7 @@ class ChoferModel
     public function finalizarProforma($idViaje)
     {
         $sql = "UPDATE `transporteslamatanza`.`ProformaChofer` 
-                SET   `proformar_eliminada` == '1',
+                SET   `proformar_eliminada` == '1'
                 WHERE (`id_viaje` = '$idViaje')";
 
         return $this->database->execute($sql);
