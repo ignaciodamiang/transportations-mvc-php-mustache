@@ -75,10 +75,10 @@ class MecanicoController
     {
         $idService = $_POST["idService"];
 
-        $data["service"] = $this->MecanicoModel->getservicePorId($idService);
+        $datas["service"] = $this->MecanicoModel->getservicePorId($idService);
 
-        if ($data != null) {
-            echo $this->render->render("view/partial/proformaService.mustache", $data);
+        if ($datas != null) {
+            echo $this->render->render("view/partial/proformaService.mustache", $datas);
 
         } else {
             header("location:/mecanico?noRedirecciono");
