@@ -325,13 +325,12 @@ VALUES('$nombre',
         return $consulta;
     }
 
-    public function mandarAServices($idVehiculo, $idMecanico, $fechaEntrada)
+    public function mandarAServices($idVehiculo, $idMecanico)
     {
 
-        $sql = "INSERT INTO Services (id_vehiculo, id_usuario, fechaEntrada)
+        $sql = "INSERT INTO Services (id_vehiculo, id_usuario)
 VALUES('$idVehiculo',
-        '$idMecanico',
-        '$fechaEntrada')";
+        '$idMecanico')";
         $this->database->execute($sql);
 
     }
