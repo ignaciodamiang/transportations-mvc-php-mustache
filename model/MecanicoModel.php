@@ -11,10 +11,10 @@ class MecanicoModel
 
     public function getListaDeVehiculosEnReparacion($idMecanico)
     {
-        $sql = "select * 
-                from services 
-                inner join vehiculo on services.id_vehiculo = vehiculo.id
-                where vehiculo.en_reparacion = 1 and services.id_usuario='$idMecanico'";
+        $sql = "select services.id as idServices, vehiculo.patente,vehiculo.marca,vehiculo.modelo ,vehiculo.año_Fabricacion
+            from services 
+            inner join vehiculo on services.id_vehiculo = vehiculo.id
+            where vehiculo.en_reparacion = 1 and services.id_usuario='$idMecanico' and services.services_terminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -42,7 +42,8 @@ class MecanicoModel
                 SET `fecha` = '$fecha', 
                     `kilometros_unidad` = '2', 
                     `costo` = '$costo',
-                    `repuestos` = '$repuesto' 
+                    `repuestos` = '$repuesto',
+                    `services_terminado`= '1'
                 WHERE (`id` = '$idService')";
 
         $this->database->execute($sql);

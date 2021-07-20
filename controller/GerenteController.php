@@ -583,8 +583,7 @@ class GerenteController
         if (isset($_POST["idVehiculo"], $_POST["idMecanico"])) {
             $idVehiculo = $_POST["idVehiculo"];
             $idMecanico = $_POST["idMecanico"];
-            $fechaEntrada = date('y-m-d');
-            $this->GerenteModel->mandarAServices($idVehiculo, $idMecanico, $fechaEntrada);
+            $this->GerenteModel->mandarAServices($idVehiculo, $idMecanico);
             $this->GerenteModel->cambiarEstadoVehiculoAEnReparacion($idVehiculo);
 
             header("location:../gerente/vehiculos?SeEnvioAServices");
