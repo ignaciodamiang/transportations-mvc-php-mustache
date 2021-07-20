@@ -46,6 +46,8 @@ class GerenteController
         $this->usuarioModel->getNombreUsuario($id);
         $datas["nombre"] = $this->usuarioModel->getNombreUsuario($id);
         $datas["apellido"] = $this->usuarioModel->getApellidoUsuario($id);
+        $datas["reportes"] = $this->GerenteModel->getEstadisticasVehiculos();
+        $datas["viajesTerminados"] = $this->GerenteModel->getViajesTerminados();
 
         return $datas;
 
@@ -171,7 +173,6 @@ class GerenteController
                         $nombreChofer = $this->usuarioModel->getNombreUsuario($id_usuario);
                         $apellidoChofer = $this->usuarioModel->getApellidoUsuario($id_usuario);
 
-                        
 
                         header("location:/gerente/pdfViaje?id_usuario=$id_usuario&id_viaje=$id_viaje");
 
@@ -582,8 +583,8 @@ class GerenteController
         if (isset($_POST["idVehiculo"], $_POST["idMecanico"])) {
             $idVehiculo = $_POST["idVehiculo"];
             $idMecanico = $_POST["idMecanico"];
-
-            $this->GerenteModel->mandarAServices($idVehiculo, $idMecanico);
+            $fechaEntrada = date('y-m-d');
+            $this->GerenteModel->mandarAServices($idVehiculo, $idMecanico, $fechaEntrada);
             $this->GerenteModel->cambiarEstadoVehiculoAEnReparacion($idVehiculo);
 
             header("location:../gerente/vehiculos?SeEnvioAServices");
