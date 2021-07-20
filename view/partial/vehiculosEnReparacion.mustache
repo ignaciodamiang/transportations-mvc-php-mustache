@@ -18,7 +18,7 @@
                     <table class="table table-dark table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">id</th>
+                            <th scope="col">id services</th>
                             <th scope="col">patente</th>
                             <th scope="col">marca</th>
                             <th scope="col">modelo</th>
@@ -32,7 +32,7 @@
                         {{#vehiculosEnReparacion}}
                             <tr>
 
-                                <td>{{id}}</td>
+                                <td>{{idServices}}</td>
                                 <td>{{patente}}</td>
                                 <td>{{marca}}</td>
                                 <td>{{modelo}}</td>
@@ -48,7 +48,7 @@
                                         <input
                                                 type="hidden"
                                                 name="idService"
-                                                value="{{ id }}"
+                                                value="{{ idServices }}"
                                         />
                                         <button type="submit" class="btn btn-primary ms-1">
                                             Reparar

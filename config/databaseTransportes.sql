@@ -59,6 +59,7 @@ costo double,
 repuestos varchar(50),
 id_vehiculo int,
 id_usuario int,
+services_terminado boolean default false,
 primary key (id),
 foreign key (id_vehiculo) references Vehiculo(id),
 foreign key (id_usuario) references Usuario(id)

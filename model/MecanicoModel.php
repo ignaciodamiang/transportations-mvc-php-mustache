@@ -10,10 +10,10 @@ class MecanicoModel
     }
 
     public function getListaDeVehiculosEnReparacion($idMecanico){
-        $sql = "select * 
+        $sql = "select services.id as idServices, vehiculo.patente,vehiculo.marca,vehiculo.modelo ,vehiculo.año_Fabricacion
                 from services 
                 inner join vehiculo on services.id_vehiculo = vehiculo.id
-                where vehiculo.en_reparacion = 1 and services.id_usuario='$idMecanico'";
+                where vehiculo.en_reparacion = 1 and services.id_usuario='$idMecanico' and services.services_terminado = '0'";
         $consulta = $this->database->query($sql);
         return $consulta;
     }
@@ -30,7 +30,8 @@ class MecanicoModel
                 SET `fecha` = '$fecha', 
                     `kilometros_unidad` = '2', 
                     `costo` = '$costo',
-                    `repuestos` = '$repuesto' 
+                    `repuestos` = '$repuesto', 
+                    `services_terminado`= '1'
                 WHERE (`id` = '$idService')";
 
         $this->database->execute($sql);
@@ -38,16 +39,16 @@ class MecanicoModel
 
     public function getIdVehiculoPorService($idService){
 
-            $sql="SELECT Vehiculo.id 
-                    from Services inner join Vehiculo on Services.id_vehiculo = Vehiculo.id
-                    where Services.id = $idService";
+            $sql="SELECT vehiculo.id as 'idVehiculo'
+                    from vehiculo inner join services on vehiculo.id = services.id_vehiculo
+                    where services.id= $idService";
             return $this->database->query($sql);
     }
 
     public function vehiculoArreglado($idService){
 
         $idVehiculo["idVehiculo"]=$this->getIdVehiculoPorService($idService);
-        $id=$idVehiculo["idVehiculo"]["0"]["id"];
+        $id=$idVehiculo["idVehiculo"]["0"]["idVehiculo"];
 
         $sql="UPDATE `transporteslamatanza`.`Vehiculo` 
                 SET `en_reparacion` = '0' 
