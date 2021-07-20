@@ -64,6 +64,21 @@ foreign key (id_vehiculo) references Vehiculo(id),
 foreign key (id_usuario) references Usuario(id)
 );
 
+create table reporteVehiculo(
+id int auto_increment,
+tiempoFueraDeServicio int,
+kilometrosVehiculoRecorridos double,
+costoMantenimiento double,
+costoPorKilometroRecorrido double,
+desvios double,
+tiempoEstimadoViaje double,
+tiempoRealDeViaje double,
+id_vehiculo int,
+primary key (id),
+foreign key(id_vehiculo) references Vehiculo(id)
+
+);
+
 create table cliente(
     id int auto_increment,
     nombre varchar(50),

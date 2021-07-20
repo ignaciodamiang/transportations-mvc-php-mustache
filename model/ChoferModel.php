@@ -115,6 +115,16 @@ class ChoferModel
         return $viaje["fecha_inicioReal"]["0"]["fecha_inicioReal"];
     }
 
+    public function obtenerIdVehiculoPorViaje($idViaje)
+    {
+        $sql = "SELECT id_vehiculo
+        from Viaje
+        where  id = '$idViaje'";
+
+        $vehiculo["idVehiculo"] = $this->database->query($sql);
+        return $vehiculo["idVehiculo"]["0"]["id_vehiculo"];
+    }
+
     public function finalizarViaje($cantidadDeCombustible, $promedioPrecioCombustible, $totalPeaje,
                                    $totalViaticos, $totalExtras, $totalCombustible,
                                    $id_viaje, $totalDeTotales, $viaje_enCurso, $viaje_eliminado, $totalKilometrosRecorridos, $totalDesviaciones, $fechaFinReal, $horaFinReal, $diasDiferencia)
@@ -137,9 +147,10 @@ class ChoferModel
                     `hora_fin` = '$horaFinReal',
                     `tiempo_real` = '$diasDiferencia'
                     
-                WHERE (`id` = $id_viaje)";
+                WHERE (`id` = '$id_viaje')";
 
         $this->database->execute($sql);
+        $this->estadisticasVehiculos($this->obtenerIdVehiculoPorViaje($id_viaje));
     }
 
     public function getSumaTotalTotalesProforma($idViaje)
@@ -167,16 +178,6 @@ class ChoferModel
 
         $viaje["idUsuario"] = $this->database->query($sql);
         return $viaje["idUsuario"]["0"]["id_usuario"];
-    }
-
-    public function obtenerIdVehiculoPorViaje($idViaje)
-    {
-        $sql = "SELECT id_vehiculo
-        from Viaje
-        where  id = '$idViaje'";
-
-        $vehiculo["idVehiculo"] = $this->database->query($sql);
-        return $vehiculo["idVehiculo"]["0"]["id_vehiculo"];
     }
 
     public function liberarChofer($idViaje, $viaje_asignado)
@@ -219,4 +220,161 @@ class ChoferModel
 
         return $this->database->execute($sql);
     }
+
+    public function combustibleConsumido($idVehiculo)
+    {
+
+        $sql = "SELECT combustible_real
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["combustible_real"] = $this->database->query($sql);
+        return $vehiculo["combustible_real"]["0"]["combustible_real"];
+
+    }
+
+    public function precioCombustibleConsumido($idVehiculo)
+    {
+        $sql = "SELECT precioCombustible_real
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["precioCombustible_real"] = $this->database->query($sql);
+        return $vehiculo["precioCombustible_real"]["0"]["precioCombustible_real"];
+
+    }
+
+    public function kilometrosVehiculoRecorridos($idVehiculo)
+    {
+
+        $sql = "SELECT km_reales
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["km_reales"] = $this->database->query($sql);
+        return $vehiculo["km_reales"]["0"]["km_reales"];
+
+    }
+
+    public function costoDeMantenimiento($idVehiculo)
+    {
+
+        $sql = "SELECT 
+                sum(costo) as 'CostoTotalMantenimiento'
+                from Services where id_vehiculo ='$idVehiculo'";
+        $consulta["costoMantenimiento"] = $this->database->query($sql);
+        if (isset($consulta["costoMantenimiento"]["0"]["costoMantenimiento"]) && !empty($consulta["costoMantenimiento"]["0"]["costoMantenimiento"]) && $consulta["costoMantenimiento"]["0"]["costoMantenimiento"] != null) {
+            return $consulta["costoMantenimiento"]["0"]["costoMantenimiento"];
+        } else {
+            return 0;
+
+        }
+
+    }
+
+    public function costoPorKilometroRecorrido($idVehiculo)
+    {
+
+        $kilometrosRecorridos = $this->kilometrosVehiculoRecorridos($idVehiculo);
+        $combustibleConsumido = $this->combustibleConsumido($idVehiculo);
+        $precioCombustibleConsumido = $this->precioCombustibleConsumido($idVehiculo);
+
+        $costoPorKilometroRecorrido = $kilometrosRecorridos / ($combustibleConsumido * $precioCombustibleConsumido);
+
+        return $costoPorKilometroRecorrido;
+
+    }
+
+    public function desvios($idVehiculo)
+    {
+        $sql = "SELECT desviacion
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["desviacion"] = $this->database->query($sql);
+        return $vehiculo["desviacion"]["0"]["desviacion"];
+
+    }
+
+    public function tiempoRealDeViaje($idVehiculo)
+    {
+        $sql = "SELECT tiempo_real
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["tiempo_real"] = $this->database->query($sql);
+        return $vehiculo["tiempo_real"]["0"]["tiempo_real"];
+
+    }
+
+
+    public function tiempoEstimadoViaje($idVehiculo)
+    {
+
+        $sql = "SELECT tiempo_estimado
+        from Viaje
+        where  id_vehiculo = '$idVehiculo'";
+
+        $vehiculo["tiempo_estimado"] = $this->database->query($sql);
+        return $vehiculo["tiempo_estimado"]["0"]["tiempo_estimado"];
+
+    }
+
+    public function estadisticasVehiculos($idVehiculo)
+    {
+
+        $tiempoFueraDeServicio = 0;
+        $kilometrosVehiculoRecorridos = $this->kilometrosVehiculoRecorridos($idVehiculo);
+        $costoMantenimiento = $this->costoDeMantenimiento($idVehiculo);
+        $costoPorKilometroRecorrido = $this->costoPorKilometroRecorrido($idVehiculo);
+        $desvios = $this->desvios($idVehiculo);
+        $tiempoEstimadoViaje = $this->tiempoEstimadoViaje($idVehiculo);
+        $tiempoRealDeViaje = $this->tiempoRealDeViaje($idVehiculo);
+
+        $estadisticas["tiempoFueraDeServicio"] = $tiempoFueraDeServicio;
+        $estadisticas["kilometrosVehiculoRecorridos"] = $kilometrosVehiculoRecorridos;
+        $estadisticas["costoMantenimiento"] = $costoMantenimiento;
+        $estadisticas["costoPorKilometroRecorrido"] = $costoPorKilometroRecorrido;
+        $estadisticas["desvios"] = $desvios;
+        $estadisticas["tiempoEstimadoViaje"] = $tiempoEstimadoViaje;
+        $estadisticas["tiempoRealDeViaje"] = $tiempoRealDeViaje;
+
+
+        $sql3 = "SELECT * FROM reporteVehiculo
+                WHERE id_vehiculo= '$idVehiculo' ";
+        $consultaSiExisteReporte = $this->database->query($sql3);
+
+
+        if (isset($consultaSiExisteReporte) && !empty($consultaSiExisteReporte) && $consultaSiExisteReporte != null) {
+
+            $sql4 = "UPDATE `transporteslamatanza`.`reporteVehiculo` 
+                SET `kilometrosVehiculoRecorridos` = '$kilometrosVehiculoRecorridos',
+                `costoMantenimiento` = '$costoMantenimiento',
+                `costoPorKilometroRecorrido` = '$costoPorKilometroRecorrido',
+                `desvios` = '$desvios',
+                `tiempoEstimadoViaje` = '$tiempoEstimadoViaje',
+                `tiempoRealDeViaje` = '$tiempoRealDeViaje',
+                WHERE (`id_vehiculo` = '$idVehiculo')";
+
+            $this->database->execute($sql4);
+        } else {
+
+            $sql = "INSERT INTO reporteVehiculo (tiempoFueraDeServicio, kilometrosVehiculoRecorridos, costoMantenimiento, costoPorKilometroRecorrido, desvios, tiempoEstimadoViaje, tiempoRealDeViaje, id_vehiculo)
+VALUES( '$tiempoFueraDeServicio',
+        '$kilometrosVehiculoRecorridos',
+        '$costoMantenimiento',        
+        '$costoPorKilometroRecorrido',       
+        '$desvios',       
+        '$tiempoEstimadoViaje',
+        '$tiempoRealDeViaje',
+        '$idVehiculo'
+        )";
+
+            return $this->database->execute($sql);
+
+        }
+
+
+    }
+    
 }

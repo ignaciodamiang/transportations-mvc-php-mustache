@@ -325,12 +325,13 @@ VALUES('$nombre',
         return $consulta;
     }
 
-    public function mandarAServices($idVehiculo, $idMecanico)
+    public function mandarAServices($idVehiculo, $idMecanico, $fechaEntrada)
     {
 
-        $sql = "INSERT INTO Services (id_vehiculo, id_usuario)
+        $sql = "INSERT INTO Services (id_vehiculo, id_usuario, fechaEntrada)
 VALUES('$idVehiculo',
-        '$idMecanico')";
+        '$idMecanico',
+        '$fechaEntrada')";
         $this->database->execute($sql);
 
     }
@@ -346,101 +347,21 @@ VALUES('$idVehiculo',
 
     }
 
-    public function combustibleConsumido($idVehiculo)
+    public function getViajesTerminados()
     {
 
-        $sql = "SELECT combustible_real
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["combustible_real"] = $this->database->query($sql);
-        return $vehiculo["combustible_real"]["0"]["combustible_real"];
+        $sql = "SELECT * FROM Viaje
+                WHERE viaje_terminado = '1'";
+        $consulta = $this->database->query($sql);
+        return $consulta;
 
     }
 
-    public function precioCombustibleConsumido($idVehiculo)
+    public function getEstadisticasVehiculos()
     {
-        $sql = "SELECT precioCombustible_real
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["precioCombustible_real"] = $this->database->query($sql);
-        return $vehiculo["precioCombustible_real"]["0"]["precioCombustible_real"];
-
-    }
-
-    public function tiempoFueraDeServicio($idVehiculo)
-    {
-
-        $sql = "SELECT fecha_finReal
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["fecha_finReal"] = $this->database->query($sql);
-        $fechaFinalViajeVehiculo = $vehiculo["fecha_finReal"]["0"]["fecha_finReal"];
-        $fechaHoy = date('y-m-d');
-
-        $dias = (strtotime($fechaFinalViajeVehiculo) - strtotime($fechaHoy)) / 86400;
-        $dias = abs($dias);
-        $dias = floor($dias);
-
-        return $dias;
-    }
-
-    public function kilometrosVehiculoRecorridos($idVehiculo)
-    {
-
-        $sql = "SELECT km_reales
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["km_reales"] = $this->database->query($sql);
-        return $vehiculo["km_reales"]["0"]["km_reales"];
-
-    }
-
-    public function costoDeMantenimiento($idVehiculo)
-    {
-
-        $sql = "SELECT 
-                sum(costo) as 'CostoTotalMantenimiento'
-                from Services where id_vehiculo ='$idVehiculo'";
-        return $this->database->query($sql);
-
-    }
-
-    public function costoPorKilometroRecorrido($idVehiculo)
-    {
-
-        $kilometrosRecorridos = $this->kilometrosVehiculoRecorridos($idVehiculo);
-        $combustibleConsumido = $this->combustibleConsumido($idVehiculo);
-        $precioCombustibleConsumido = $this->precioCombustibleConsumido($idVehiculo);
-
-        $costoPorKilometroRecorrido = $kilometrosRecorridos / ($combustibleConsumido * $precioCombustibleConsumido);
-
-        return $costoPorKilometroRecorrido;
-
-    }
-
-    public function desvios($idVehiculo)
-    {
-        $sql = "SELECT desviacion
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["desviacion"] = $this->database->query($sql);
-        return $vehiculo["desviacion"]["0"]["desviacion"];
-
-    }
-
-    public function tiempoRealDeViaje($idVehiculo)
-    {
-        $sql = "SELECT tiempo_real
-        from Viaje
-        where  id_vehiculo = '$idVehiculo'";
-
-        $vehiculo["tiempo_real"] = $this->database->query($sql);
-        return $vehiculo["tiempo_real"]["0"]["tiempo_real"];
+        $sql = "SELECT * FROM reporteVehiculo";
+        $consulta = $this->database->query($sql);
+        return $consulta;
 
     }
 
