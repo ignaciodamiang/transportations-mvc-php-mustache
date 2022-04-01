@@ -1,2 +1,7 @@
-# TpFinalProgramacionWeb2
-Trabajo práctico final para la materia Programación Web 2.
+## Technologies and Tools:
+- PHP.
+- Mustache.
+- MySQL
+- PHPMailer
+- PHPQRCode
+- FPDF
